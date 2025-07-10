@@ -46,6 +46,7 @@ a:hover{
     color: #fff;
     background: #4a5534;
     font-size: 1.2em;
+    border-radius: 5px;
 }
 ul{
     list-style: none;
@@ -61,7 +62,7 @@ li{
 }
 .social{
     margin: 0 10px;
-    width: 15px;
+    width: 20px;
 }
 header{
     padding: 0 60px;
@@ -80,6 +81,7 @@ header{
     background: #4a5534;
     justify-content: center;
     align-content: end;
+    border-radius: 10px;
    
 }
 #left-side p{
@@ -117,11 +119,12 @@ header{
     margin-top: 50px;
     width: 92.5%;
     min-height: 500px;
-    background: #4a553432;
+    background: #181818;
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 20px;
     display: flex;
-    padding: 30px;
+    padding: 50px;
+    border-radius: 10px;
 }
 #about-image{
     width: 500px;
@@ -129,4 +132,62 @@ header{
     background: url(../assets/images/About-image.jpeg);
     background-position: center;
     background-size: cover;
+    margin-right: 100px;
+    justify-content: end;
+    border-radius: 10px;
+}
+#about-description{
+    width: 700px;
+    height: 500px;
+    padding: 35px;
+    color: #fff;
+}
+#about-description h1{
+    color:#fff;
+    font-size: 2.5em;
+    font-weight: 400;
+    margin-bottom: 1em;
+
+}
+#tools{
+    margin-top: 40px;
+}
+.skill{
+    width: 38px;
+    opacity: 0.4;
+    margin: 0 10px;
+    color: #fff;
+}
+#square{
+    width: 80px;
+    height: 80px;
+    background: #4a5534;
+    border: none;
+    border-radius: 3px;
+    
+   
+}
+#square img{
+    width: 45px;
+}
+
+#projects{
+    width: 92.5%;
+    min-height: 600px;
+
+}
+
+#tools{
+    max-width: 480px;
+    height: 70px;
+    background-color: #262626de;
+    border-radius: 10px;
+    border: 0.9px solid #ffffff23;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    padding: 0 20px;
+    box-shadow: 5px 5px 5px #00000024;
 }
