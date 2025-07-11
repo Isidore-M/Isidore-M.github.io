@@ -65,8 +65,7 @@ li{
     width: 20px;
 }
 header{
-    padding: 0 60px;
-    
+    padding: 0 60px;  
 }
 #left-side{
     width: 700px;
@@ -123,7 +122,7 @@ header{
     margin: 0 auto;
     margin-top: 20px;
     display: flex;
-    padding: 50px;
+    padding: 50px 60px;  
     border-radius: 10px;
 }
 #about-image{
@@ -174,9 +173,25 @@ header{
 #projects{
     width: 92.5%;
     min-height: 600px;
+    margin-top: 50px;
+    padding: 50px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    background: #3e3e3e0a;
+    justify-self: center;
+    border-radius: 10px;
+    
+    
 
 }
 
+#projects img{
+    width: 85em;
+}
+ 
 #tools{
     max-width: 480px;
     height: 70px;
@@ -190,4 +205,42 @@ header{
     align-content: center;
     padding: 0 20px;
     box-shadow: 5px 5px 5px #00000024;
+}
+
+#projects h2{
+    font-size: 2.5em;
+    font-weight: 400;
+    margin-bottom: 1em;
+}
+#projects p{
+    padding: 0 250px;
+    margin-bottom: 4em;
+}
+#btns{
+    display: flex;
+    width: 190px;
+}
+.left{ 
+    border: none;
+    margin: 0 40px;
+}
+.right{
+    border: none;
+    margin: 0 40px;
+}
+
+#btns img{
+    width: 40px;
+}
+
+footer{
+    width: 92.5%;
+    height: 100px;
+    background:#181818;
+    justify-self: center;
+    color: #fff;
+    align-content: center;
+    text-align: center;
+    margin-top: 30px;
+    border-radius: 10px;
 }
