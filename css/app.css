@@ -233,6 +233,51 @@ header{
     width: 40px;
 }
 
+#contactForm {
+    width: 92.5%;
+    margin: 0 auto;
+    background: rgba(168, 168, 168, 0.4);
+    padding: 50px;
+    border-radius: 16px;
+    margin-top:40px;
+}
+  input {
+    font-size: 1.6em;
+    border-radius: 8px;
+    border: none;
+    display: block; 
+    margin: 15px 0;
+    padding: 15px 15px;
+    width: 100%;
+    background: #f2f2f2;
+    
+}
+  input[type='submit'] {
+    color: #fff;
+    margin-top: 40px;
+    padding: 13px 30px;
+    background:#152520;
+    border: none;
+    font-size: 1.1em;
+}
+  input[type='submit']:hover {
+    color: #edecec;
+    background:  #4a5534;
+    cursor: pointer;
+}
+#contact h3 {
+    margin-top: 75px;
+    font-size: 2.5em;
+    font-weight: 400;
+    margin-bottom: 1em;
+}
+#contact{
+    text-align: center;
+}
+#contact p{
+    padding: 0 400px;
+}
+
 footer{
     width: 92.5%;
     height: 100px;
