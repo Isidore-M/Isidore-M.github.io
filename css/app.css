@@ -144,4 +144,218 @@ body {
 
 .slide:hover img {
   transform: scale(1); /* Smooth zoom-out effect on hover */
+}
+
+.process-section {
+  padding: 15vh clamp(20px, 5vw, 100px);
+  background-color: #0d0d0d;
+}
+
+.process-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10vh;
+}
+
+.process-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.process-dash {
+  width: 2em;
+  height: 2em;
+  background-color: #fff;
+  display: block;
+}
+
+.process-title {
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 500;
+  text-transform: uppercase;
+  white-space: nowrap;
+  display: inline-block;
+  /* Starting state: wide and invisible */
+  letter-spacing: 40px;
+  text-indent: 40px;
+  opacity: 0;
+  will-change: letter-spacing, text-indent, opacity;
+}
+
+.process-subtitle {
+  max-width: 40%;
+  font-size: clamp(1rem, 1.2vw, 1.5rem);
+  line-height: 1.4;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.process-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 5vw;
+}
+
+.process-image-box {
+  width: 100%;
+  aspect-ratio: 1/1.1;
+  background-color: #d9d9d9;
+  overflow: hidden;
+  position: relative;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4vw;
+}
+
+.process-item h3 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+}
+
+.process-item p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #a9a9a9;
+}
+
+.process-image-box img {
+  width: 100%;
+  height: 120%; /* Taller than container for vertical movement */
+  object-fit: cover;
+  position: absolute;
+  top: -10%;
+}
+
+.projects-section {
+  padding: 10vh clamp(20px, 5vw, 100px);
+  background: #0d0d0d;
+  height: 100vh;
+}
+
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5vh;
+}
+
+/* Filter Styles */
+.filter-controls {
+  display: flex;
+  gap: 30px;
+}
+
+.filter-btn {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.filter-btn.active, .filter-btn:hover {
+  color: #fff;
+}
+
+/* Slider Controls */
+.slider-nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.nav-arrow {
+  background: #1a1a1a;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+/* Card Hover Effects */
+.card-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 19/17;
+  background: #222;
+  overflow: hidden;
+}
+
+.view-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%); /* Slightly lower for entrance */
+  opacity: 0;
+  padding: 12px 24px;
+  background: #fff;
+  color: #000;
+  border: none;
+  font-weight: 700;
+  transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.project-card:hover .view-btn {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+.project-card:hover .placeholder-img {
+  transform: scale(1.05);
+  filter: brightness(0.6);
+}
+
+.projects-slider-container {
+  width: 100%;
+  overflow: hidden; /* Hide the overflow but allow dragging */
+  cursor: grab;
+  padding-bottom: 50px;
+}
+
+.projects-slider-container:active {
+  cursor: grabbing;
+}
+
+.projects-wrapper {
+  display: flex;
+  gap: 30px;
+  width: max-content; /* Critical for Draggable to work */
+  will-change: transform;
+}
+
+.project-card {
+  width: clamp(450px, 45vw, 900px);
+  flex-shrink: 0; /* Prevent cards from squishing */
+  transition: transform 0.5s ease;
+}
+
+/* Card image placeholder */
+.placeholder-img {
+  width: 100%;
+  height: 100%;
+  background: url(../assets/images/placeholder2.jpg);
+  transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.card-footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.p-meta {
+  color: #666;
 }/*# sourceMappingURL=app.css.map */

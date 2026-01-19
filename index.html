@@ -59,6 +59,105 @@
             </div>
         </div>
     </header>
+
+    <section class="process-section">
+    <div class="process-header">
+        <div class="process-title-wrap">
+            <span class="process-dash"></span>
+            <h2 class="process-title">MY PROCESS</h2>
+        </div>
+        <p class="process-subtitle scramble" data-text="“ HELLO WORLD, I’M BUILDING BRIDGES THAT CARRY YOUR IDEAS AND YOUR VISION TO THE WORLD ”">
+            “ HELLO WORLD, I’M BUILDING BRIDGES THAT CARRY YOUR IDEAS AND YOUR VISION TO THE WORLD ”
+        </p>
+    </div>
+
+    <div class="process-content">
+        <div class="process-image-box">
+            </div>
+        <div class="process-grid">
+            <div class="process-item">
+                <h3>UNDERSTAND <br> & DEFINE</h3>
+                <p>LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA...</p>
+            </div>
+            <div class="process-item">
+                <h3>UNDERSTAND <br> & DEFINE</h3>
+                <p>LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="projects-section">
+    <div class="projects-header">
+        <div class="projects-title-wrap">
+            <span class="process-dash"></span>
+            <h2 class="projects-title">SELECTED PROJECTS</h2>
+        </div>
+        
+        <div class="filter-controls">
+            <button class="filter-btn active" data-filter="all">ALL</button>
+            <button class="filter-btn" data-filter="web">WEB</button>
+            <button class="filter-btn" data-filter="design">DESIGN</button>
+            <button class="filter-btn" data-filter="mobile">MOBILE</button>
+        </div>
+    </div>
+
+    <div class="slider-nav">
+        <button class="nav-arrow prev"><span>←</span> PREVIOUS</button>
+        <button class="nav-arrow next">NEXT <span>↴</span></button>
+    </div>
+
+    <div class="projects-slider-container">
+        <div class="projects-wrapper">
+            <div class="project-card" data-category="web">
+                <div class="card-image-wrapper">
+                    <div class="placeholder-img"></div>
+                    <button class="view-btn">VIEW PROJECT</button>
+                </div>
+                <div class="card-footer">
+                    <span class="p-name">NEXUS WEB</span>
+                    <span class="p-meta">WEB DEVELOPMENT | 2025</span>
+                </div>
+            </div>
+            <div class="project-card" data-category="web">
+                <div class="card-image-wrapper"><div class="placeholder-img"></div><button class="view-btn">VIEW PROJECT</button></div>
+                <div class="card-footer"><span class="p-name">VOID STUDIO</span><span class="p-meta">WEB DEVELOPMENT | 2025</span></div>
+            </div>
+            <div class="project-card" data-category="web">
+                <div class="card-image-wrapper"><div class="placeholder-img"></div><button class="view-btn">VIEW PROJECT</button></div>
+                <div class="card-footer"><span class="p-name">GLITCH AGENCY</span><span class="p-meta">WEB DEVELOPMENT | 2025</span></div>
+            </div>
+
+            <div class="project-card" data-category="design">
+                <div class="card-image-wrapper"><div class="placeholder-img"></div><button class="view-btn">VIEW PROJECT</button></div>
+                <div class="card-footer"><span class="p-name">ETHOS BRAND</span><span class="p-meta">BRANDING | 2025</span></div>
+            </div>
+            <div class="project-card" data-category="design">
+                <div class="card-image-wrapper"><div class="placeholder-img"></div><button class="view-btn">VIEW PROJECT</button></div>
+                <div class="card-footer"><span class="p-name">MUSEUM ARCHIVE</span><span class="p-meta">GRAPHIC DESIGN | 2025</span></div>
+            </div>
+            <div class="project-card" data-category="design">
+                <div class="card-image-wrapper"><div class="placeholder-img"></div><button class="view-btn">VIEW PROJECT</button></div>
+                <div class="card-footer"><span class="p-name">NOMAD IDENTITY</span><span class="p-meta">VISUAL DESIGN | 2025</span></div>
+            </div>
+
+            <div class="project-card" data-category="mobile">
+                <div class="card-image-wrapper"><div class="placeholder-img"></div><button class="view-btn">VIEW PROJECT</button></div>
+                <div class="card-footer"><span class="p-name">COZYCUP APP</span><span class="p-meta">MOBILE APP | 2025</span></div>
+            </div>
+            <div class="project-card" data-category="mobile">
+                <div class="card-image-wrapper"><div class="placeholder-img"></div><button class="view-btn">VIEW PROJECT</button></div>
+                <div class="card-footer"><span class="p-name">THE NEST</span><span class="p-meta">IOS / ANDROID | 2026</span></div>
+            </div>
+            <div class="project-card" data-category="mobile">
+                <div class="card-image-wrapper"><div class="placeholder-img"></div><button class="view-btn">VIEW PROJECT</button></div>
+                <div class="card-footer"><span class="p-name">ZENITH UI</span><span class="p-meta">MOBILE INTERFACE | 2025</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollToPlugin.min.js"></script>
@@ -67,7 +166,8 @@
     <script src="script.js"></script>
 
     <script>
-document.addEventListener("DOMContentLoaded", () => {
+        
+    document.addEventListener("DOMContentLoaded", () => {
     const tl = gsap.timeline({ defaults: { ease: "power4.inOut" } });
 
     // 1. THE LOADER SEQUENCE (Centering Fix)
@@ -163,6 +263,164 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setupSlider();
     window.addEventListener("resize", setupSlider);
+});
+
+
+// My process section
+gsap.registerPlugin(ScrollTrigger);
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // 1. SMOOTH TITLE REVEAL
+    // This timeline triggers when the section enters the viewport
+    const processHeaderTL = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".process-section",
+            start: "top 75%", // Starts a bit earlier for better flow
+            toggleActions: "play none none none"
+        }
+    });
+
+    processHeaderTL.to(".process-title", {
+        opacity: 1,
+        letterSpacing: "2px",
+        textIndent: "2px", // Matches letter-spacing to keep it centered
+        duration: 2,
+        ease: "expo.out"
+    })
+    .add(() => {
+        const subtitle = document.querySelector(".process-subtitle");
+        if(subtitle) cinematicScramble(subtitle);
+    }, "-=1.4"); // Starts scramble while title is still settling
+
+    // 2. TRUE PARALLAX EFFECT
+    // Image box moves slightly faster than the scroll
+    gsap.to(".process-image-box img", {
+        yPercent: 20, 
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".process-section",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+        }
+    });
+
+    // Text columns move at a different rate for depth
+    gsap.from(".process-item", {
+        y: 100,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 1.5,
+        ease: "power3.out",
+        scrollTrigger: {
+            trigger: ".process-grid",
+            start: "top 90%",
+            toggleActions: "play none none none"
+        }
+    });
+});
+
+// Cinematic Scramble Function (Keep your existing one)
+function cinematicScramble(element) {
+    const originalText = element.getAttribute('data-text') || element.innerText;
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let iteration = 0;
+    
+    const interval = setInterval(() => {
+        element.innerText = originalText.split("").map((letter, index) => {
+            if (index < iteration) return originalText[index];
+            return chars[Math.floor(Math.random() * 26)];
+        }).join("");
+
+        if (iteration >= originalText.length) clearInterval(interval);
+        iteration += 2 / 2;
+    }, 30);
+}
+
+
+// PROJECT SECTION
+
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Entrance Animations (Title & Filter Scramble)
+    const projectsTL = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".projects-section",
+            start: "top 75%",
+        }
+    });
+
+    projectsTL.to(".projects-title", {
+        opacity: 1,
+        letterSpacing: "2px",
+        textIndent: "2px",
+        duration: 1.8,
+        ease: "expo.out"
+    });
+
+    // Scramble filter buttons on arrival
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+        cinematicScramble(btn); 
+    });
+
+    // 2. Slider Logic
+    const wrapper = document.querySelector(".projects-wrapper");
+    const nextBtn = document.querySelector(".next");
+    const prevBtn = document.querySelector(".prev");
+    
+    let scrollAmount = 0;
+    const cardWidth = 500; // Adjust based on CSS
+
+    nextBtn.addEventListener("click", () => {
+        gsap.to(wrapper, {
+            x: "-=520", // Card width + gap
+            duration: 0.8,
+            ease: "power3.out"
+        });
+    });
+
+    prevBtn.addEventListener("click", () => {
+        gsap.to(wrapper, {
+            x: "+=520",
+            duration: 0.8,
+            ease: "power3.out"
+        });
+    });
+
+    // 3. Filtering Logic
+    const filters = document.querySelectorAll(".filter-btn");
+    const cards = document.querySelectorAll(".project-card");
+
+    filters.forEach(filter => {
+        filter.addEventListener("click", function() {
+            const category = this.getAttribute("data-filter");
+            
+            // UI Update
+            filters.forEach(f => f.classList.remove("active"));
+            this.classList.add("active");
+
+            // Animation Logic
+            gsap.to(cards, {
+                opacity: 0,
+                scale: 0.9,
+                duration: 0.3,
+                onComplete: () => {
+                    cards.forEach(card => {
+                        const cardCat = card.getAttribute("data-category");
+                        if (category === "all" || cardCat === category) {
+                            card.style.display = "block";
+                        } else {
+                            card.style.display = "none";
+                        }
+                    });
+                    
+                    // Reset slider position and fade back in
+                    gsap.set(wrapper, { x: 0 });
+                    gsap.to(cards, { opacity: 1, scale: 1, duration: 0.4, stagger: 0.1 });
+                }
+            });
+        });
+    });
 });
 
 
