@@ -307,6 +307,20 @@ body {
   border-radius: 2px; /* Subtle high-end rounding */
 }
 
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 40px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+  z-index: 2;
+}
+
 .card-image-wrapper::after {
   content: "";
   position: absolute;
@@ -398,4 +412,35 @@ body {
 
 .p-meta {
   color: #666;
+}
+
+.project-card:hover .card-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-description {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #ccc;
+  margin-bottom: 20px;
+  max-width: 90%;
+}
+
+.small-view-btn {
+  align-self: flex-start;
+  padding: 10px 20px;
+  background: #fff;
+  color: #000;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.small-view-btn:hover {
+  transform: scale(1.05);
 }/*# sourceMappingURL=app.css.map */
