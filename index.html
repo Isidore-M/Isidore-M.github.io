@@ -77,7 +77,15 @@
         <div class="process-grid">
             <div class="process-item">
                 <h3>UNDERSTAND <br> & DEFINE</h3>
-                <p>LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA...</p>
+                <p>LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA.
+                    LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA...
+                </p>
+
+                <h3>UNDERSTAND <br> & DEFINE</h3>
+                
+                <p>LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA.
+                    LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA...
+                </p>
             </div>
             <div class="process-item">
                 <h3>UNDERSTAND <br> & DEFINE</h3>
@@ -373,7 +381,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     nextBtn.addEventListener("click", () => {
         gsap.to(wrapper, {
-            x: "-=520", // Card width + gap
+            x: "-=790", // Card width + gap
             duration: 0.8,
             ease: "power3.out"
         });
@@ -381,7 +389,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     prevBtn.addEventListener("click", () => {
         gsap.to(wrapper, {
-            x: "+=520",
+            x: "+=790",
             duration: 0.8,
             ease: "power3.out"
         });
@@ -421,7 +429,84 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
-});
+});// --- 2. THE MAGNETIC HOVER EFFECT ---
+    cards.forEach(card => {
+        const btn = card.querySelector(".view-btn");
+        
+        card.addEventListener("mousemove", (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            gsap.to(btn, {
+                opacity: 1,
+                scale: 1,
+                x: x,
+                y: y,
+                xPercent: -50, // Center button on cursor
+                yPercent: -50,
+                duration: 0.4,
+                ease: "power2.out"
+            });
+        });
+
+        card.addEventListener("mouseleave", () => {
+            gsap.to(btn, {
+                opacity: 0,
+                scale: 0,
+                duration: 0.4,
+                ease: "power2.in"
+            });
+        });
+    });
+
+    // --- 4. BUTTON HOVER EFFECTS ---
+    // Make the Next/Prev buttons expand slightly on hover
+    [nextBtn, prevBtn].forEach(btn => {
+        btn.addEventListener("mouseenter", () => {
+            gsap.to(btn, { letterSpacing: "2px", backgroundColor: "#fff", color: "#000", duration: 0.3 });
+        });
+        btn.addEventListener("mouseleave", () => {
+            gsap.to(btn, { letterSpacing: "0px", backgroundColor: "#1a1a1a", color: "#fff", duration: 0.3 });
+        });
+    });
+
+// --- 1. THE DRAGGABLE SLIDER ---
+    const dragInstance = Draggable.create(wrapper, {
+        type: "x",
+        edgeResistance: 0.9,
+        bounds: container,
+        inertia: true,
+        onDragStart: () => gsap.to(container, { cursor: "grabbing" }),
+        onDragEnd: () => gsap.to(container, { cursor: "grab" })
+    })[0];
+
+const moveSlider = (direction) => {
+        const card = document.querySelector(".project-card");
+        if (!card) return;
+
+        const gap = parseFloat(window.getComputedStyle(wrapper).gap) || 0;
+        const moveDistance = card.offsetWidth + gap;
+        const currentX = gsap.getProperty(wrapper, "x");
+        
+        let targetX = direction === "next" ? currentX - moveDistance : currentX + moveDistance;
+
+        const minX = -(wrapper.scrollWidth - container.offsetWidth);
+        const maxX = 0;
+        targetX = Math.max(minX, Math.min(maxX, targetX));
+
+        gsap.to(wrapper, {
+            x: targetX,
+            duration: 0.8,
+            ease: "power3.inOut",
+            onUpdate: () => dragInstance.update() // CRITICAL: Keeps draggable in sync
+        });
+    };
+
+    nextBtn.addEventListener("click", () => moveSlider("next"));
+    prevBtn.addEventListener("click", () => moveSlider("prev"));
+
+
 
 
     </script>
