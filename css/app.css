@@ -1,0 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background-color: #0d0d0d;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Loader Styles */
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #0d0d0d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.loader-name {
+  font-size: 8vw;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap; /* Prevents text from wrapping during expansion */
+  display: inline-block;
+  letter-spacing: 50px;
+  /* Offset the right-side spacing to keep it mathematically centered */
+  text-indent: 50px;
+}
+
+/* Hero Section */
+.hero {
+  opacity: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 30px;
+  transition: letter-spacing 0.4s ease;
+}
+
+.navbar a:hover {
+  letter-spacing: 2px;
+}
+
+.hero-content {
+  text-align: center;
+  margin-top: 5vh;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 4vh;
+}
+
+.main-title {
+  font-size: 11.5vw;
+  font-weight: 600;
+  line-height: 0.9;
+}
+
+.hero-description {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* Clamp logic:
+     Minimum: 20px (Safe margin for mobile)
+     Preferred: 4vw (Scales with your title size)
+     Maximum: 80px (Prevents it from looking too inset on ultra-wide monitors)
+  */
+  padding-left: clamp(30px, 4vw, 90px);
+  padding-right: clamp(30px, 4vw, 90px);
+  /* Vertical spacing from the title */
+  margin-top: 3vh;
+  text-align: left;
+  font-size: clamp(1rem, 1.2vw, 1.5rem); /* Scalable font size too */
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: #9e9e9e;
+}
+
+#desc-col3 {
+  text-align: right;
+}
+
+/* Slider / Carousel */
+/* Container for the loop */
+.slider-container {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 5vh; /* Adjust based on your text height */
+  padding-bottom: 20px;
+  cursor: grab;
+}
+
+.slider-container:active {
+  cursor: grabbing;
+}
+
+.slider-track {
+  display: flex;
+  /* This gap matches the narrow spacing in your design */
+  gap: 15px;
+  width: max-content;
+  will-change: transform;
+}
+
+.slide {
+  /* Adjust width to control how many images are visible at once */
+  width: 22vw;
+  min-width: 280px;
+  /* Matches the vertical 'card' look in your screen recording */
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  position: relative;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Optional: subtle scale on load */
+  transform: scale(1.1);
+  transition: transform 1.5s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.slide:hover img {
+  transform: scale(1); /* Smooth zoom-out effect on hover */
+}/*# sourceMappingURL=app.css.map */

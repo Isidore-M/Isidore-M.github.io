@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isidore Manga | Portfolio</title>
+    <link rel="stylesheet" href="/css/app.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+
+    <div class="loader">
+        <h1 class="loader-name">ISIDORE MANGA</h1>
+    </div>
+
+    <header class="hero">
+        <nav class="navbar">
+            <div class="nav-left">
+                <a href="#">MY PROCESS</a>
+                <a href="#">PROJECTS</a>
+                <a href="#">LYMBO</a>
+            </div>
+            <div class="nav-center">ISIDORE MANGA</div>
+            <div class="nav-right">
+                <a href="#" class="btn-touch">GET IN TOUCH</a>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <h1 class="main-title">ISIDORE MANGA</h1>
+            
+            <div class="hero-description">
+                <div class="desc-col">
+                    <p class="scramble" data-text="FRONT END">FRONT END</p>
+                    <p class="scramble" data-text="DEVELOPER">DEVELOPER</p>
+                </div>
+                <div class="desc-col">
+                    <p class="scramble" data-text="BRIDGE">BRIDGE</p>
+                    <p class="scramble" data-text="BUILDER">BUILDER</p>
+                </div>
+                <div class="desc-col" id="desc-col3">
+                    <p class="scramble" data-text="FOR THOSE WITH">FOR THOSE WITH</p>
+                    <p class="scramble" data-text="VISIONS TO SHARE">VISIONS TO SHARE</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-container">
+            <div class="slider-track">
+                <div class="slide"><img src="./assets/images/placeholder1.jpg" alt="Project"></div>
+                <div class="slide"><img src="./assets/images/placeholder1.jpg" alt="Project"></div>
+                <div class="slide"><img src="./assets/images/placeholder1.jpg" alt="Project"></div>
+                <div class="slide"><img src="./assets/images/placeholder1.jpg" alt="Project"></div>
+                <div class="slide"><img src="./assets/images/placeholder1.jpg" alt="Project"></div>
+                <div class="slide"><img src="./assets/images/placeholder1.jpg" alt="Project"></div>
+                <div class="slide"><img src="./assets/images/placeholder1.jpg" alt="Project"></div>
+                <div class="slide"><img src="./assets/images/placeholder1.jpg" alt="Project"></div>
+            </div>
+        </div>
+    </header>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Flip.min.js"></script>
+
+    <script src="script.js"></script>
+
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const tl = gsap.timeline({ defaults: { ease: "power4.inOut" } });
+
+    // 1. THE LOADER SEQUENCE (Centering Fix)
+    tl.set(".loader-name", { 
+        opacity: 0, 
+        letterSpacing: "50px", 
+        textIndent: "50px" // Matches letterspacing for perfect center
+    })
+    .to(".loader-name", {
+        opacity: 1,
+        letterSpacing: "10px",
+        textIndent: "10px", // Animating this down keeps it centered
+        duration: 2.5,
+        ease: "expo.inOut"
+    })
+    .to(".loader", {
+        yPercent: -100,
+        duration: 1.4,
+    }, "+=0.3")
+    .to(".hero", {
+        opacity: 1,
+        duration: 0.8
+    }, "-=1")
+    .add(() => {
+        document.querySelectorAll(".scramble").forEach(el => cinematicScramble(el));
+    }, "-=0.5");
+
+    // ... Rest of your Scramble and Slider code stays the same
+
+    // 2. NAV HOVER ANIMATION (Letter Spacing Reveal)
+    const navLinks = document.querySelectorAll(".navbar a");
+    navLinks.forEach(link => {
+        link.addEventListener("mouseenter", () => {
+            gsap.to(link, { 
+                letterSpacing: "4px", 
+                duration: 0.6, 
+                ease: "power2.out" 
+            });
+        });
+        link.addEventListener("mouseleave", () => {
+            gsap.to(link, { 
+                letterSpacing: "0px", 
+                duration: 0.6, 
+                ease: "power2.inOut" 
+            });
+        });
+    });
+
+    // 3. CINEMATIC SCRAMBLE FUNCTION
+    function cinematicScramble(element) {
+        const originalText = element.innerText;
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        let iteration = 0;
+        
+        // Clear initial text to prevent flash
+        element.innerText = "";
+
+        const interval = setInterval(() => {
+            element.innerText = originalText
+                .split("")
+                .map((letter, index) => {
+                    if (index < iteration) return originalText[index];
+                    return chars[Math.floor(Math.random() * 26)];
+                })
+                .join("");
+
+            if (iteration >= originalText.length) clearInterval(interval);
+            iteration += 1 / 2; // Adjust speed here
+        }, 40);
+    }
+
+    // 4. IMPROVED INFINITE LOOP SLIDER
+    const setupSlider = () => {
+        const track = document.querySelector(".slider-track");
+        if (!track) return;
+
+        // Reset any existing animation on resize
+        gsap.killTweensOf(track);
+        
+        // Calculate width: track should contain two identical sets of images
+        const totalWidth = track.scrollWidth;
+        
+        gsap.to(track, {
+            x: -totalWidth / 2, // Only move the first set
+            duration: 25,
+            repeat: -1,
+            ease: "none",
+            onReverseComplete: () => {
+                gsap.set(track, { x: 0 });
+            }
+        });
+    };
+
+    setupSlider();
+    window.addEventListener("resize", setupSlider);
+});
+
+
+    </script>
+</body>
+</html>
