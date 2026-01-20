@@ -303,9 +303,104 @@
     </div>
 </section>
 
+<section class="logofolio-section">
+    <div class="logofolio-header">
+        <span class="process-dash"></span>
+        <h2 class="logofolio-title">LOGOFOLIO</h2>
+    </div>
 
+    <div class="logofolio-wrapper">
+        <div class="logo-grid-zone">
+            <div class="logo-item active" data-project="tocen">
+                <img src="./assets/images/logofolio/tocen.svg" alt="Muse Noir Co.">
+            </div>
+            <div class="logo-item" data-project="verdana">
+                <img src="./assets/images/logofolio/verdana.svg" alt="Verdana">
+            </div>
+            <div class="logo-item" data-project="verdana">
+                <img src="verdana-logo.svg" alt="Verdana">
+            </div><div class="logo-item" data-project="verdana">
+                <img src="verdana-logo.svg" alt="Verdana">
+            </div><div class="logo-item" data-project="verdana">
+                <img src="verdana-logo.svg" alt="Verdana">
+            </div><div class="logo-item" data-project="verdana">
+                <img src="verdana-logo.svg" alt="Verdana">
+            </div><div class="logo-item" data-project="verdana">
+                <img src="verdana-logo.svg" alt="Verdana">
+            </div><div class="logo-item" data-project="verdana">
+                <img src="verdana-logo.svg" alt="Verdana">
+            </div><div class="logo-item" data-project="verdana">
+                <img src="verdana-logo.svg" alt="Verdana">
+            </div>
+            </div>
+
+        <div class="bento-grid-zone" id="bento-display">
+            <div class="bento-item tall"><img src="./assets/images/musenoir10.jpg" class="bento-img"></div>
+            <div class="bento-item wide"><img src="muse-mockup2.jpg" class="bento-img"></div>
+            <div class="bento-item square-a"><img src="muse-mockup3.jpg" class="bento-img"></div>
+            <div class="bento-item square-b"><img src="muse-mockup4.jpg" class="bento-img"></div>
+            <div class="bento-item small-a"><img src="muse-mockup5.jpg" class="bento-img"></div>
+            <div class="bento-item small-b"><img src="muse-mockup6.jpg" class="bento-img"></div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-section">
+    <div class="contact-header">
+        <span class="process-dash"></span>
+        <h2 class="contact-title">GET IN TOUCH</h2>
+    </div>
+
+    <div class="contact-container">
+        <div class="contact-banner">
+            <div class="banner-wrapper">
+                <img src="./assets/images/contact-img.png" alt="Dakuma Banner" class="banner-img">
+            </div>
+        </div>
+
+        <h3 class="contact-talk scramble" data-text="LET’S TALK">LET’S TALK</h3>
+        <hr class="contact-divider">
+
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="social-item">
+                    <img src="./assets/images/dribble.svg" alt="" class="social-icon">
+                    <span class="scramble" data-text="@EEZYMONGO">@EEZYMONGO</span>
+                </div>
+                <div class="social-item">
+                    <img src="./assets/images/instagram.svg" alt="" class="social-icon">
+                    <span class="scramble" data-text="@EEZYMONGO">@EEZYMONGO</span>
+                </div>
+                <div class="qr-codes">
+                    <img src="./assets/images/qr-code.png" alt="QR" class="qr-img">
+                    <img src="./assets/images/qr-code2.png" alt="QR" class="qr-img">
+                </div>
+            </div>
+
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="FULL NAME" class="scramble-placeholder">
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="EMAIL" class="scramble-placeholder">
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="MESSAGE" rows="4" class="scramble-placeholder"></textarea>
+                </div>
+                <button type="submit" class="send-btn">
+                    <span class="scramble" data-text="SEND">SEND</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+<button id="scrollToTop" class="scroll-top-btn">
+    <span class="scramble" data-text="BACK TO TOP">BACK TO TOP</span>
+    <span class="arrow">↑</span>
+</button>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollToPlugin.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Flip.min.js"></script>
 
@@ -315,6 +410,9 @@
         
     document.addEventListener("DOMContentLoaded", () => {
     const tl = gsap.timeline({ defaults: { ease: "power4.inOut" } });
+       // 1. MUST BE AT THE TOP
+   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+   gsap.registerPlugin(ScrollTrigger);
 
     // 1. THE LOADER SEQUENCE (Centering Fix)
     tl.set(".loader-name", { 
@@ -519,7 +617,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     nextBtn.addEventListener("click", () => {
         gsap.to(wrapper, {
-            x: "-=790", // Card width + gap
+            x: "-=850", // Card width + gap
             duration: 0.8,
             ease: "power3.out"
         });
@@ -527,7 +625,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     prevBtn.addEventListener("click", () => {
         gsap.to(wrapper, {
-            x: "+=790",
+            x: "+=850",
             duration: 0.8,
             ease: "power3.out"
         });
@@ -668,6 +766,172 @@ const setupProjectHovers = () => {
 
 setupProjectHovers();
 
+
+// CONTACT SECTION//
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // --- 2. INITIAL STATES (Failsafe) ---
+    // autoAlpha: 0 sets visibility: hidden and opacity: 0
+    gsap.set(".contact-title", { opacity: 0, letterSpacing: "20px", textIndent: "20px" });
+    gsap.set("#scrollToTop", { autoAlpha: 0, y: 30, pointerEvents: "none" });
+
+    // --- 3. THE TITLE ANIMATION ---
+    const contactTitle = document.querySelector(".contact-title");
+    
+    if (contactTitle) {
+        gsap.to(contactTitle, {
+            scrollTrigger: {
+                trigger: ".contact-section", 
+                start: "top 80%", 
+                // Play on enter, reverse when scrolling back up past the start
+                toggleActions: "play none none reverse", 
+            },
+            opacity: 1,
+            letterSpacing: "2px",
+            textIndent: "2px", // Centering fix
+            duration: 1.5,
+            ease: "expo.out"
+        });
+    }
+
+    // --- 4. THE SCROLL TO TOP BUTTON (REFINED) ---
+    const topBtn = document.getElementById("scrollToTop");
+
+    if (topBtn) {
+        gsap.to(topBtn, {
+            scrollTrigger: {
+                trigger: ".contact-section",
+                start: "top 60%", // Button appears as you enter the section
+                // onEnter, onLeave, onEnterBack, onLeaveBack
+                toggleActions: "play none none reverse", 
+            },
+            autoAlpha: 1, // Becomes visible and opaque
+            y: 0,
+            pointerEvents: "all", // Becomes clickable
+            duration: 0.6,
+            ease: "power3.out",
+            onStart: () => {
+                // Scramble text only on entrance
+                const btnText = topBtn.querySelector(".scramble");
+                if (btnText && typeof cinematicScramble === "function") {
+                    cinematicScramble(btnText);
+                }
+            }
+        });
+
+        topBtn.addEventListener("click", () => {
+            gsap.to(window, {
+                scrollTo: 0,
+                duration: 1.5,
+                ease: "power4.inOut"
+            });
+        });
+    }
+
+    // --- 5. SCRAMBLE TRIGGER ---
+    // Trigger scramble for form labels and socials
+    ScrollTrigger.create({
+        trigger: ".contact-content",
+        start: "top 85%",
+        onEnter: () => {
+            document.querySelectorAll(".contact-section .scramble").forEach(el => {
+                if (typeof cinematicScramble === "function") cinematicScramble(el);
+            });
+        },
+        // Only run the scramble once per scroll down
+        once: true 
+    });
+});
+
+// LOGO FOLIO SECTION
+
+
+
+// Register GSAP Plugins
+gsap.registerPlugin(ScrollTrigger);
+
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. DATA OBJECT FOR 9 PROJECTS
+    // Each ID corresponds to the data-project attribute in your HTML
+    const projectData = {
+        "tocen": ["./assets/images/musenoir", "p1_2.jpg", "p1_3.jpg", "p1_4.jpg", "p1_5.jpg", "p1_6.jpg"],
+        "project-2": ["p2_1.jpg", "p2_2.jpg", "p2_3.jpg", "p2_4.jpg", "p2_5.jpg", "p2_6.jpg"],
+        "project-3": ["p3_1.jpg", "p3_2.jpg", "p3_3.jpg", "p3_4.jpg", "p3_5.jpg", "p3_6.jpg"],
+        "project-4": ["p4_1.jpg", "p4_2.jpg", "p4_3.jpg", "p4_4.jpg", "p4_5.jpg", "p4_6.jpg"],
+        "project-5": ["p5_1.jpg", "p5_2.jpg", "p5_3.jpg", "p5_4.jpg", "p5_5.jpg", "p5_6.jpg"],
+        "project-6": ["p6_1.jpg", "p6_2.jpg", "p6_3.jpg", "p6_4.jpg", "p6_5.jpg", "p6_6.jpg"],
+        "project-7": ["p7_1.jpg", "p7_2.jpg", "p7_3.jpg", "p7_4.jpg", "p7_5.jpg", "p7_6.jpg"],
+        "project-8": ["p8_1.jpg", "p8_2.jpg", "p8_3.jpg", "p8_4.jpg", "p8_5.jpg", "p8_6.jpg"],
+        "project-9": ["p9_1.jpg", "p9_2.jpg", "p9_3.jpg", "p9_4.jpg", "p9_5.jpg", "p9_6.jpg"]
+    };
+
+    const logoItems = document.querySelectorAll(".logo-item");
+    const bentoImgs = document.querySelectorAll(".bento-img");
+
+    // 2. ENTRANCE ANIMATIONS
+    const logofolioTL = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".logofolio-wrapper",
+            start: "top 80%",
+        }
+    });
+
+    logofolioTL.from(".logo-item", {
+        opacity: 0,
+        scale: 0.9,
+        stagger: 0.05,
+        duration: 0.8,
+        ease: "power2.out"
+    })
+    .from(".bento-item", {
+        opacity: 0,
+        x: 30,
+        stagger: 0.1,
+        duration: 1,
+        ease: "expo.out"
+    }, "-=0.4");
+
+    // 3. CLICK TO UPDATE BENTO LOGIC
+    logoItems.forEach(item => {
+        item.addEventListener("click", () => {
+            const projectId = item.getAttribute("data-project");
+            const newImages = projectData[projectId];
+
+            // UI Update: Toggle active state
+            logoItems.forEach(l => l.classList.remove("active"));
+            item.classList.add("active");
+
+            // Cinematic Swap Transition
+            gsap.to(".bento-img", {
+                opacity: 0,
+                y: 15,
+                scale: 1.02,
+                duration: 0.4,
+                stagger: 0.03,
+                ease: "power2.in",
+                onComplete: () => {
+                    // Update sources from the projectData object
+                    bentoImgs.forEach((img, i) => {
+                        if (newImages && newImages[i]) {
+                            img.src = newImages[i];
+                        }
+                    });
+
+                    // Reveal new mockups
+                    gsap.to(".bento-img", {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.6,
+                        stagger: 0.1,
+                        ease: "power3.out"
+                    });
+                }
+            });
+        });
+    });
+});
 
 
 
