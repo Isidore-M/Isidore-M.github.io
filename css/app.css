@@ -11,6 +11,16 @@ body {
   overflow-x: hidden;
 }
 
+.section-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+  display: inline-block;
+  opacity: 1;
+  will-change: letter-spacing;
+}
+
 /* Loader Styles */
 .loader {
   position: fixed;
@@ -148,6 +158,7 @@ body {
 
 .process-section {
   padding: 15vh clamp(20px, 5vw, 100px);
+  padding-bottom: 2%;
   background-color: #0d0d0d;
 }
 
@@ -251,6 +262,8 @@ body {
   padding: 10vh clamp(20px, 5vw, 100px);
   background: #0d0d0d;
   height: 100vh;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 .projects-header {
@@ -384,14 +397,14 @@ body {
   width: clamp(450px, 45vw, 900px);
   flex-shrink: 0; /* Prevent cards from squishing */
   transition: transform 0.5s ease;
-  cursor: none;
+  cursor: pointer;
 }
 
 /* Card image placeholder */
 .placeholder-img {
   width: 100%;
   height: 100%;
-  background: url(../assets/images/placeholder2.jpg);
+  background: url(../assets/images/placeholder1.jpg);
   background-size: cover;
   background-position: center;
   transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
@@ -445,143 +458,126 @@ body {
   transform: scale(1.05);
 }
 
+.logofolio-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+  display: inline-block;
+}
+
 .logofolio-header {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 1.5rem;
   margin-bottom: 8vh;
 }
 
-.logofolio-title {
-  font-size: clamp(2rem, 3vw, 4rem);
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
 .logofolio-section {
-  padding: 5%;
-  margin-top: 10%;
+  padding: 100px clamp(20px, 6vw, 120px);
+  background: #0d0d0d;
+  margin-bottom: 5%;
 }
 
 .logofolio-wrapper {
-  display: flex;
-  align-items: stretch; /* Forces Zones 1 & 2 to have equal height */
-  gap: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1.8fr; /* More space for the bento showcase */
+  gap: 40px;
+  align-items: stretch;
+  margin-top: 9%;
 }
 
-/* Zone 1: Strict 50/50 Logo Items */
-.logo-grid-zone {
-  flex: 1;
+/* Zone 1: Precise Logo Grid */
+.logo-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr); /* 3x3 square grid */
+  border-top: 1px solid #222;
+  border-left: 1px solid #222;
 }
 
 .logo-item {
-  position: relative;
-  aspect-ratio: 1/1; /* Forced 50/50 Square */
+  aspect-ratio: 1/1;
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  border-right: 1px solid #222;
+  border-bottom: 1px solid #222;
   background: #0f0f0f;
-  overflow: hidden;
-  transition: background 0.4s ease;
+  cursor: pointer;
 }
 
-.logo-item.active {
-  background: #1a1a1a;
-}
-
+/* Grayscale + Opacity Filter from your request */
 .logo-item img {
-  width: 55%;
-  height: auto;
-  object-fit: contain; /* Prevents logo distortion */
-  filter: grayscale(1) brightness(0.5); /* Dimmed starting state */
-  transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
-  z-index: 2;
+  width: 50%;
+  filter: grayscale(1) brightness(0.5);
+  opacity: 0.4;
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* --- THE HOVER EFFECTS --- */
-.logo-item:hover img {
+.logo-item:hover img, .logo-item.active img {
   filter: grayscale(0) brightness(1.2);
-  transform: scale(1.1); /* Subtle zoom */
+  opacity: 1;
+  transform: scale(1.1);
 }
 
-/* Active State (When Selected) */
-.logo-item.active {
-  background: #151515;
-}
-
-.logo-item.active img {
-  filter: grayscale(0) brightness(1);
-  transform: scale(1);
-}
-
-/* Zone 2: Bento Grid (Prevents Overflow) */
-.bento-grid-zone {
-  flex: 1.6;
+/* Zone 2: Revised Bento Map */
+.bento-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 1fr); /* Spans 3 rows to match 3 logo rows */
-  gap: 15px;
-  background: #222222;
-  padding: 1%;
+  grid-template-rows: repeat(3, 1fr); /* 3 rows to match 3 logo rows */
+  gap: 20px;
 }
 
-.bento-item {
+.bento-slot {
+  background-color: #151515;
+  background-size: cover;
+  background-position: center;
   overflow: hidden;
-  background: #151515;
+  /* Prevents layout break */
 }
 
-.bento-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures images fill space without stretching */
-}
-
-/* Bento Positioning (Unchanged for 6 items) */
-.tall {
+/* Bento Area Definitions */
+.slot-tall {
   grid-column: 1/2;
   grid-row: 1/4;
 }
 
-.wide {
+.slot-wide {
   grid-column: 2/5;
   grid-row: 1/2;
 }
 
-.square-a {
+.slot-square:nth-of-type(3) {
   grid-column: 2/3;
-  grid-row: 2/3;
+  grid-row: 2/4;
 }
 
-.square-b {
+.slot-square:nth-of-type(4) {
   grid-column: 3/4;
   grid-row: 2/3;
 }
 
-.small-a {
-  grid-column: 4/5;
-  grid-row: 2/4;
+.slot-small:nth-of-type(5) {
+  grid-column: 3/4;
+  grid-row: 3/4;
 }
 
-.small-b {
-  grid-column: 2/4;
-  grid-row: 3/4;
+.slot-small:nth-of-type(6) {
+  grid-column: 4/5;
+  grid-row: 2/4;
 }
 
 .contact-section {
   padding: 10vh clamp(20px, 5vw, 100px);
   background: #0d0d0d;
-  margin-top: 10%;
+  margin-bottom: 5%;
 }
 
 /* Consistent Header Layout */
 .contact-header {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 1.5rem;
   margin-bottom: 8vh;
 }
 
