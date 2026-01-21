@@ -311,36 +311,42 @@
 
     <div class="logofolio-wrapper">
         <div class="logo-grid-zone">
-            <div class="logo-item active" data-project="tocen">
-                <img src="./assets/images/logofolio/tocen.svg" alt="Muse Noir Co.">
+            <div class="logo-item active" data-project="project-1">
+                <img src="logo1.svg" alt="Project 1">
             </div>
-            <div class="logo-item" data-project="verdana">
-                <img src="./assets/images/logofolio/verdana.svg" alt="Verdana">
+            <div class="logo-item" data-project="project-2">
+                <img src="logo2.svg" alt="Project 2">
             </div>
-            <div class="logo-item" data-project="verdana">
-                <img src="verdana-logo.svg" alt="Verdana">
-            </div><div class="logo-item" data-project="verdana">
-                <img src="verdana-logo.svg" alt="Verdana">
-            </div><div class="logo-item" data-project="verdana">
-                <img src="verdana-logo.svg" alt="Verdana">
-            </div><div class="logo-item" data-project="verdana">
-                <img src="verdana-logo.svg" alt="Verdana">
-            </div><div class="logo-item" data-project="verdana">
-                <img src="verdana-logo.svg" alt="Verdana">
-            </div><div class="logo-item" data-project="verdana">
-                <img src="verdana-logo.svg" alt="Verdana">
-            </div><div class="logo-item" data-project="verdana">
-                <img src="verdana-logo.svg" alt="Verdana">
+             <div class="logo-item active" data-project="project-1">
+                <img src="logo1.svg" alt="Project 1">
+            </div>
+            <div class="logo-item" data-project="project-2">
+                <img src="logo2.svg" alt="Project 2">
+            </div>
+             <div class="logo-item active" data-project="project-1">
+                <img src="logo1.svg" alt="Project 1">
+            </div>
+            <div class="logo-item" data-project="project-2">
+                <img src="logo2.svg" alt="Project 2">
+            </div>
+             <div class="logo-item active" data-project="project-1">
+                <img src="logo1.svg" alt="Project 1">
+            </div>
+            <div class="logo-item" data-project="project-2">
+                <img src="logo2.svg" alt="Project 2">
+            </div>
+            <div class="logo-item" data-project="project-2">
+                <img src="logo2.svg" alt="Project 2">
             </div>
             </div>
 
-        <div class="bento-grid-zone" id="bento-display">
-            <div class="bento-item tall"><img src="./assets/images/musenoir10.jpg" class="bento-img"></div>
-            <div class="bento-item wide"><img src="muse-mockup2.jpg" class="bento-img"></div>
-            <div class="bento-item square-a"><img src="muse-mockup3.jpg" class="bento-img"></div>
-            <div class="bento-item square-b"><img src="muse-mockup4.jpg" class="bento-img"></div>
-            <div class="bento-item small-a"><img src="muse-mockup5.jpg" class="bento-img"></div>
-            <div class="bento-item small-b"><img src="muse-mockup6.jpg" class="bento-img"></div>
+        <div class="bento-grid-zone">
+            <div class="bento-item tall"><img src="p1_1.jpg" class="bento-img"></div>
+            <div class="bento-item wide"><img src="p1_2.jpg" class="bento-img"></div>
+            <div class="bento-item square-a"><img src="p1_3.jpg" class="bento-img"></div>
+            <div class="bento-item square-b"><img src="p1_4.jpg" class="bento-img"></div>
+            <div class="bento-item small-a"><img src="p1_5.jpg" class="bento-img"></div>
+            <div class="bento-item small-b"><img src="p1_6.jpg" class="bento-img"></div>
         </div>
     </div>
 </section>
@@ -394,10 +400,39 @@
         </div>
     </div>
 </section>
-<button id="scrollToTop" class="scroll-top-btn">
-    <span class="scramble" data-text="BACK TO TOP">BACK TO TOP</span>
-    <span class="arrow">↑</span>
-</button>
+
+
+<footer class="site-footer">
+    <div class="footer-bg-text">ISIDORE MANGA</div>
+
+    <div class="footer-inner-container">
+        <div class="footer-main-row">
+            <nav class="footer-nav">
+                <a href="#process" class="footer-link">MY PROCESS</a>
+                <a href="#projects" class="footer-link">PROJECTS</a>
+                <a href="#lymbo" class="footer-link">LYMBO</a>
+            </nav>
+
+            <div class="footer-cta">
+                <button id="scrollToTop" class="back-to-top-btn">
+                    <span class="btn-label">BACK TO TOP</span>
+                    <span class="btn-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="footer-divider"></div>
+    </div>
+
+    <div class="footer-bottom-info">
+        <span class="copyright">2026 COPYRIGHTS ALL RESERVED</span>
+        <span class="designer-name">ISIDORE MANGA</span>
+    </div>
+</footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -852,10 +887,9 @@ document.addEventListener("DOMContentLoaded", () => {
 gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. DATA OBJECT FOR 9 PROJECTS
-    // Each ID corresponds to the data-project attribute in your HTML
+    // 1. PROJECT DATA: Replace these filenames with your actual image paths
     const projectData = {
-        "tocen": ["./assets/images/musenoir", "p1_2.jpg", "p1_3.jpg", "p1_4.jpg", "p1_5.jpg", "p1_6.jpg"],
+        "project-1": ["p1_1.jpg", "p1_2.jpg", "p1_3.jpg", "p1_4.jpg", "p1_5.jpg", "p1_6.jpg"],
         "project-2": ["p2_1.jpg", "p2_2.jpg", "p2_3.jpg", "p2_4.jpg", "p2_5.jpg", "p2_6.jpg"],
         "project-3": ["p3_1.jpg", "p3_2.jpg", "p3_3.jpg", "p3_4.jpg", "p3_5.jpg", "p3_6.jpg"],
         "project-4": ["p4_1.jpg", "p4_2.jpg", "p4_3.jpg", "p4_4.jpg", "p4_5.jpg", "p4_6.jpg"],
@@ -869,62 +903,42 @@ document.addEventListener("DOMContentLoaded", () => {
     const logoItems = document.querySelectorAll(".logo-item");
     const bentoImgs = document.querySelectorAll(".bento-img");
 
-    // 2. ENTRANCE ANIMATIONS
-    const logofolioTL = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".logofolio-wrapper",
-            start: "top 80%",
-        }
-    });
-
-    logofolioTL.from(".logo-item", {
-        opacity: 0,
-        scale: 0.9,
-        stagger: 0.05,
-        duration: 0.8,
-        ease: "power2.out"
-    })
-    .from(".bento-item", {
-        opacity: 0,
-        x: 30,
-        stagger: 0.1,
-        duration: 1,
-        ease: "expo.out"
-    }, "-=0.4");
-
-    // 3. CLICK TO UPDATE BENTO LOGIC
     logoItems.forEach(item => {
         item.addEventListener("click", () => {
             const projectId = item.getAttribute("data-project");
             const newImages = projectData[projectId];
 
-            // UI Update: Toggle active state
+            // Safety check: skip if the ID doesn't exist in our projectData object
+            if (!newImages) {
+                console.error(`Data mismatch: No images found for ${projectId}`);
+                return;
+            }
+
+            // --- UI UPDATE: Set Active State ---
             logoItems.forEach(l => l.classList.remove("active"));
             item.classList.add("active");
 
-            // Cinematic Swap Transition
-            gsap.to(".bento-img", {
+            // --- GSAP TRANSITION: Swap and Reveal ---
+            gsap.to(bentoImgs, {
                 opacity: 0,
-                y: 15,
-                scale: 1.02,
-                duration: 0.4,
-                stagger: 0.03,
+                y: 10,
+                duration: 0.3,
+                stagger: 0.04,
                 ease: "power2.in",
                 onComplete: () => {
-                    // Update sources from the projectData object
-                    bentoImgs.forEach((img, i) => {
-                        if (newImages && newImages[i]) {
-                            img.src = newImages[i];
+                    // Inject new image paths from the array by index
+                    bentoImgs.forEach((img, index) => {
+                        if (newImages[index]) {
+                            img.src = newImages[index];
                         }
                     });
-
-                    // Reveal new mockups
-                    gsap.to(".bento-img", {
+                    
+                    // Reveal the updated mockups
+                    gsap.to(bentoImgs, {
                         opacity: 1,
                         y: 0,
-                        scale: 1,
                         duration: 0.6,
-                        stagger: 0.1,
+                        stagger: 0.08,
                         ease: "power3.out"
                     });
                 }
@@ -932,6 +946,84 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+// FOOTER//
+document.addEventListener("DOMContentLoaded", () => {
+    // Letter-spacing shift for nav links
+    const footerLinks = document.querySelectorAll(".footer-link");
+    
+    footerLinks.forEach(link => {
+        link.addEventListener("mouseenter", () => {
+            gsap.to(link, {
+                letterSpacing: "4px",
+                textIndent: "4px", // Maintains visual center alignment
+                duration: 0.5,
+                ease: "power2.out"
+            });
+        });
+
+        link.addEventListener("mouseleave", () => {
+            gsap.to(link, {
+                letterSpacing: "0px",
+                textIndent: "0px",
+                duration: 0.5,
+                ease: "power2.inOut"
+            });
+        });
+    });
+
+    // Back to Top logic with high-end easing
+    const topBtn = document.getElementById("scrollToTop");
+    if (topBtn) {
+        topBtn.addEventListener("click", () => {
+            gsap.to(window, {
+                scrollTo: 0,
+                duration: 2,
+                ease: "expo.inOut"
+            });
+        });
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const footerLinks = document.querySelectorAll(".footer-link");
+    const topBtnLabel = document.querySelector(".btn-label");
+
+    // Helper function for the shifting effect
+    const applyShift = (element) => {
+        element.addEventListener("mouseenter", () => {
+            gsap.to(element, {
+                letterSpacing: "5px",
+                textIndent: "5px", // Matches spacing to maintain visual center
+                duration: 0.5,
+                ease: "power2.out"
+            });
+            
+            // Re-trigger scramble if applicable
+            if (typeof cinematicScramble === "function") {
+                cinematicScramble(element);
+            }
+        });
+
+        element.addEventListener("mouseleave", () => {
+            gsap.to(element, {
+                letterSpacing: "0px",
+                textIndent: "0px",
+                duration: 0.5,
+                ease: "power2.inOut"
+            });
+        });
+    };
+
+    // Apply to nav links
+    footerLinks.forEach(link => applyShift(link));
+
+    // Apply specifically to the label inside the Back to Top button
+    if (topBtnLabel) {
+        applyShift(topBtnLabel);
+    }
+});
+
 
 
 
