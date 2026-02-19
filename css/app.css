@@ -662,7 +662,7 @@ body {
 .banner-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 21/7; /* Cinematic contained ratio */
+  aspect-ratio: 21/5; /* Cinematic contained ratio */
   overflow: hidden;
   background: #1a1a1a;
 }

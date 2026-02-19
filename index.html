@@ -84,21 +84,19 @@
             </div>
         <div class="process-grid">
             <div class="process-item">
-                <h3>UNDERSTAND <br> & DEFINE</h3>
-                <p>LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA.
-                    LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA...
+                <h3>THE HUMAN CONNECTION</h3>
+                <p>Web and mobile platforms are the final destination, but the journey begins with a conversation. Truly listening to a client and fully embracing their vision is the bedrock of impactful design. Before a single pixel is moved, I immerse myself in your ideas to ensure the foundation of the project is built on your unique goals.
                 </p>
 
-                <h3>UNDERSTAND <br> & DEFINE</h3>
+                <h3>TRANSFORMING VISION INTO FORM</h3>
 
-                <p>LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA.
-                    LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA...
+                <p>Your vision is the North Star of the project. My role is to take those initial sparks and give them a strategic shape. By blending your core objectives with industry standards such as intuitive UX (User Experience), ergonomic flow, and compelling visuals. I ensure your message doesn't just exist, but actually resonates. I translate your ideas into a digital language that the world understands and enjoys.
                 </p>
             </div>
             <div class="process-item">
-                <h3>UNDERSTAND <br> & DEFINE</h3>
-                <p>LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA...</p>
-            </div>
+                <h3>ENGINEERING THE EXPERIENCE</h3>
+                <p>Once the blueprint is set, it’s time to bring it to life. Using a precise mix of clean code, custom illustration, and high-fidelity design, I build a product that is as functional as it is beautiful. This stage is all about execution: ensuring every feature solves a specific problem and every line of code serves to bridge the gap between your brand and your audience.</p>
+                <p>And because digital product is never truly "finished" as a living entity; Every solution I deliver comes with a dedicated plan for maintenance and long-term growth. Because you are at the heart of this process, my commitment doesn’t end at launch. I stay by your side to monitor, maintain, and refine the work, ensuring the "bridge" we’ve built together remains strong, modern, and effective for years to come.</p>
         </div>
     </div>
 </section>
@@ -343,11 +341,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollToPlugin.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Flip.min.js"></script>
 
-    <script src="script.js"></script>
-
  <script>
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-gsap.registerPlugin(ScrollTrigger);
 
 /* ================= SCRAMBLE (SINGLE SOURCE OF TRUTH) ================= */
 function cinematicScramble(element) {
@@ -370,50 +365,53 @@ function cinematicScramble(element) {
     }, 35);
 }
 
+/* ================= IMPROVED SECTION TITLE SYSTEM ================= */
+function animateSectionTitle(title) {
+    if (!title) return;
+
+    gsap.set(title, { 
+        opacity: 0,
+        y: 60,
+        letterSpacing: "20px",
+        textIndent: "20px"
+    });
+
+    gsap.to(title, {
+        opacity: 1,
+        y: 0,
+        letterSpacing: "2px",
+        textIndent: "2px",
+        duration: 1.4,
+        ease: "expo.out",
+        scrollTrigger: {
+            trigger: title,
+            start: "top 85%",
+            once: true
+        },
+        onStart: () => cinematicScramble(title)
+    });
+}
+
 /* ================= MAIN DOM READY ================= */
 document.addEventListener("DOMContentLoaded", () => {
 
     /* ---------- LOADER ---------- */
     const tl = gsap.timeline({ defaults: { ease: "power4.inOut" } });
-    const heroTrack = document.querySelector(".hero-track");
 
     tl.set(".loader-name", { opacity: 0, letterSpacing: "50px", textIndent: "50px" })
       .to(".loader-name", { opacity: 1, letterSpacing: "10px", textIndent: "10px", duration: 2.5 })
       .to(".loader", { yPercent: -100, duration: 1.4 }, "+=0.3")
       .to(".hero", { opacity: 1, duration: 0.8 }, "-=1")
       .add(() => document.querySelectorAll(".scramble").forEach(cinematicScramble), "-=0.5");
-      
 
-
-/* ================= SECTION TITLE SYSTEM ================= */
-function animateSectionTitle(title) {
-    if (!title) return;
-
-    gsap.set(title, { opacity: 1 }); // FAILSAFE VISIBILITY
-
-    gsap.fromTo(
-        title,
-        {
-            letterSpacing: "0px",
-            textIndent: "0px"
-        },
-        {
-            letterSpacing: "4px",
-            textIndent: "4px",
-            duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: title,
-                start: "top 85%",
-                once: true
-            }
-        }
-    );
-}
     /* ---------- NAV HOVER ---------- */
     document.querySelectorAll(".navbar a").forEach(link => {
-        link.addEventListener("mouseenter", () => gsap.to(link, { letterSpacing: "4px", duration: 0.6 }));
-        link.addEventListener("mouseleave", () => gsap.to(link, { letterSpacing: "0px", duration: 0.6 }));
+        link.addEventListener("mouseenter", () =>
+            gsap.to(link, { letterSpacing: "4px", duration: 0.6 })
+        );
+        link.addEventListener("mouseleave", () =>
+            gsap.to(link, { letterSpacing: "0px", duration: 0.6 })
+        );
     });
 
     /* ================= HERO INFINITE LOOP ================= */
@@ -421,42 +419,40 @@ function animateSectionTitle(title) {
         const track = document.querySelector(".slider-track");
         if (!track) return;
 
-        // Reset any existing animation on resize
         gsap.killTweensOf(track);
-        
-        // Calculate width: track should contain two identical sets of images
         const totalWidth = track.scrollWidth;
-        
+
         gsap.to(track, {
-            x: -totalWidth / 2, // Only move the first set
+            x: -totalWidth / 2,
             duration: 60,
             repeat: -1,
             ease: "none",
-            onReverseComplete: () => {
-                gsap.set(track, { x: 0 });
-            }
+            onReverseComplete: () => gsap.set(track, { x: 0 })
         });
     };
 
     setupSlider();
     window.addEventListener("resize", setupSlider);
-});
 
+    /* ================= SECTION REVEAL SYSTEM ================= */
+    document.querySelectorAll("section").forEach(section => {
+        gsap.set(section, { opacity: 0, y: 80 });
+
+        gsap.to(section, {
+            opacity: 1,
+            y: 0,
+            duration: 1.6,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: section,
+                start: "top 85%",
+                toggleActions: "play none none none"
+            }
+        });
+    });
 
     /* ---------- PROCESS ---------- */
     if (document.querySelector(".process-section")) {
-        gsap.timeline({
-            scrollTrigger: { trigger: ".process-section", start: "top 75%" }
-        })
-        .to(".process-title", {
-            opacity: 1,
-            letterSpacing: "2px",
-            textIndent: "2px",
-            duration: 2,
-            ease: "expo.out",
-            onStart: () => cinematicScramble(document.querySelector(".process-title"))
-        });
-
         gsap.from(".process-item", {
             y: 100,
             opacity: 0,
@@ -466,10 +462,8 @@ function animateSectionTitle(title) {
         });
     }
 
-   
-
-    /* ================= LOGOFOLIO (NOW GUARANTEED TO RUN) ================= */
-    const projectData = {
+    /* ================= LOGOFOLIO ================= */
+        const projectData = {
         "project-1": [
             "../assets/images/saras-bento1.jpg",
             "../assets/images/saras-studiobento1.jpg",
@@ -546,7 +540,6 @@ function animateSectionTitle(title) {
 
         
     };
-
     const logoItems = document.querySelectorAll(".logo-item");
     const bentoSlots = document.querySelectorAll(".bento-slot");
 
@@ -576,67 +569,31 @@ function animateSectionTitle(title) {
     });
 
     updateBento("project-1");
-// Projection section///
 
-document.addEventListener("DOMContentLoaded", () => {
-    // 1. Entrance Animations (Title & Filter Scramble)
-    const projectsTL = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".projects-section",
-            start: "top 75%",
-        }
-    });
-
-    projectsTL.to(".projects-title", {
-        opacity: 1,
-        letterSpacing: "2px",
-        textIndent: "2px",
-        duration: 1.8,
-        ease: "expo.out"
-    });
-
-    // Scramble filter buttons on arrival
-    document.querySelectorAll(".filter-btn").forEach(btn => {
-        cinematicScramble(btn); 
-    });
-
-    // 2. Slider Logic
+    /* ================= PROJECTS SECTION ================= */
     const wrapper = document.querySelector(".projects-wrapper");
     const nextBtn = document.querySelector(".next");
     const prevBtn = document.querySelector(".prev");
-    
-    let scrollAmount = 0;
-    const cardWidth = 500; // Adjust based on CSS
-
-    nextBtn.addEventListener("click", () => {
-        gsap.to(wrapper, {
-            x: "-=850", // Card width + gap
-            duration: 0.8,
-            ease: "power3.out"
-        });
-    });
-
-    prevBtn.addEventListener("click", () => {
-        gsap.to(wrapper, {
-            x: "+=850",
-            duration: 0.8,
-            ease: "power3.out"
-        });
-    });
-
-    // 3. Filtering Logic
-    const filters = document.querySelectorAll(".filter-btn");
     const cards = document.querySelectorAll(".project-card");
+    const filters = document.querySelectorAll(".filter-btn");
+
+    if (nextBtn && prevBtn && wrapper) {
+        nextBtn.addEventListener("click", () => {
+            gsap.to(wrapper, { x: "-=850", duration: 0.8, ease: "power3.out" });
+        });
+
+        prevBtn.addEventListener("click", () => {
+            gsap.to(wrapper, { x: "+=850", duration: 0.8, ease: "power3.out" });
+        });
+    }
 
     filters.forEach(filter => {
         filter.addEventListener("click", function() {
             const category = this.getAttribute("data-filter");
-            
-            // UI Update
+
             filters.forEach(f => f.classList.remove("active"));
             this.classList.add("active");
 
-            // Animation Logic
             gsap.to(cards, {
                 opacity: 0,
                 scale: 0.9,
@@ -644,35 +601,32 @@ document.addEventListener("DOMContentLoaded", () => {
                 onComplete: () => {
                     cards.forEach(card => {
                         const cardCat = card.getAttribute("data-category");
-                        if (category === "all" || cardCat === category) {
-                            card.style.display = "block";
-                        } else {
-                            card.style.display = "none";
-                        }
+                        card.style.display =
+                            category === "all" || cardCat === category
+                                ? "block"
+                                : "none";
                     });
-                    
-                    // Reset slider position and fade back in
+
                     gsap.set(wrapper, { x: 0 });
                     gsap.to(cards, { opacity: 1, scale: 1, duration: 0.4, stagger: 0.1 });
                 }
             });
         });
     });
-});// --- 2. THE MAGNETIC HOVER EFFECT ---
+
+    /* ---------- MAGNETIC BUTTON ---------- */
     cards.forEach(card => {
         const btn = card.querySelector(".view-btn");
-        
-        card.addEventListener("mousemove", (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+        if (!btn) return;
 
+        card.addEventListener("mousemove", e => {
+            const rect = card.getBoundingClientRect();
             gsap.to(btn, {
                 opacity: 1,
                 scale: 1,
-                x: x,
-                y: y,
-                xPercent: -50, // Center button on cursor
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top,
+                xPercent: -50,
                 yPercent: -50,
                 duration: 0.4,
                 ease: "power2.out"
@@ -680,34 +634,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         card.addEventListener("mouseleave", () => {
-            gsap.to(btn, {
-                opacity: 0,
-                scale: 0,
-                duration: 0.4,
-                ease: "power2.in"
+            gsap.to(btn, { opacity: 0, scale: 0, duration: 0.4 });
+        });
+    });
+
+    /* ---------- SCROLL TO TOP (UPGRADED) ---------- */
+    const scrollBtn = document.getElementById("scrollToTop");
+    if (scrollBtn) {
+        scrollBtn.addEventListener("click", () => {
+            gsap.to(window, {
+                duration: 1.5,
+                scrollTo: { y: 0 },
+                ease: "power3.inOut"
             });
         });
-    });
+    }
 
-    // --- 4. BUTTON HOVER EFFECTS ---
-    // Make the Next/Prev buttons expand slightly on hover
-    [nextBtn, prevBtn].forEach(btn => {
-        btn.addEventListener("mouseenter", () => {
-            gsap.to(btn, { letterSpacing: "2px", backgroundColor: "#fff", color: "#000", duration: 0.3 });
-        });
-        btn.addEventListener("mouseleave", () => {
-            gsap.to(btn, { letterSpacing: "0px", backgroundColor: "#1a1a1a", color: "#fff", duration: 0.3 });
-        });
-    });
-
-
-const scrollBtn = document.getElementById("scrollToTop");
-
-scrollBtn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+    /* ---------- APPLY TITLE SYSTEM ---------- */
+    document.querySelectorAll(".section-title, .logofolio-title, .projects-title")
+        .forEach(title => animateSectionTitle(title));
 });
 </script>
 </body>
