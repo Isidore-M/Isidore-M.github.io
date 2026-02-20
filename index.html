@@ -414,25 +414,44 @@ document.addEventListener("DOMContentLoaded", () => {
         );
     });
 
-    /* ================= HERO INFINITE LOOP ================= */
-    const setupSlider = () => {
-        const track = document.querySelector(".slider-track");
-        if (!track) return;
 
-        gsap.killTweensOf(track);
-        const totalWidth = track.scrollWidth;
+/* ================= HERO INFINITE LOOP ================= */
 
-        gsap.to(track, {
-            x: -totalWidth / 2,
-            duration: 60,
-            repeat: -1,
-            ease: "none",
-            onReverseComplete: () => gsap.set(track, { x: 0 })
-        });
-    };
+const setupSlider = () => {
 
-    setupSlider();
-    window.addEventListener("resize", setupSlider);
+    const track = document.querySelector(".slider-track");
+    if (!track) return;
+
+    // Kill previous animations
+    gsap.killTweensOf(track);
+
+    // Reset position
+    gsap.set(track, { x: 0 });
+
+    // If not already duplicated, duplicate slides once
+    if (!track.classList.contains("is-duplicated")) {
+        track.innerHTML += track.innerHTML;
+        track.classList.add("is-duplicated");
+    }
+
+    // Width of one full original set
+    const singleSetWidth = track.scrollWidth / 2;
+
+    // Seamless infinite animation
+    gsap.to(track, {
+        x: -singleSetWidth,
+        duration: 75, // slightly slower = smoother
+        ease: "none",
+        repeat: -1,
+        modifiers: {
+            x: gsap.utils.unitize(x => parseFloat(x) % singleSetWidth)
+        }
+    });
+};
+
+setupSlider();
+window.addEventListener("resize", setupSlider);
+
 
     /* ================= SECTION REVEAL SYSTEM ================= */
     document.querySelectorAll("section").forEach(section => {
@@ -571,49 +590,155 @@ document.addEventListener("DOMContentLoaded", () => {
     updateBento("project-1");
 
     /* ================= PROJECTS SECTION ================= */
-    const wrapper = document.querySelector(".projects-wrapper");
-    const nextBtn = document.querySelector(".next");
-    const prevBtn = document.querySelector(".prev");
-    const cards = document.querySelectorAll(".project-card");
-    const filters = document.querySelectorAll(".filter-btn");
 
-    if (nextBtn && prevBtn && wrapper) {
-        nextBtn.addEventListener("click", () => {
-            gsap.to(wrapper, { x: "-=850", duration: 0.8, ease: "power3.out" });
-        });
+const wrapper = document.querySelector(".projects-wrapper");
+const nextBtn = document.querySelector(".next");
+const prevBtn = document.querySelector(".prev");
+const cards = document.querySelectorAll(".project-card");
+const filters = document.querySelectorAll(".filter-btn");
 
-        prevBtn.addEventListener("click", () => {
-            gsap.to(wrapper, { x: "+=850", duration: 0.8, ease: "power3.out" });
-        });
+/* -----------------------------------------------------
+   SLIDER LOGIC (Smart Scroll Control)
+----------------------------------------------------- */
+
+if (wrapper && nextBtn && prevBtn) {
+
+    let currentX = 0;               // Current slider position
+    const step = 850;               // Card width + gap (adjust if needed)
+
+    // Calculate maximum scroll distance dynamically
+    function getMaxScroll() {
+        const wrapperWidth = wrapper.scrollWidth;                 // Total width of all cards
+        const visibleWidth = wrapper.parentElement.offsetWidth;   // Visible container width
+        return wrapperWidth - visibleWidth;
     }
 
-    filters.forEach(filter => {
-        filter.addEventListener("click", function() {
-            const category = this.getAttribute("data-filter");
+    // Enable / Disable buttons depending on position
+    function updateButtons() {
+        const maxScroll = getMaxScroll();
 
-            filters.forEach(f => f.classList.remove("active"));
-            this.classList.add("active");
+        // ----- PREVIOUS BUTTON -----
+        if (currentX >= 0) {
+            currentX = 0;
+            prevBtn.style.opacity = "0.3";
+            prevBtn.style.pointerEvents = "none";
+        } else {
+            prevBtn.style.opacity = "1";
+            prevBtn.style.pointerEvents = "auto";
+        }
 
-            gsap.to(cards, {
-                opacity: 0,
-                scale: 0.9,
-                duration: 0.3,
-                onComplete: () => {
-                    cards.forEach(card => {
-                        const cardCat = card.getAttribute("data-category");
-                        card.style.display =
-                            category === "all" || cardCat === category
-                                ? "block"
-                                : "none";
-                    });
+        // ----- NEXT BUTTON -----
+        if (Math.abs(currentX) >= maxScroll) {
+            currentX = -maxScroll;
+            nextBtn.style.opacity = "0.3";
+            nextBtn.style.pointerEvents = "none";
+        } else {
+            nextBtn.style.opacity = "1";
+            nextBtn.style.pointerEvents = "auto";
+        }
+    }
 
-                    gsap.set(wrapper, { x: 0 });
-                    gsap.to(cards, { opacity: 1, scale: 1, duration: 0.4, stagger: 0.1 });
-                }
+    /* ---------- NEXT BUTTON ---------- */
+    nextBtn.addEventListener("click", () => {
+        const maxScroll = getMaxScroll();
+
+        if (Math.abs(currentX) < maxScroll) {
+            currentX -= step;
+
+            // Prevent overshooting
+            if (Math.abs(currentX) > maxScroll) {
+                currentX = -maxScroll;
+            }
+
+            gsap.to(wrapper, {
+                x: currentX,
+                duration: 0.8,
+                ease: "power3.out",
+                onComplete: updateButtons
             });
+        }
+    });
+
+    /* ---------- PREVIOUS BUTTON ---------- */
+    prevBtn.addEventListener("click", () => {
+        if (currentX < 0) {
+            currentX += step;
+
+            // Prevent going past start
+            if (currentX > 0) {
+                currentX = 0;
+            }
+
+            gsap.to(wrapper, {
+                x: currentX,
+                duration: 0.8,
+                ease: "power3.out",
+                onComplete: updateButtons
+            });
+        }
+    });
+
+    // Initialize button states
+    updateButtons();
+
+    // Recalculate limits on window resize
+    window.addEventListener("resize", updateButtons);
+}
+
+/* -----------------------------------------------------
+   FILTERING SYSTEM
+----------------------------------------------------- */
+
+filters.forEach(filter => {
+
+    filter.addEventListener("click", function () {
+
+        const category = this.getAttribute("data-filter");
+
+        // Update active UI state
+        filters.forEach(f => f.classList.remove("active"));
+        this.classList.add("active");
+
+        // Animate cards out
+        gsap.to(cards, {
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.3,
+            onComplete: () => {
+
+                // Show / Hide cards
+                cards.forEach(card => {
+                    const cardCat = card.getAttribute("data-category");
+
+                    card.style.display =
+                        category === "all" || cardCat === category
+                            ? "block"
+                            : "none";
+                });
+
+                // Reset slider position after filtering
+                if (wrapper) {
+                    gsap.set(wrapper, { x: 0 });
+
+                    // Reset slider state safely
+                    currentX = 0;
+                    if (typeof updateButtons === "function") {
+                        updateButtons();
+                    }
+                }
+
+                // Animate cards back in
+                gsap.to(cards, {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.4,
+                    stagger: 0.1
+                });
+            }
         });
     });
 
+});
     /* ---------- MAGNETIC BUTTON ---------- */
     cards.forEach(card => {
         const btn = card.querySelector(".view-btn");

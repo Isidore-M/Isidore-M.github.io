@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wassa | Isidore Manga</title>
+
+    <link rel="stylesheet" href="css/project.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+
+<!-- ================= NOISE LAYER ================= -->
+    <div class="noise-overlay"></div>
+
+<!-- ================= HERO ================= -->
+
+<section class="project-hero">
+
+    <div class="hero-image"></div>
+
+    <div class="hero-content">
+        <h1 class="project-title section-title" data-text="WASSA- Epices">
+            WASSA 
+        </h1>
+
+        <p class="project-subtitle">
+            2Short description of the project
+        </p>
+    </div>
+
+</section>
+
+
+<!-- ================= INFO SECTION ================= -->
+
+<section class="project-info">
+
+    <div class="info-grid">
+
+        <div class="info-block">
+            <h3>THE PROBLEM</h3>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+        </div>
+
+        <div class="info-block">
+            <h3>THE SOLUTION</h3>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="tools-block">
+        <h3>THE TOOLS</h3>
+        <p>Adobe Illustrator — Adobe Photoshop — Pen and Paper</p>
+    </div>
+
+</section>
+
+
+<!-- ================= GALLERY ================= -->
+
+<section class="project-gallery">
+
+    <div id="item1"  class="gallery-item large"></div>
+    <div id="item2"  class="gallery-item large"></div>
+
+    <div   class="gallery-row">
+        <div id="item3"  class="gallery-item"></div>
+        <div id="item4" class="gallery-item"></div>
+    </div>
+
+    <div class="gallery-row">
+        <div id="item5" class="gallery-item wide"></div>
+        <div id="item6" class="gallery-item"></div>
+    </div>
+
+    <div id="item7" class="gallery-item large"></div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-bg-text">ISIDORE MANGA</div>
+
+    <div class="footer-top">
+        <div class="footer-links">
+            <a href="#">MY PROCESS</a>
+            <a href="#">PROJECTS</a>
+            <a href="#">LYMBO</a>
+        </div>
+
+        <div class="footer-socials">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fas fa-globe"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-bottom">
+        <span>2025 COPYRIGHTS ALL RESERVED</span>
+        <span>ISIDORE MANGA</span>
+    </div>
+
+</footer>
+
+
+
+
+<script>
+
+gsap.registerPlugin(ScrollTrigger);
+
+/* ================= SCRAMBLE ================= */
+
+function cinematicScramble(element) {
+    if (!element) return;
+
+    const originalText = element.getAttribute("data-text") || element.innerText;
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let iteration = 0;
+
+    const interval = setInterval(() => {
+        element.innerText = originalText
+            .split("")
+            .map((letter, index) => {
+                if (index < iteration) return originalText[index];
+                return chars[Math.floor(Math.random() * chars.length)];
+            })
+            .join("");
+
+        if (iteration >= originalText.length) clearInterval(interval);
+        iteration += 0.5;
+    }, 35);
+}
+
+
+/* ================= TITLE ANIMATION ================= */
+
+function animateSectionTitle(title) {
+    if (!title) return;
+
+    gsap.set(title, {
+        opacity: 0,
+        y: 60,
+        letterSpacing: "20px"
+    });
+
+    gsap.to(title, {
+        opacity: 1,
+        y: 0,
+        letterSpacing: "2px",
+        duration: 1.4,
+        ease: "expo.out",
+        scrollTrigger: {
+            trigger: title,
+            start: "top 85%",
+            once: true
+        },
+        onStart: () => cinematicScramble(title)
+    });
+}
+
+
+/* ================= DOM READY ================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* ---- TITLE ---- */
+    const title = document.querySelector(".project-title");
+    const subtitle = document.querySelector(".project-subtitle");
+
+    animateSectionTitle(title);
+
+    gsap.set(subtitle, { opacity: 0, y: 40 });
+
+    gsap.to(subtitle, {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        delay: 0.3,
+        ease: "power3.out",
+        scrollTrigger: {
+            trigger: subtitle,
+            start: "top 85%",
+            once: true
+        }
+    });
+
+
+    /* ================= GALLERY ANIMATION ================= */
+
+    const galleryItems = document.querySelectorAll(".gallery-item");
+
+    galleryItems.forEach((item, index) => {
+
+        const direction = index % 2 === 0 ? -150 : 150;
+
+        gsap.set(item, {
+            opacity: 0,
+            x: direction,
+            scale: 0.95
+        });
+
+        gsap.to(item, {
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            duration: 1.4,
+            ease: "expo.out",
+            scrollTrigger: {
+                trigger: item,
+                start: "top 85%",
+                once: true
+            }
+        });
+
+    });
+
+});
+
+
+
+
+</script>
+
+</body>
+</html>

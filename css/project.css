@@ -1,0 +1,279 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ================= HERO ================= */
+.project-hero {
+  padding: 100px 10%;
+}
+
+.hero-image {
+  width: 100%;
+  height: 350px;
+  background: #ccc;
+  margin-bottom: 60px;
+}
+
+.project-title {
+  font-size: 64px;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.project-subtitle {
+  margin-top: 15px;
+  font-size: 14px;
+  opacity: 0.7;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ================= INFO ================= */
+.project-info {
+  padding: 80px 10%;
+}
+
+.info-grid {
+  display: flex;
+  gap: 80px;
+  margin-bottom: 60px;
+}
+
+.info-block h3 {
+  margin-bottom: 20px;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
+.info-block p {
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: 0.7;
+}
+
+.tools-block h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.tools-block p {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* ================= GALLERY ================= */
+.project-gallery {
+  padding: 100px 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.gallery-item {
+  background: #ccc;
+  height: 350px;
+}
+
+.gallery-item.large {
+  height: 400px;
+}
+
+.gallery-item.wide {
+  flex: 2;
+}
+
+.gallery-row {
+  display: flex;
+  gap: 40px;
+}
+
+.gallery-row .gallery-item {
+  flex: 1;
+}
+
+.hero-image {
+  background: url(../assets/images/banner-wassa.jpg);
+  background-size: cover;
+  background-position: center;
+  transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.hero-content h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+#item1 {
+  background: url(../assets/images/wassa-sketch.jpg);
+  background-size: cover;
+  background-position: center;
+  transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+#item2 {
+  background: url(../assets/images/wassa-palette.jpg);
+  background-size: cover;
+  background-position: center;
+  transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+#item3 {
+  background: url(../assets/images/wassa5.png);
+  background-size: cover;
+  background-position: center;
+  transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+#item4 {
+  background: url(../assets/images/wassa3.png);
+  background-size: cover;
+  background-position: center;
+  transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+#item5 {
+  background: url(../assets/images/wassa7.jpeg);
+  background-size: cover;
+  background-position: center;
+  transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+#item6 {
+  background: url(../assets/images/wassa9.png);
+  background-size: cover;
+  background-position: center;
+  transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+#item7 {
+  background: url(../assets/images/wassa8.jpeg);
+  background-size: cover;
+  background-position: center;
+  transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+/* ================= NOISE TEXTURE ================= */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  background-repeat: repeat;
+  opacity: 0.06;
+  mix-blend-mode: soft-light;
+}
+
+/* ================= FOOTER ================= */
+.footer {
+  padding: 80px 10%;
+  background: #0a0a0a;
+  color: #aaa;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #aaa;
+  transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: white;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 25px;
+  font-size: 18px;
+}
+
+.footer-socials a {
+  color: #aaa;
+  transition: 0.3s ease;
+}
+
+.footer-socials a:hover {
+  color: white;
+}
+
+.footer-divider {
+  margin: 60px 0 40px;
+  height: 1px;
+  background: #333;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: #666;
+}
+
+/* ================= BACKGROUND BIG TEXT ================= */
+.footer {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-bg-text {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 180px;
+  font-weight: 700;
+  letter-spacing: 10px;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.03);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.footer-top,
+.footer-divider,
+.footer-bottom {
+  position: relative;
+  z-index: 2;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .footer-top {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 20px;
+  }
+}/*# sourceMappingURL=project.css.map */
