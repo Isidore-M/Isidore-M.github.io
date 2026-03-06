@@ -497,11 +497,12 @@ body {
 }
 
 .card-description {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   line-height: 1.5;
   color: #ccc;
   margin-bottom: 20px;
   max-width: 90%;
+  text-transform: uppercase;
 }
 
 .small-view-btn {
