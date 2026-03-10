@@ -1,0 +1,359 @@
+/* =================================================================
+   1. GLOBAL VARIABLES & RESET
+   Ensures a minimalist foundation for the cinematic experience.
+   ================================================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0d0d0d;
+  color: #ffffff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* =================================================================
+   2. CORE ASSETS (Noise & Page Transition)
+   Replicates the grainy texture and smooth entrance reveal.
+   ================================================================= */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.05;
+  mix-blend-mode: soft-light;
+}
+
+.page-reveal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 10000;
+  pointer-events: none;
+  transform: translateY(0); /* Controlled via GSAP */
+}
+
+/* =================================================================
+   3. HERO SECTION (Scramble Effect Support)
+   Styles for center-expanding letter-spacing animations.
+   ================================================================= */
+.project-hero {
+  padding: 80px 8% 40px;
+}
+.project-hero #hero-nest {
+  width: 100%;
+  height: 40vh;
+  background: url("../assets/images/banner-wassa.jpg") center/cover no-repeat;
+  margin-bottom: 50px;
+  filter: brightness(0.8);
+}
+.project-hero .hero-content-nest {
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+}
+.project-hero .hero-content-nest #title-content {
+  display: flex;
+  flex-direction: column;
+}
+.project-hero .hero-content-nest .project-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  letter-spacing: 20px; /* Initial state for Scramble reveal */
+  text-indent: 20px; /* Keeps text centered during expansion */
+  opacity: 0; /* Hidden for GSAP reveal */
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.project-hero .hero-content-nest .project-subtitle {
+  font-size: 1.2rem;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  opacity: 0; /* Hidden for entrance sequence */
+}
+.project-hero .hero-content-nest .links {
+  display: flex;
+  gap: 25px;
+  padding-bottom: 10px;
+}
+.project-hero .hero-content-nest .links a img {
+  width: 28px;
+  height: 28px;
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.project-hero .hero-content-nest .links a img:hover {
+  transform: translateY(-5px);
+  opacity: 0.7;
+}
+
+/* =================================================================
+   4. INFO SECTION (Smooth Content Reveal)
+   Typography for project goals and technical stack.
+   ================================================================= */
+.project-info {
+  padding: 120px 8%;
+}
+.project-info .info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  margin-bottom: 80px;
+}
+.project-info h3 {
+  font-size: 1.7rem;
+  letter-spacing: 0.2em;
+  margin-bottom: 30px;
+  color: #ffffff;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.project-info .reveal-text {
+  opacity: 0; /* Controlled by GSAP */
+  transform: translateY(30px);
+}
+.project-info .reveal-text p {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 500px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+.project-info .tools-block {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 40px;
+}
+.project-info .tools-block p {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+}
+
+/* =================================================================
+   5. HORIZONTAL MOBILE SHOWCASE (The Ribbon)
+   Side-by-side app mockups with a staggered 3D offset.
+   ================================================================= */
+.mobile-showcase {
+  padding: 150px 0;
+  background: #0d0d0d;
+  overflow: hidden;
+}
+.mobile-showcase .showcase-row {
+  display: flex;
+  flex-direction: row; /* Horizontal ribbon layout */
+  justify-content: center;
+  align-items: center;
+  gap: 60px; /* Spacing between device frames */
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.mobile-showcase .mobile-frame {
+  flex: 0 0 320px; /* Fixed device width */
+  height: 680px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 45px;
+  border: 10px solid #1a1a1a; /* Device hardware bezel */
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+  position: relative;
+  overflow: hidden;
+  /* Entrance animation states */
+  opacity: 0;
+  transform: translateY(100px) scale(0.9);
+  /* Middle phone offset for focal rhythm */
+}
+.mobile-showcase .mobile-frame:nth-child(2) {
+  transform: translateY(-30px);
+}
+.mobile-showcase .mobile-frame::before {
+  content: ""; /* Screen reflection overlay */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 50%);
+  pointer-events: none;
+  z-index: 2;
+}
+.mobile-showcase .mobile-frame::after {
+  content: ""; /* Speaker mesh hardware simulation */
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 5px;
+  background: #333;
+  border-radius: 10px;
+  z-index: 3;
+}
+
+.mobile-showcase {
+  padding: 150px 5%;
+  background: #0d0d0d;
+  display: flex;
+  flex-direction: column; /* Stacks rows vertically */
+  gap: 150px; /* Space between the horizontal ribbons */
+  overflow: hidden;
+}
+
+.showcase-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  /* Staggered Rhythm: Middle phone sits slightly higher */
+}
+.showcase-row .mobile-frame:nth-child(2) {
+  transform: translateY(-30px);
+}
+@media (max-width: 1024px) {
+  .showcase-row {
+    flex-direction: column;
+    gap: 100px;
+  }
+  .showcase-row .mobile-frame:nth-child(2) {
+    transform: translateY(0); /* Reset offset for vertical stacks */
+  }
+}
+
+.mobile-frame {
+  flex: 0 0 320px;
+  height: 680px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 45px;
+  border: 10px solid #1a1a1a;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+  position: relative;
+  opacity: 0; /* Initial state for GSAP */
+}
+
+/* =================================================================
+   6. RESPONSIVE ADAPTATIONS
+   Ensures the horizontal ribbon stacks logically on mobile.
+   ================================================================= */
+@media (max-width: 1024px) {
+  .hero-content-nest {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+  }
+  .showcase-row {
+    flex-direction: column; /* Vertical stack for small screens */
+    gap: 100px;
+  }
+  .mobile-frame:nth-child(2) {
+    transform: translateY(0); /* Remove offset on vertical stack */
+  }
+}
+@media (max-width: 480px) {
+  .mobile-frame {
+    flex: 0 0 280px; /* Smaller frame for mobile viewports */
+    height: 600px;
+  }
+}
+.video-demo-section {
+  padding: 150px 0;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-demo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+/* Floating "Live" Label */
+.demo-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.demo-label .pulse-icon {
+  width: 8px;
+  height: 8px;
+  background: #ff3e3e;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+.demo-label p {
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* The Video Hardware */
+.video-frame {
+  width: 35vh;
+  height: 80vh;
+  position: relative;
+  border: 12px solid #1a1a1a;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 80px 150px rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  transform: translateY(60px);
+}
+.video-frame video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  border-radius: 38px;
+}
+.video-frame .frame-reflection {
+  z-index: 2;
+}
+.video-frame::after {
+  content: "";
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 6px;
+  background: #222;
+  border-radius: 10px;
+  z-index: 3;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}/*# sourceMappingURL=project-mobile.css.map */

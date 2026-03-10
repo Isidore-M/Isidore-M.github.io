@@ -61,14 +61,13 @@
                 <div class="slide"><img src="./assets/images/theNest-banner.jpg" alt="Project"></div>
                 <div class="slide"><img src="./assets/images/placeholder1.jpg" alt="Project"></div>
                 <div class="slide"><img src="./assets/images/fungames.jpg" alt="Project"></div>
-                <div class="slide"><img src="./assets/images/placeholder1.jpg" alt="Project"></div>
                 <div class="slide"><img src="./assets/images/contact-img.png" alt="Project"></div>
-                <div class="slide"><img src="./assets/images/placeholder1.jpg" alt="Project"></div>
+                <div class="slide"><img src="./assets/images/slider 7.jpg" alt="Project"></div>
             </div>
         </div>
     </header>
 
-    <section class="process-section">
+    <section id="process" class="process-section">
     <div class="process-header">
         <div class="process-title-wrap">
             <span class="process-dash"></span>
@@ -101,7 +100,7 @@
     </div>
 </section>
 
-<section class="projects-section">
+<section id="projects" class="projects-section">
     <div class="projects-header">
         <div class="projects-title-wrap">
             <span class="process-dash"></span>
@@ -145,9 +144,9 @@
         
         <div class="card-overlay">
             <p class="card-description">
-                A HIGH-PERFORMANCE WEB EXPERIENCE BUILT WITH GSAP AND MODERN FRONT-END ARCHITECTURE TO SHOWCASE DIGITAL PRODUCTS.
+                Developed a culturally rooted brand identity and packaging system for Wassa, a Malian spice producer entering the retail market.
             </p>
-            <button class="small-view-btn">VIEW PROJECT</button>
+            <button onclick="window.location.href='wassa.html'" class="small-view-btn">VIEW PROJECT</button>
         </div>
     </div>
     <div class="card-footer">
@@ -222,25 +221,29 @@
     </div>
 </section>
 
-<section class="logofolio-section">
+<section  class="logofolio-section">
     <div class="logofolio-header">
         <span class="process-dash"></span>
         <h2 class="logofolio-title scramble" data-text="LOGOFOLIO">LOGOFOLIO</h2>
     </div>
+    <p class="swipe-hint">SWIPE TO EXPLORE <span>→</span></p>
 
     <div class="logofolio-wrapper">
+
+        
+
         <div class="logo-grid">
             <div class="logo-item active" data-project="project-1"><img src="./assets/images/logofolio/saraas.svg" alt="Identity 01"></div>
             <div class="logo-item" data-project="project-2"><img src="./assets/images/logofolio/tocen.svg" alt="Identity 02"></div>
             <div class="logo-item" data-project="project-3"><img src="./assets/images/logofolio/titanfit.svg" alt="Identity 03"></div>
-            <div class="logo-item" data-project="project-4"><img src="./assets/images/logofolio/granriver.svg" alt="Identity 04"></div>
+            <div class="logo-item" data-project="project-4"><img src="./assets/images/logofolio/LogoMusenoir.svg" alt="Identity 04"></div>
             <div class="logo-item" data-project="project-5"><img src="./assets/images/logofolio/nkwantech.svg" alt="Identity 05"></div>
             <div class="logo-item" data-project="project-6"><img src="./assets/images/logofolio/pis.svg" alt="Identity 06"></div>
             <div class="logo-item" data-project="project-7"><img src="./assets/images/logofolio/novo.svg" alt="Identity 07"></div>
             <div class="logo-item" data-project="project-8"><img src="./assets/images/logofolio/africamin.svg" alt="Identity 08"></div>
             <div class="logo-item" data-project="project-9"><img src="./assets/images/logofolio/verdana.svg" alt="Identity 09"></div>
         </div>
-
+        
         <div class="bento-grid">
             <div class="bento-slot slot-tall"></div>
             <div class="bento-slot slot-wide"></div>
@@ -252,7 +255,7 @@
     </div>
 </section>
 
-<section class="contact-section">
+<section id="contact" class="contact-section">
     <div class="contact-header">
         <span class="process-dash"></span>
         <h2 class="section-title scramble" data-text="CONTACT">GET IN TOUCH</h2>
@@ -340,6 +343,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollToPlugin.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Flip.min.js"></script>
+
+
+    <nav class="mobile-bottom-bar">
+    <a href="#hero-top" class="mobile-nav-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+        <span>HOME</span>
+    </a>
+    <a href="#process" class="mobile-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        <span>PROCESS</span>
+    </a>
+    <a href="#projects" class="mobile-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        <span>WORK</span>
+    </a>
+    <a href="#contact" class="mobile-nav-item"> 
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        <span>CONTACT</span>
+    </a>
+</nav>
 
  <script>
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -508,12 +531,12 @@ window.addEventListener("resize", setupSlider);
             "../assets/images/titan3.png"
         ],
           "project-4": [
-            "../assets/images/titan2.jpg",
-            "../assets/images/titan5.png",
-            "../assets/images/titan4.png",
-            "../assets/images/titan1.jpg",
-            "../assets/images/titan6.png",
-            "../assets/images/titan3.png"
+            "../assets/images/muse2.jpg",
+            "../assets/images/muse10.jpg",
+            "../assets/images/musenoir11.jpg",
+            "../assets/images/musenoir5.jpg",
+            "../assets/images/musenoir9.jpg",
+            "../assets/images/musenoir12.jpg"
         ],
           "project-5": [
             "../assets/images/nkwa.jpg",
@@ -565,6 +588,8 @@ window.addEventListener("resize", setupSlider);
     function updateBento(id) {
         const images = projectData[id];
         if (!images) return;
+
+        document.querySelector('.bento-grid').scrollTo({ left: 0, behavior: 'smooth' });
 
         gsap.to(bentoSlots, {
             opacity: 0,
@@ -778,7 +803,65 @@ filters.forEach(filter => {
     /* ---------- APPLY TITLE SYSTEM ---------- */
     document.querySelectorAll(".section-title, .logofolio-title, .projects-title")
         .forEach(title => animateSectionTitle(title));
+
+        /* ================= MOBILE NAV SCROLL SPY ================= */
+const mobileNavItems = document.querySelectorAll(".mobile-nav-item");
+// Select all major sections you want to track
+const pageSections = document.querySelectorAll("header, section"); 
+
+window.addEventListener("scroll", () => {
+    let currentSection = "";
+
+    pageSections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        // Triggers when the section is a third of the way down the screen
+        if (pageYOffset >= sectionTop - sectionHeight / 3) {
+            // Assumes your sections have IDs (e.g., id="projects")
+            currentSection = section.getAttribute("id"); 
+        }
+    });
+
+    mobileNavItems.forEach((item) => {
+        item.classList.remove("active");
+        if (item.getAttribute("href").includes(currentSection)) {
+            item.classList.add("active");
+        }
+    });
 });
+});
+/* ---------- PROCESS TIMELINE (UPGRADED) ---------- */
+    if (document.querySelector(".process-section")) {
+        // Grabs every single heading and paragraph inside the process section
+        const processElements = gsap.utils.toArray(".process-item h3, .process-item p");
+        
+        // Animates the image box first
+        gsap.from(".process-image-box", {
+            scale: 0.95,
+            opacity: 0,
+            duration: 1.2,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: ".process-content",
+                start: "top 85%"
+            }
+        });
+
+        // Creates the cascading text effect right after
+        gsap.from(processElements, {
+            y: 30, // A subtle slide up
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            stagger: 0.15, // This creates the 1-by-1 ripple effect
+            scrollTrigger: {
+                trigger: ".process-grid",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            }
+        });
+    }
 </script>
 </body>
 </html>

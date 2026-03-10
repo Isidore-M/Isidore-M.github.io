@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Nest | Isidore Manga</title>
+
+    <link rel="stylesheet" href="css/project-mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+</head>
+
+<body>
+
+<div class="page-reveal"></div> <div class="noise-overlay"></div> <section class="project-hero">
+    <div id="hero-nest"></div> 
+    <div class="hero-content-nest">
+        <div id="title-content">
+            <h1 class="project-title section-title scramble" data-text="THE NEST">THE NEST</h1>
+            <p class="project-subtitle">MOBILE APPLICATION DESIGN & DEVELOPMENT</p>
+        </div>
+      
+        <div class="links">
+            <a href="https://github.com/Isidore-M/TheNestProject.git" target="_blank" title="View Source Code">
+                <img src="./assets/images/github.svg" alt="GitHub Logo">
+            </a>
+            <a href="https://www.figma.com/design/vjKhkpTNaUR4dS7QTipXqn/The-Nest?node-id=0-1&t=Kd3fNi2L8enHAYR5-1" target="_blank" title="View Figma Design">
+                <img src="./assets/images/figma-3.svg" alt="Figma Logo">
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="project-info"> 
+    <div class="info-grid">
+        <div class="info-block reveal-text">
+            <h3>THE PROBLEM</h3>
+            <p>Managing a modern household requires constant communication that often gets lost in fragmented chat apps.</p>
+        </div>
+
+        <div class="info-block reveal-text">
+            <h3>THE SOLUTION</h3>
+            <p>The Nest provides a unified dashboard for tasks, groceries, and shared calendars, built with a minimalist aesthetic.</p>
+        </div>
+    </div>
+
+    <div class="tools-block reveal-text">
+        <h3>THE TOOLS</h3>
+        <p>FIGMA — KOTLIN — JETPACK COMPOSE — ADOBE ILLUSTRATOR</p>
+    </div>
+</section>
+
+<section class="video-demo-section">
+    <div class="video-demo-container">
+        <div class="demo-label reveal-text">
+            <span class="pulse-icon"></span>
+            <p class="scramble" data-text="LIVE WORKFLOW">LIVE WORKFLOW</p>
+        </div>
+
+        <div class="mobile-frame video-frame">
+            <video autoplay loop muted playsinline poster="./assets/images/wassa5.png">
+                <source src="./assets/videos/nest-app-recording.mp4" type="video/mp4">
+                Your browser does not support HTML video.
+            </video>
+            <div class="frame-reflection"></div>
+        </div>
+    </div>
+</section>
+
+<section class="mobile-showcase">
+    <div class="showcase-row">
+        <div class="mobile-frame horizontal-reveal" style="background-image: url('./assets/images/wassa1.png');">
+            <div class="frame-reflection"></div>
+        </div>
+        <div class="mobile-frame horizontal-reveal" style="background-image: url('./assets/images/wassa3.png');">
+            <div class="frame-reflection"></div>
+        </div>
+        <div class="mobile-frame horizontal-reveal" style="background-image: url('./assets/images/wassa5.png');">
+            <div class="frame-reflection"></div>
+        </div>
+    </div>
+
+    <div class="showcase-row">
+        <div class="mobile-frame horizontal-reveal" style="background-image: url('./assets/images/wassa9.png');">
+            <div class="frame-reflection"></div>
+        </div>
+        <div class="mobile-frame horizontal-reveal" style="background-image: url('./assets/images/wassa7.png');">
+            <div class="frame-reflection"></div>
+        </div>
+        <div class="mobile-frame horizontal-reveal" style="background-image: url('./assets/images/wassa8.png');">
+            <div class="frame-reflection"></div>
+        </div>
+    </div>
+</section>
+<script>
+// 1. Unified Plugin Registration
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+/**
+ * UTILITY: Cinematic Scramble
+ * Optimized for architectural consistency across all titles.
+ */
+function cinematicScramble(element) {
+    if (!element) return;
+    const originalText = element.getAttribute("data-text") || element.innerText;
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let iteration = 0;
+
+    const interval = setInterval(() => {
+        element.innerText = originalText.split("").map((letter, index) => {
+            if (index < iteration) return originalText[index];
+            return chars[Math.floor(Math.random() * 26)];
+        }).join("");
+
+        if (iteration >= originalText.length) clearInterval(interval);
+        iteration += 1; 
+    }, 35);
+}
+
+/**
+ * HEADER ANIMATION: Hero Entrance
+ * Synchronized scramble for both project title and subtitle.
+ */
+function animateProjectHeader(title, subtitle) {
+    if (!title) return;
+
+    // Initial State: Expanded spacing with centering text-indent
+    gsap.set(title, { opacity: 0, y: 60, letterSpacing: "20px", textIndent: "20px" });
+    if (subtitle) gsap.set(subtitle, { opacity: 0, y: 40 });
+
+    const headerTL = gsap.timeline({
+        scrollTrigger: {
+            trigger: title,
+            start: "top 85%",
+            once: true
+        }
+    });
+
+    headerTL.to(title, {
+        opacity: 1,
+        y: 0,
+        letterSpacing: "2px",
+        textIndent: "2px", // Correction fix to maintain center expansion
+        duration: 1.4,
+        ease: "expo.out",
+        onStart: () => cinematicScramble(title) // Scramble Title
+    })
+    .to(subtitle, {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: "power3.out",
+        onStart: () => {
+            if (subtitle) cinematicScramble(subtitle); // Scramble Subtitle
+        }
+    }, "-=1"); 
+}
+
+/* --- MAIN INITIALIZATION --- */
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* 1. Project Title & Subtitle Scramble */
+    const title = document.querySelector(".project-title");
+    const subtitle = document.querySelector(".project-subtitle");
+    animateProjectHeader(title, subtitle);
+
+    /* 2. Text Content Smooth Reveals (Info Blocks) */
+    gsap.utils.toArray(".reveal-text").forEach(text => {
+        gsap.to(text, {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: text,
+                start: "top 85%",
+                toggleActions: "play none none reverse"
+            }
+        });
+    });
+
+    /* 3. MULTI-ROW HORIZONTAL RIBBON REVEAL */
+    // Select each row to create row-by-row scroll triggers
+    const rows = gsap.utils.toArray(".showcase-row");
+    
+    rows.forEach((row) => {
+        const rowFrames = row.querySelectorAll(".mobile-frame");
+        
+        if (rowFrames.length > 0) {
+            gsap.fromTo(rowFrames, 
+                { 
+                    opacity: 0, 
+                    y: 100, 
+                    rotateY: -20, // 3D entrance tilt for depth
+                    scale: 0.9 
+                },
+                { 
+                    opacity: 1, 
+                    // Staggered Rhythm: Middle frame (index 1) keeps focal offset
+                    y: (index) => (index === 1 ? -30 : 0), 
+                    rotateY: 0,
+                    scale: 1,
+                    duration: 1.8,
+                    stagger: 0.2, // Sequential "fan-out" within the row
+                    ease: "expo.out",
+                    scrollTrigger: {
+                        trigger: row,
+                        start: "top 75%",
+                        once: true
+                    }
+                }
+            );
+        }
+    });
+});
+
+/* --- WINDOW REVEAL TRANSITION --- */
+window.addEventListener("load", () => {
+    const reveal = document.querySelector(".page-reveal");
+    if (reveal) {
+        gsap.to(reveal, {
+            yPercent: -100, // Slides up to reveal full project page
+            duration: 1.2,
+            ease: "power4.inOut"
+        });
+    }
+});
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // 1. Reveal the Demo Label
+    const demoLabel = document.querySelector(".demo-label p");
+    
+    gsap.to(".demo-label", {
+        scrollTrigger: {
+            trigger: ".video-demo-section",
+            start: "top 70%",
+            onEnter: () => {
+                if (demoLabel) cinematicScramble(demoLabel); //
+            }
+        },
+        opacity: 1,
+        y: 0,
+        duration: 1
+    });
+
+    // 2. Reveal the Video Frame
+    gsap.to(".video-frame", {
+        scrollTrigger: {
+            trigger: ".video-frame",
+            start: "top 75%",
+            once: true
+        },
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1.8,
+        ease: "expo.out"
+    });
+});
+</script>
+
+</body>
+</html>
