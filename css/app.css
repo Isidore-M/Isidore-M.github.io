@@ -5,6 +5,15 @@
   font-family: "Inter", sans-serif;
 }
 
+html, body {
+  background-color: #0d0d0d;
+  color: #fff;
+  overflow-x: hidden; /* Stops the horizontal jumping */
+  width: 100%;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
 /* --- HIDE SWIPE HINT ON DESKTOP --- */
 .swipe-hint {
   display: none;
@@ -207,8 +216,8 @@ body {
 }
 
 .process-subtitle {
-  max-width: 40%;
-  font-size: clamp(1rem, 1.2vw, 1.5rem);
+  max-width: 30%;
+  font-size: clamp(1rem, 1vw, 1.5rem);
   line-height: 1.4;
   text-transform: uppercase;
   text-align: left;
@@ -1018,25 +1027,85 @@ body {
     grid-template-columns: 1fr; /* Stacks the two text columns */
     gap: 30px;
   }
-  /* --- PROJECTS SECTION --- */
-  .filter-controls {
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-top: 15px;
-  }
+  /* --- PROJECTS SECTION (NATIVE SWIPE & APP FILTERS) --- */
   .projects-header {
     flex-direction: column;
     align-items: flex-start;
   }
-  .slider-nav {
-    justify-content: flex-start; /* Move arrows to the left for thumb reach */
+  /* 1. Turn the text filters into swipeable app pills */
+  .filter-controls {
+    display: flex;
+    flex-wrap: nowrap; /* Forces them into a single row */
+    overflow-x: auto; /* Allows horizontal scrolling if they don't fit */
+    width: 100%;
+    gap: 10px;
+    margin-top: 15px;
+    padding-bottom: 10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
+  .filter-controls::-webkit-scrollbar {
+    display: none;
+  }
+  .filter-btn {
+    flex-shrink: 0; /* Prevents pills from squishing */
+    padding: 10px 22px;
+    background: #1a1a1a;
+    border-radius: 30px; /* Perfect pill shape */
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #888;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+  }
+  .filter-btn.active {
+    background: #e2ff00; /* Yellow accent pop */
+    color: #000;
+    font-weight: 900;
+    border-color: #e2ff00;
+  }
+  /* 2. Hide the desktop arrows */
+  .slider-nav {
+    display: none !important;
+  }
+  /* 3. The Native Swipe Container */
+  .projects-slider-container {
+    overflow: visible; /* Lets the wrapper handle the scrolling */
+    padding-bottom: 10px;
+  }
+  .projects-wrapper {
+    display: flex;
+    width: 100% !important; /* Overrides the desktop max-content rule */
+    overflow-x: auto !important;
+    gap: 15px; /* Tighter mobile gap */
+    /* Native mobile swiping */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    /* Padding to let the next card "peek" into the frame */
+    padding: 0 20px 20px 20px;
+    /* Hide scrollbars */
+    scrollbar-width: none;
+  }
+  .projects-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+  .projects-wrapper {
+    /* Completely disables GSAP's desktop X-translations from interfering */
+    transform: none !important;
+  }
+  /* 4. The Project Cards */
   .project-card {
-    /* Override the 450px minimum so it fits on narrow screens like the iPhone SE */
-    width: 85vw;
+    flex: 0 0 82vw !important; /* Locks width to 82% of screen */
+    scroll-snap-align: center;
+    border-radius: 16px;
+  }
+  .card-image-wrapper {
+    border-radius: 12px; /* Smooth, modern corners */
   }
   .card-description {
-    font-size: 0.9rem; /* Prevent description from taking up the whole card */
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
   }
   /* --- LOGOFOLIO SECTION (SWIPE CARDS & LOGO NAV) --- */
   .logofolio-wrapper {
@@ -1273,8 +1342,11 @@ body {
   }
   .process-subtitle {
     font-size: 1rem;
-    max-width: 100%;
+    max-width: 85%; /* Creates a safe buffer zone on the right side */
     line-height: 1.5;
+    /* The Magic Armor against the Scramble Effect */
+    white-space: normal;
+    word-wrap: break-word; /* Forces fake, long scrambled words to drop to the next line instead of stretching the screen */
   }
   .process-content {
     grid-template-columns: 1fr;
@@ -1367,5 +1439,27 @@ body {
     50% {
       transform: translateX(5px);
     }
+  }
+  /* --- PROTECT ALL SECTION HEADERS FROM THE SCRAMBLE GLITCH --- */
+  .process-title-wrap,
+  .projects-title-wrap,
+  .logofolio-header,
+  .contact-title-wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+  }
+  /* Force the dashes to never shrink */
+  .process-dash {
+    flex-shrink: 0 !important;
+    width: 35px !important;
+    height: 8px !important;
+  }
+  /* Allow the text to wrap safely if the scramble generates wide letters */
+  .section-title, .logofolio-title, .projects-title {
+    white-space: normal !important;
+    line-height: 1.1;
   }
 }/*# sourceMappingURL=app.css.map */
