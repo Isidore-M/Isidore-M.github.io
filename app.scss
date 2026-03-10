@@ -1083,7 +1083,7 @@ body {
     .bento-slot {
         flex: 0 0 82vw; /* Card takes up 82% of screen, letting next card peek */
         aspect-ratio: 4 / 3; /* Nice landscape presentation */
-        border-radius: 16px;
+        // border-radius: 16px;
         background-color: #1a1a1a;
         scroll-snap-align: center;
         
@@ -1121,7 +1121,7 @@ body {
         height: 55px;
         aspect-ratio: 1 / 1;
         border: 1px solid #222;
-        border-radius: 12px;
+        // border-radius: 12px;
         background: #111;
         scroll-snap-align: center;
         transition: border-color 0.3s ease, transform 0.2s ease;
@@ -1337,7 +1337,7 @@ body {
         font-size: 1rem; 
         max-width: 100%;
         line-height: 1.5;
-        color: #e2ff00; /* Adds your yellow accent to break up the dark theme */
+        
     }
 
     .process-content {
@@ -1348,7 +1348,6 @@ body {
     /* Make the image a wide, app-style header card instead of a massive square */
     .process-image-box {
         aspect-ratio: 16 / 9; 
-        border-radius: 12px;
         width: 100%;
     }
 
