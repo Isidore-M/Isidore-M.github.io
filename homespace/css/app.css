@@ -1,0 +1,1192 @@
+/* =========================================
+   1. GLOBAL VARIABLES & RESET
+   ========================================= */
+:root {
+    --primary-accent: #b26124;
+    --dark-green: #344241;
+    --bg-light: #fcfcfc;
+    --text-dark: #1a1a1a;
+    --text-light: #555;
+    --padding-x: clamp(20px, 5vw, 150px);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    background: var(--bg-light);
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+/* =========================================
+   2. TYPOGRAPHY & BUTTONS
+   ========================================= */
+h1, h2, h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+}
+
+.section-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--dark-green);
+    margin-bottom: 20px;
+}
+
+.section-desc {
+    font-size: clamp(1rem, 1.2vw, 1.2rem);
+    line-height: 1.6;
+    color: var(--text-light);
+}
+
+.btn-primary {
+    padding: 12px 30px;
+    background: var(--primary-accent);
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    background: var(--dark-green);
+}
+
+/* =========================================
+   3. NAVIGATION
+   ========================================= */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px var(--padding-x);
+    background: var(--bg-light);
+}
+
+.logo img {
+    width: clamp(150px, 15vw, 200px);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-accent);
+}
+
+/* =========================================
+   4. HERO SECTION
+   ========================================= */
+.hero-section {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 50px;
+    padding: 20px var(--padding-x) 10vh;
+    align-items: center;
+}
+
+.hero-content {
+    background: #eeeeee;
+    padding: clamp(30px, 5vw, 60px);
+    border-radius: 25px;
+}
+
+.hero-content h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: -10px;
+}
+
+.hero-content h1 {
+    font-size: clamp(3.5rem, 8vw, 7.5rem);
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.hero-image-wrapper {
+    height: 100%;
+    min-height: 50vh;
+    border-radius: 25px;
+    background: url('../assets/images/cad1.jpg') center/cover no-repeat;
+}
+
+/* =========================================
+   5. PARTNERS / TRUSTED
+   ========================================= */
+.trusted-section {
+    padding: 5vh var(--padding-x);
+    text-align: center;
+}
+
+.trusted-section h3 {
+    color: #9f9f9f;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.partner-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(20px, 4vw, 50px);
+}
+
+.partner-grid img {
+    width: clamp(80px, 10vw, 120px);
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
+
+.partner-grid img:hover {
+    opacity: 1;
+}
+
+/* =========================================
+   6. ABOUT SECTION
+   ========================================= */
+.about-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    padding: 10vh var(--padding-x);
+    background: var(--dark-green);
+    color: #fff;
+}
+
+.about-section .section-title {
+    color: #fff;
+}
+
+.about-section .section-desc {
+    color: #e0e0e0;
+}
+
+.about-image {
+    min-height: 400px;
+    background: url('../assets/images/about_section.jpg') center/cover no-repeat;
+    border-radius: 25px;
+    position: relative;
+}
+
+/* =========================================
+   7. CATALOGUE & TESTIMONIALS (Bento / Swipe)
+   ========================================= */
+/* =========================================
+   CREATIVE EXPANDING CATALOGUE
+   ========================================= */
+
+
+
+.catalogue-creative {
+    padding: 10vh var(--padding-x);
+    background: var(--bg-light);
+}
+
+.catalogue-creative .catalogue-header {
+    margin-bottom: 5vh;
+}
+
+/* --- The Accordion Container --- */
+.accordion-gallery {
+    display: flex;
+    width: 100%;
+    height: 65vh; /* Gives it a grand, cinematic height */
+    min-height: 500px;
+    gap: 15px;
+}
+
+/* --- The Individual Panels --- */
+.accordion-panel {
+    position: relative;
+    flex: 1; /* Default state: all panels share equal width */
+    border-radius: 30px;
+    overflow: hidden;
+    cursor: pointer;
+    /* The magic math that makes it snap and slide smoothly */
+    transition: flex 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* On hover, the panel expands to take up 5x more space than the others */
+.accordion-panel:hover {
+    flex: 5;
+}
+
+.accordion-panel img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* A dark gradient that fades up from the bottom so the text is always readable */
+.panel-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+    z-index: 2;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.5s ease;
+}
+
+.accordion-panel:hover .panel-overlay {
+    opacity: 1; /* Appears when expanded */
+}
+
+/* --- The Text and Button --- */
+.panel-content {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    opacity: 0; /* Hidden by default */
+    transform: translateY(20px); /* Pushed down slightly */
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    transition-delay: 0.1s; /* Waits a split second for the panel to open before appearing */
+}
+
+/* Only show the content when the panel is expanded */
+.accordion-panel:hover .panel-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.panel-info h3 {
+    color: #fff;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    margin-bottom: 5px;
+}
+
+.panel-info p {
+    color: #ccc;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+}
+
+.panel-btn {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background: var(--primary-accent);
+    color: #fff;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Prevents button from squishing */
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.panel-btn:hover {
+    background: #fff;
+    color: var(--primary-accent);
+    transform: scale(1.1);
+}
+
+/* --- Swipe Indicator (Hidden on Desktop) --- */
+.mobile-swipe-indicator {
+    display: none; 
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS (FALLBACK TO SWIPE)
+   ========================================= */
+@media (max-width: 992px) {
+    .accordion-gallery {
+        height: auto;
+        /* Converts the hover accordion into a thumb-swipe gallery */
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 20px;
+        scrollbar-width: none;
+    }
+    
+    .accordion-gallery::-webkit-scrollbar {
+        display: none;
+    }
+
+    .accordion-panel {
+        flex: 0 0 85vw; /* Sets a fixed width for swiping */
+        height: 50vh; /* Fixed height for mobile */
+        scroll-snap-align: center;
+    }
+
+    /* Force the content and overlay to always be visible on mobile since there is no hover */
+    .accordion-panel:hover {
+        flex: 0 0 85vw; /* Kills the expanding flex logic */
+    }
+
+    .panel-overlay, 
+    .panel-content {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .panel-content {
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        flex-direction: column; /* Stack text and button */
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .nav-links, 
+    .navbar .btn-primary {
+        display: none; 
+    }
+    
+    /* Show the hamburger menu */
+    .hamburger-btn {
+        display: flex; 
+    }
+ /* --- Swipe Indicator (Visible on Mobile) --- */
+    .mobile-swipe-indicator {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--primary-accent);
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-top: 20px;
+    }
+
+    /* A gentle pulsing animation for the arrow */
+    .mobile-swipe-indicator span {
+        animation: swipePulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes swipePulse {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(8px); }
+    }
+
+
+
+
+}
+/* Catalogue specific bento overrides */
+.gallery-track {
+    grid-template-columns: repeat(12, 1fr);
+}
+.card-wide { grid-column: span 7; }
+.card-standard { grid-column: span 5; }
+
+.gallery-card {
+    border-radius: 25px;
+    overflow: hidden;
+    min-height: 400px;
+    position: relative;
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.gallery-card:hover img {
+    transform: scale(1.05);
+}
+
+.testi-card {
+    background: #f2f2f2;
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.testi-card img {
+    width: 100px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+}
+
+.testi-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+/* =========================================
+   8. CONTACT & MAP
+   ========================================= */
+.contact-map-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 5vh var(--padding-x) 10vh;
+}
+
+.contact-box, .map-box {
+    background: var(--primary-accent);
+    padding: clamp(30px, 5vw, 60px);
+    border-radius: 25px;
+    color: #fff;
+}
+
+.map-box {
+    background: var(--dark-green);
+}
+
+.contact-box .section-title, 
+.map-box .section-title {
+    color: #fff;
+}
+
+.contact-form {
+    background: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    margin-top: 30px;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 15px;
+    background: var(--dark-green);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.map-iframe-container {
+    margin-top: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    height: 350px;
+}
+
+.map-iframe-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* =========================================
+   9. FOOTER
+   ========================================= */
+.site-footer {
+    background: #000;
+    color: #fff;
+    padding: 60px var(--padding-x) 30px;
+    text-align: center;
+}
+
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.newsletter-form input[type="email"] {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    border-radius: 8px;
+    border: none;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.social-links img {
+    width: 30px;
+    transition: transform 0.3s ease;
+}
+
+.social-links img:hover {
+    transform: translateY(-5px);
+    color:#b26124
+}
+
+/* =========================================
+   10. MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 992px) {
+    /* Converts grid sections to single columns */
+    .hero-section, 
+    .about-section, 
+    .contact-map-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-image-wrapper {
+        order: -1; /* Puts image above text on mobile */
+        min-height: 40vh;
+    }
+
+    /* Converts tracks to native horizontal swipe */
+    .gallery-track, .testi-track {
+        display: flex;
+        overflow-x: auto;
+        gap: 15px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 20px;
+        scrollbar-width: none;
+    }
+    
+    .gallery-track::-webkit-scrollbar, 
+    .testi-track::-webkit-scrollbar {
+        display: none;
+    }
+
+    .gallery-card, .testi-card {
+        flex: 0 0 85vw;
+        scroll-snap-align: center;
+    }
+
+    /* Newsletter stack */
+    .newsletter-form {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+/* =========================================
+   CREATIVE TESTIMONIALS (STICKY EDITORIAL)
+   ========================================= */
+
+.testi-editorial {
+    padding: 15vh var(--padding-x);
+    background: var(--dark-green);
+    color: #fff;
+}
+
+.testi-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* Right side is slightly wider */
+    gap: 8vw;
+    align-items: start; /* CRITICAL: Allows the columns to have different heights */
+}
+
+/* --- Left Column: The Sticky Header --- */
+.testi-sticky-col {
+    position: sticky;
+    top: 20vh; /* Stops it 20% from the top of the screen */
+}
+
+.testi-sticky-col .section-title {
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 30px;
+}
+
+.testi-sticky-col .section-desc {
+    color: #b3b3b3;
+    font-size: 1.1rem;
+}
+
+/* A classy little design accent line */
+.testi-decoration {
+    width: 60px;
+    height: 2px;
+    background: var(--primary-accent);
+    margin-top: 40px;
+}
+
+/* --- Right Column: The Scrolling Cards --- */
+.testi-scroll-col {
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Space between the cards */
+}
+
+.editorial-card {
+    background: rgba(255, 255, 255, 0.03); /* Extremely subtle glass/box effect */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: clamp(30px, 5vw, 60px);
+    border-radius: 20px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.editorial-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-5px); /* Gentle lift on hover */
+}
+
+.client-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 25px;
+    object-fit: cover;
+    border: 2px solid var(--primary-accent);
+}
+
+.quote-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.quote-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #dcdcdc;
+    margin-bottom: 25px;
+}
+
+.client-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--primary-accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 992px) {
+    .testi-layout {
+        grid-template-columns: 1fr; /* Stacks the header on top of the cards */
+        gap: 50px;
+    }
+    
+    .testi-sticky-col {
+        position: relative; /* Kills the sticky effect on mobile */
+        top: 0;
+    }
+
+    /* Optional: Turn the vertical stack into a horizontal swipe on mobile to save vertical space */
+    .testi-scroll-col {
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 20px;
+        scrollbar-width: none;
+    }
+    
+    .testi-scroll-col::-webkit-scrollbar {
+        display: none;
+    }
+
+    .editorial-card {
+        flex: 0 0 85vw;
+        scroll-snap-align: center;
+    }
+}
+
+/* =========================================
+   CONTACT & LOCATION (SPLIT-SCREEN)
+   ========================================= */
+
+.contact-editorial {
+    padding: 15vh var(--padding-x);
+    background: var(--bg-light);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8vw;
+    align-items: center;
+}
+
+/* --- Left Column: The Form --- */
+.contact-form-col .section-title {
+    margin-bottom: 20px;
+}
+
+.contact-form-col .section-desc {
+    margin-bottom: 50px;
+    max-width: 90%;
+}
+
+.premium-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* The Floating Label Magic */
+.input-group {
+    position: relative;
+    width: 100%;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 15px 0;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    outline: none;
+    transition: border-color 0.3s ease;
+    resize: none; /* Prevents textareas from breaking the layout */
+}
+
+.input-group label {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    font-size: 1.1rem;
+    color: #999;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+/* When the user clicks in, OR if there is text inside, float the label up! */
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label,
+.input-group textarea:focus ~ label,
+.input-group textarea:not(:placeholder-shown) ~ label {
+    top: -12px;
+    font-size: 0.85rem;
+    color: var(--primary-accent);
+    font-weight: 700;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    border-bottom-color: var(--primary-accent);
+}
+
+.form-submit-btn {
+    align-self: flex-start;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-submit-btn:hover .arrow {
+    transform: translateX(5px);
+    transition: transform 0.3s ease;
+}
+
+/* --- Right Column: The Info Card --- */
+.info-card {
+    background: var(--dark-green);
+    border-radius: 30px;
+    padding: clamp(30px, 5vw, 60px);
+    color: #fff;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.info-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    margin-bottom: 15px;
+}
+
+.info-card p {
+    color: #ccc;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.contact-details {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-details p {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.contact-details strong {
+    color: var(--primary-accent);
+    margin-right: 10px;
+}
+
+/* The Map Wrapper */
+.map-wrapper {
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    /* Optional: A CSS filter to make the Google Map match your aesthetic */
+    filter: grayscale(80%) contrast(1.2); 
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 992px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    
+    .contact-form-col {
+        order: 2; /* Puts the map/info ABOVE the form on mobile */
+    }
+    
+    .info-card {
+        order: 1;
+        padding: 40px 20px;
+    }
+}
+
+
+/* ======================= FOOTER ========================== */
+
+.site-footer {
+    background: #0a0a0a; /* True deep black for maximum contrast */
+    color: #fff;
+    padding: 10vh var(--padding-x) 3vh;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr;
+    gap: 5vw;
+    padding-bottom: 8vh;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- Brand Column --- */
+.footer-logo {
+    width: 180px;
+    margin-bottom: 25px;
+    filter: brightness(0) invert(1); /* Turns your dark logo pure white! */
+}
+
+.footer-tagline {
+    color: #999;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 80%;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-socials a img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: invert(0.6); /* Makes the icons a soft gray */
+}
+
+.footer-socials a:hover img {
+    transform: translateY(-5px);
+    filter: invert(1); /* Lights them up to pure white on hover */
+}
+
+/* --- Links Column --- */
+.footer-links-col h4, 
+.footer-newsletter-col h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 25px;
+    color: #fff;
+}
+
+.footer-links-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-links-col a {
+    color: #999;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links-col a:hover {
+    color: var(--primary-accent);
+}
+
+/* --- Newsletter Column --- */
+.footer-newsletter-col p {
+    color: #999;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+/* The Minimalist Input Design */
+.minimal-newsletter {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #555;
+    padding-bottom: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.minimal-newsletter:focus-within {
+    border-bottom-color: var(--primary-accent);
+}
+
+.minimal-newsletter input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    outline: none;
+}
+
+.minimal-newsletter input::placeholder {
+    color: #666;
+}
+
+.minimal-newsletter button {
+    background: transparent;
+    border: none;
+    color: var(--primary-accent);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.minimal-newsletter button:hover {
+    transform: translateX(5px);
+}
+
+/* --- Bottom Bar --- */
+.footer-bottom-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 3vh;
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.legal-links {
+    display: flex;
+    gap: 20px;
+}
+
+.legal-links a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.legal-links a:hover {
+    color: #fff;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .footer-tagline {
+        max-width: 100%;
+    }
+
+    .footer-bottom-bar {
+        flex-direction: column-reverse;
+        gap: 20px;
+        text-align: center;
+    }
+}
+
+/* =========================================
+ /* =========================================
+   3. NAVIGATION (CENTERED & CREATIVE MOBILE)
+   ========================================= */
+.navbar {
+    position: relative; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px var(--padding-x);
+    background: var(--bg-light);
+    z-index: 100; 
+}
+
+.logo img {
+    width: clamp(150px, 15vw, 180px);
+}
+
+.nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 40px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-accent);
+}
+
+/* --- The Animated Hamburger --- */
+.hamburger-btn {
+    display: none; /* Hidden on desktop */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 101; 
+}
+
+.hamburger-btn .bar {
+    width: 35px;
+    height: 2px;
+    background: var(--text-dark);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease, background 0.4s ease;
+}
+
+/* The 'X' Animation state */
+.hamburger-btn.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    background: #fff; /* Turns white to contrast the dark menu */
+}
+.hamburger-btn.active .bar:nth-child(2) {
+    opacity: 0; /* Middle bar disappears */
+}
+.hamburger-btn.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+    background: #fff;
+}
+
+/* --- The Creative Full-Screen Mobile Menu --- */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw; /* Fills the whole screen for an immersive feel */
+    height: 100vh;
+    background: var(--dark-green);
+    z-index: 99; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 10vw; /* Off-center alignment for editorial look */
+    gap: 4vh;
+}
+
+.mobile-menu .menu-link {
+    color: rgba(255, 255, 255, 0.4); /* Dimmed by default */
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3.5rem, 12vw, 6rem); /* Massive typography */
+    text-decoration: none;
+    line-height: 1;
+    transition: color 0.4s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    display: flex;
+    align-items: center;
+}
+
+/* A slick line that appears when you tap/hover */
+.mobile-menu .menu-link::before {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 4px;
+    background: var(--primary-accent);
+    margin-right: 0;
+    transition: width 0.4s ease, margin-right 0.4s ease;
+}
+
+.mobile-menu .menu-link:hover,
+.mobile-menu .menu-link:active {
+    color: #fff;
+    transform: translateX(15px); /* Slides the text slightly */
+}
+
+.mobile-menu .menu-link:hover::before,
+.mobile-menu .menu-link:active::before {
+    width: 40px;
+    margin-right: 20px;
+}
+
+/* --- THE MISSING MOBILE MEDIA QUERY --- */
+@media (max-width: 992px) {
+    .nav-links, 
+    .navbar .btn-primary {
+        display: none; /* Hides desktop links */
+    }
+    
+    .hamburger-btn {
+        display: flex; /* Reveals the hamburger! */
+    }
+}
+/* --- Mobile Menu (Hidden off-screen by GSAP) --- */
