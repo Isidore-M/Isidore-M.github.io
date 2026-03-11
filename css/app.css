@@ -1261,7 +1261,7 @@ body {
     /* Softens the edges for that premium mobile UI feel */
   }
   .slide img {
-    border-radius: 12px; /* Ensures the image respects the container's rounded corners */
+    border-radius: 1px; /* Ensures the image respects the container's rounded corners */
   }
   /* --- CONTACT SECTION (MOBILE FIXES) --- */
   .contact-header {
