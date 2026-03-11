@@ -866,6 +866,9 @@ body {
   max-width: 800px; /* Stops it from getting comically wide on 4K screens */
   margin: 0 auto; /* Centers the form perfectly */
 }
+.contact-form input {
+  font-size: 18px;
+}
 
 .site-footer {
   position: relative;

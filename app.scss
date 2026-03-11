@@ -866,6 +866,9 @@ body {
     width: 100%;
     max-width: 800px; /* Stops it from getting comically wide on 4K screens */
     margin: 0 auto; /* Centers the form perfectly */
+    input{
+        font-size: 18px;
+    }
 }
 
 
