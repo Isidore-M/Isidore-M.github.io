@@ -1,0 +1,207 @@
+/* ================= PROJECT SHOWCASE TEMPLATE ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+/* --- Top Nav --- */
+.project-nav {
+  padding: 40px clamp(20px, 5vw, 100px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.back-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.3s ease;
+}
+
+.back-link:hover {
+  color: #e2ff00;
+}
+
+/* --- 1. Hero Banner --- */
+.project-hero {
+  position: relative;
+  width: 100%;
+  height: 80vh; /* Cinematic height */
+  overflow: hidden;
+}
+
+.hero-image-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6); /* Darkens image so the title pops */
+}
+
+.project-hero-text {
+  position: absolute;
+  bottom: 5vh;
+  left: clamp(20px, 5vw, 100px);
+}
+
+.project-hero-text .main-title {
+  font-size: clamp(3rem, 10vw, 8rem);
+  margin: 0;
+}
+
+/* --- 2. Project Brief --- */
+.project-brief {
+  padding: 15vh clamp(20px, 5vw, 100px);
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 8vw;
+  background: #0d0d0d;
+}
+
+.brief-description {
+  font-size: clamp(1rem, 1.2vw, 1.5rem);
+  line-height: 1.6;
+  color: #a9a9a9;
+  margin-top: 40px;
+}
+
+.brief-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  padding-left: 40px;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.meta-label {
+  font-size: 0.75rem;
+  color: #666;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.meta-value {
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* --- 3. Creative Gallery --- */
+.project-gallery {
+  padding: 0 clamp(20px, 5vw, 100px) 10vh;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.gallery-item {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #1a1a1a;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.span-full {
+  grid-column: span 2;
+  aspect-ratio: 21/9; /* Ultra-wide cinematic shot */
+}
+
+/* --- 4. Next Projects --- */
+.next-projects-section {
+  padding: 10vh clamp(20px, 5vw, 100px) 15vh;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.next-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 6vh;
+}
+
+/* Reusing your card styles but making them fit the grid */
+.next-projects-grid .project-card {
+  width: 100%; /* Overrides the fixed width from the homepage */
+}
+
+/* ================= MOBILE RESPONSIVENESS ================= */
+@media (max-width: 768px) {
+  .project-hero {
+    height: 60vh;
+  }
+  .project-brief {
+    grid-template-columns: 1fr; /* Stacks text on top of meta details */
+    gap: 50px;
+    padding: 8vh 20px;
+  }
+  .brief-meta {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-left: 0;
+    padding-top: 30px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .project-gallery {
+    padding: 0 20px 8vh;
+  }
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  } /* Stacks all images */
+  .span-full {
+    grid-column: span 1;
+    aspect-ratio: 4/3;
+  } /* Resets wide images to standard ratio */
+  .next-projects-section {
+    padding: 8vh 20px 15vh;
+  }
+  /* Transforms the 3-column grid into a native horizontal swipe, exactly like the homepage! */
+  .next-projects-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 20px;
+    scrollbar-width: none;
+  }
+  .next-projects-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .next-projects-grid .project-card {
+    flex: 0 0 82vw;
+    scroll-snap-align: center;
+  }
+}/*# sourceMappingURL=newproject.css.map */

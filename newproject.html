@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isidore Manga | Portfolio</title>
+    <link rel="stylesheet" href="/css/newproject.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <nav class="project-nav">
+        <a href="index.html" class="back-link">
+            <span>←</span> BACK TO PORTFOLIO
+        </a>
+    </nav>
+
+    <header class="project-hero">
+        <div class="hero-image-wrapper">
+            <img src="./assets/images/the-nest.jpg" alt="The Nest Banner">
+        </div>
+        <div class="project-hero-text">
+            <h1 class="main-title scramble" data-text="THE NEST">THE NEST</h1>
+        </div>
+    </header>
+
+    <section class="project-brief">
+        <div class="brief-main">
+            <div class="projects-title-wrap">
+                <span class="process-dash"></span>
+                <h2 class="section-title scramble" data-text="THE CHALLENGE">THE CHALLENGE</h2>
+            </div>
+            <p class="brief-description">
+                The Nest was born from a need to bridge the gap between creative professionals. The goal was to build a mobile platform that feels both intuitive and inspiring, allowing users to collaborate seamlessly. Using Swift and Firebase, I architected a high-performance iOS application that prioritizes ergonomic flow, real-time collaboration, and a premium dark-mode aesthetic.
+            </p>
+        </div>
+        
+        <div class="brief-meta">
+            <div class="meta-item">
+                <span class="meta-label scramble" data-text="ROLE">ROLE</span>
+                <span class="meta-value">UI/UX DESIGN, IOS DEV</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label scramble" data-text="TECH STACK">TECH STACK</span>
+                <span class="meta-value">SWIFT, FIREBASE, FIGMA</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label scramble" data-text="YEAR">YEAR</span>
+                <span class="meta-value">2026</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-gallery">
+        <div class="gallery-grid">
+            <div class="gallery-item span-full">
+                <img src="./assets/images/placeholder1.jpg" alt="App Screen 1">
+            </div>
+            <div class="gallery-item">
+                <img src="./assets/images/placeholder1.jpg" alt="App Screen 2">
+            </div>
+            <div class="gallery-item">
+                <img src="./assets/images/placeholder1.jpg" alt="App Screen 3">
+            </div>
+            <div class="gallery-item span-full">
+                <img src="./assets/images/placeholder1.jpg" alt="App Screen 4">
+            </div>
+        </div>
+    </section>
+
+    <section class="next-projects-section">
+        <div class="projects-title-wrap">
+            <span class="process-dash"></span>
+            <h2 class="section-title scramble" data-text="UP NEXT">UP NEXT</h2>
+        </div>
+        
+        <div class="next-projects-grid">
+            <div class="project-card" onclick="window.location.href='cozycup.html'">
+                <div class="card-image-wrapper">
+                    <div class="placeholder-img" style="background-image: url('./assets/images/slider-2.jpg');"></div>
+                    <div class="card-overlay">
+                        <button class="small-view-btn">VIEW PROJECT</button>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="p-name scramble" data-text="COZYCUP">COZYCUP</span>
+                    <span class="p-meta">MOBILE APP</span>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="window.location.href='wassa.html'">
+                <div class="card-image-wrapper">
+                    <div class="placeholder-img" style="background-image: url('./assets/images/wassa.jpg');"></div>
+                    <div class="card-overlay">
+                        <button class="small-view-btn">VIEW PROJECT</button>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="p-name scramble" data-text="WASSA">WASSA</span>
+                    <span class="p-meta">BRANDING</span>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="window.location.href='veridian.html'">
+                <div class="card-image-wrapper">
+                    <div class="placeholder-img" style="background-image: url('./assets/images/slider-5.jpg');"></div>
+                    <div class="card-overlay">
+                        <button class="small-view-btn">VIEW PROJECT</button>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="p-name scramble" data-text="VERIDIAN">VERIDIAN</span>
+                    <span class="p-meta">WEB DEV</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Flip.min.js"></script>
+
+    <script>
+        // Register the ScrollTrigger plugin
+        gsap.registerPlugin(ScrollTrigger);
+
+        /* ==================================================
+           1. THE TEXT SCRAMBLE EFFECT
+           ================================================== */
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        
+        function animateScramble(element) {
+            let iterations = 0;
+            const originalText = element.dataset.text;
+            
+            // Clear any existing animation so it doesn't glitch out
+            clearInterval(element.scrambleInterval);
+            
+            element.scrambleInterval = setInterval(() => {
+                element.innerText = originalText
+                    .split("")
+                    .map((letter, index) => {
+                        if (index < iterations) {
+                            return originalText[index]; // Reveal correct letter
+                        }
+                        // Generate random letter
+                        return letters[Math.floor(Math.random() * 26)];
+                    })
+                    .join("");
+                
+                if (iterations >= originalText.length) {
+                    clearInterval(element.scrambleInterval);
+                }
+                
+                iterations += 1 / 3; // Adjust this number to make the scramble faster or slower
+            }, 30); // 30ms between each frame
+        }
+
+        // Trigger the scramble whenever a .scramble element enters the screen
+        gsap.utils.toArray(".scramble").forEach(element => {
+            ScrollTrigger.create({
+                trigger: element,
+                start: "top 90%", 
+                onEnter: () => animateScramble(element)
+            });
+        });
+
+        /* ==================================================
+           2. INITIAL PAGE LOAD (HERO SECTION)
+           ================================================== */
+        const tl = gsap.timeline();
+        
+        // Drop in the back button
+        tl.from(".project-nav", {
+            y: -20,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            delay: 0.2
+        })
+        // Slowly zoom and fade in the big cinematic banner
+        .from(".hero-image-wrapper img", {
+            scale: 1.1,
+            opacity: 0,
+            duration: 1.5,
+            ease: "power3.out"
+        }, "-=0.5")
+        // Float the hero text up
+        .from(".project-hero-text", {
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out"
+        }, "-=1");
+
+        /* ==================================================
+           3. SCROLL REVEALS
+           ================================================== */
+        
+        // Fade up the main project description
+        gsap.from(".brief-description", {
+            scrollTrigger: {
+                trigger: ".project-brief",
+                start: "top 80%",
+            },
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        // Stagger the Role/Tech/Year metadata
+        gsap.from(".meta-item", {
+            scrollTrigger: {
+                trigger: ".brief-meta",
+                start: "top 85%",
+            },
+            x: 20, // Slide in from the left
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power2.out"
+        });
+
+        // Fade and scale up each gallery image as it comes into view
+        gsap.utils.toArray(".gallery-item").forEach(item => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 85%",
+                },
+                y: 40,
+                opacity: 0,
+                scale: 0.98,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Stagger the "Up Next" project cards at the bottom
+        gsap.from(".next-projects-grid .project-card", {
+            scrollTrigger: {
+                trigger: ".next-projects-section",
+                start: "top 80%",
+            },
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.15, // Creates the 1-2-3 ripple effect
+            ease: "power2.out"
+        });
+    </script>
+
+</body>
+</html>

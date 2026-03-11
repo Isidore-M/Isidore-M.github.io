@@ -714,7 +714,7 @@ body {
 
 .banner-subtitle {
   font-size: 1rem;
-  color: #e2ff00; /* Matching yellow accent from design */
+  color: #ffffff; /* Matching yellow accent from design */
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -1290,7 +1290,7 @@ body {
     justify-content: flex-start;
   }
   .contact-form {
-    max-width: 100%; /* Ensures it hits the edges on mobile */
+    width: 100%;
   }
   /* --- FOOTER (MOBILE CLEANUP) --- */
   .footer-main-row,
