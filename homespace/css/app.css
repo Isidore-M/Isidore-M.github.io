@@ -597,6 +597,23 @@ h1, h2, h3 {
         flex-direction: column;
         align-items: center;
     }
+
+    .navbar {
+    position: relative; 
+    /* ... your other rules ... */
+    z-index: 1000; /* Forces navbar to the absolute top */
+}
+
+.mobile-menu {
+    position: fixed;
+    /* ... your other rules ... */
+    z-index: 999; /* Sits right underneath the navbar, but above the page */
+}
+
+.hamburger-btn {
+    /* ... your other rules ... */
+    z-index: 1001; /* Keeps the button clickable no matter what */
+}
 }
 
 

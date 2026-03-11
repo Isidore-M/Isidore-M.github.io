@@ -425,17 +425,23 @@
             ease: "power3.out"
         }, "-=1.2"); // Overlaps with the image zoom
 
-
-// Toggle menu and hamburger animation on click
+     // Toggle menu and hamburger animation on click
         hamburgerBtn.addEventListener('click', () => {
-            hamburgerBtn.classList.toggle('active'); // <--- ADD THIS LINE
-            menuTimeline.reversed() ? menuTimeline.play() : menuTimeline.reverse();
+            // Check if the button just became active
+            const isActive = hamburgerBtn.classList.toggle('active');
+            
+            // Explicitly play or reverse based on the class
+            if (isActive) {
+                menuTimeline.play();
+            } else {
+                menuTimeline.reverse();
+            }
         });
 
         // Close menu and reset hamburger when a link is clicked
         menuLinks.forEach(link => {
             link.addEventListener('click', () => {
-                hamburgerBtn.classList.remove('active'); // <--- ADD THIS LINE
+                hamburgerBtn.classList.remove('active'); 
                 menuTimeline.reverse();
             });
         });
