@@ -17,13 +17,12 @@
     <header class="hero" id="hero-top">
         <nav class="navbar">
             <div class="nav-left">
-                <a href="#">MY PROCESS</a>
-                <a href="#">PROJECTS</a>
-                <a href="#">LYMBO</a>
+                <a href="#process">MY PROCESS</a>
+                <a href="#projects">PROJECTS</a>
             </div>
             <div class="nav-center">ISIDORE MANGA</div>
             <div class="nav-right">
-                <a href="#" class="btn-touch">GET IN TOUCH</a>
+                <a href="#contact" class="btn-touch">GET IN TOUCH</a>
             </div>
         </nav>
 
@@ -267,40 +266,39 @@
                 <img src="./assets/images/contact-img.png" alt="Dakuma Banner" class="banner-img">
             </div>
         </div>
+          <div class="contact-info">
+                <div>
+                    <h3 class="contact-talk scramble" data-text="LET’S TALK">LET’S TALK</h3>
+                </div>
+                <div id="links">
+                <a href="https://www.linkedin.com/in/isidore-manga/"    target="_blank"> <img src="./assets/images/linkedin.svg" alt=""></a>
+                <a href="instagram.com/isidore_manga_"   target="_blank"> <img src="./assets/images/instagram-2.svg" alt=""></a>
+                <a href="dribbble.com/isidoremanga"   target="_blank"> <img src="./assets/images/dribbble.svg" alt=""></a>
 
-        <h3 class="contact-talk scramble" data-text="LET’S TALK">LET’S TALK</h3>
+                </div>            
+           </div>
+
+        
         <hr class="contact-divider">
 
         <div class="contact-content">
-            <div class="contact-info">
-                <div class="social-item">
-                    <img src="./assets/images/dribble.svg" alt="" class="social-icon">
-                    <span class="scramble" data-text="@EEZYMONGO">@EEZYMONGO</span>
-                </div>
-                <div class="social-item">
-                    <img src="./assets/images/instagram.svg" alt="" class="social-icon">
-                    <span class="scramble" data-text="@EEZYMONGO">@EEZYMONGO</span>
-                </div>
-                <div class="qr-codes">
-                    <img src="./assets/images/qr-code.png" alt="QR" class="qr-img">
-                    <img src="./assets/images/qr-code2.png" alt="QR" class="qr-img">
-                </div>
-            </div>
+          
 
-            <form class="contact-form">
+            <form id="contact-form"  action="https://formspree.io/f/xgonkbvn" method="POST">
                 <div class="form-group">
-                    <input type="text" placeholder="FULL NAME" >
+                    <input type="text" name="name" placeholder="FULL NAME" >
                 </div>
                 <!-- class="scramble-placeholder" -->
                 <div class="form-group">
-                    <input type="email" placeholder="EMAIL" >
+                    <input type="email" name="email" placeholder="EMAIL" >
                 </div>
                 <div class="form-group">
-                    <textarea placeholder="MESSAGE" rows="4" id="message_area" ></textarea>
+                    <textarea name="message" placeholder="MESSAGE" rows="4" id="message_area" ></textarea>
                 </div>
-                <button type="submit" class="send-btn">
+                <button id="send-btn" type="submit" class="btn-primary form-submit-btn" >
                     <span class="scramble" data-text="SEND">SEND</span>
                 </button>
+                <p id="form-status" class="form-status-msg"></p>
             </form>
         </div>
     </div>
@@ -863,7 +861,49 @@ window.addEventListener("scroll", () => {
                 toggleActions: "play none none none"
             }
         });
+
+          
+
+
     }
+
+      /* ---------- AJAX CONTACT FORM SUBMISSION ---------- */
+        const contactForm = document.getElementById("contact-form");
+        const statusMessage = document.getElementById("form-status");
+
+        contactForm.addEventListener("submit", async (event) => {
+            // 1. Stop the browser from redirecting to Formspree!
+            event.preventDefault(); 
+
+            // 2. Gather the data from the inputs
+            const formData = new FormData(event.target);
+
+            try {
+                // 3. Send the data silently in the background
+                const response = await fetch(event.target.action, {
+                    method: contactForm.method,
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                // 4. Check if it was successful
+                if (response.ok) {
+                    statusMessage.innerHTML = "Message sent successfully! We will be in touch soon.";
+                    statusMessage.className = "form-status-msg success";
+                    contactForm.reset(); // Clears the input fields automatically!
+                } else {
+                    statusMessage.innerHTML = "Oops! There was a problem submitting your form.";
+                    statusMessage.className = "form-status-msg error";
+                }
+            } catch (error) {
+                // 5. Catch any network errors (like if their wifi drops)
+                statusMessage.innerHTML = "Oops! There was a network problem. Please try again.";
+                statusMessage.className = "form-status-msg error";
+            }
+        });
+
 </script>
 </body>
 </html>
