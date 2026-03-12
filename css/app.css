@@ -974,6 +974,37 @@ html, body {
 
 /* ================= MOBILE  (Max Width: 768px) ================= */
 @media (max-width: 768px) {
+  /* --- GLOBAL SECTION SPACING (PERFECTLY EVEN) --- */
+  /* 1. Force exactly 50px of top and bottom padding on ALL sections */
+  .hero .process-section,
+  .projects-section,
+  .logofolio-section,
+  .contact-section {
+    padding: 50px 20px !important;
+    margin: 0 !important;
+  }
+  /* 2. Kill all internal bottom padding/margins that were creating unequal gaps */
+  .projects-slider-container {
+    padding-bottom: 10px !important; /* Just enough room for the shadow/scrollbar */
+    margin-bottom: 0 !important;
+  }
+  .logofolio-wrapper {
+    margin-bottom: 0 !important;
+  }
+  .process-grid {
+    margin-bottom: 0 !important;
+  }
+  /* 3. Match the Hero Section gap to the rest of the site */
+  .hero {
+    margin-bottom: 50px !important; /* 50px here + 50px Process top padding = exactly 100px */
+  }
+  /* 4. Ensure section headers have the exact same spacing below them */
+  .process-header,
+  .projects-header,
+  .logofolio-header,
+  .contact-header {
+    margin-bottom: 35px !important;
+  }
   /* --- TYPOGRAPHY SCALING --- */
   .section-title, .logofolio-title, .projects-title {
     font-size: clamp(2.5rem, 8vw, 3rem);
