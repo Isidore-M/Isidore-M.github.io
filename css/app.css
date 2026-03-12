@@ -834,7 +834,8 @@ body {
 
 .form-status-msg.success {
   display: block;
-  color: #fafafa; /* A clean success green */
+  text-align: center;
+  color: #65a490; /* A clean success green */
 }
 
 .form-status-msg.error {
@@ -855,10 +856,9 @@ body {
 #send-btn {
   width: 100%;
   height: 3.2rem;
-  max-width: 800px;
   border: none;
   font-size: 1.2rem;
-  place-self: right;
+  place-self: center;
   cursor: pointer;
 }
 
