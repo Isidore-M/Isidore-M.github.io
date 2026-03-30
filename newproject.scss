@@ -20,7 +20,8 @@
 .section-title{
     color: #fff;
 }
-/* --- Top Nav --- */
+
+
 .project-nav {
     padding: 40px clamp(20px, 5vw, 100px);
     position: absolute;
@@ -45,11 +46,11 @@
 }
 .back-link:hover { color: #8c9070; }
 
-/* --- 1. Hero Banner --- */
+
 .project-hero {
     position: relative;
     width: 100%;
-    height: 80vh; /* Cinematic height */
+    height: 80vh; 
     overflow: hidden;
 }
 .hero-image-wrapper {
@@ -60,7 +61,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.6); /* Darkens image so the title pops */
+    filter: brightness(0.6); 
 }
 .project-hero-text {
     position: absolute;
