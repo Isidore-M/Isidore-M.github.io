@@ -171,108 +171,151 @@ function getRandomItems(array, count) {
 } // getRandomItems()
 
 // ============ DRAG AND DROP GAME ============
+
 function dragAndDrop(clickSound) {
   score.setAttribute('style', 'visibility: visible;');
+  
   let jungleAnimals = [
-    'assets/images/a-lion.png',
-    'assets/images/a-cheeta.png',
-    'assets/images/a-fox.png',
-    'assets/images/a-girafe.png',
-    'assets/images/a-toucan.png',
-    'assets/images/a-porcupine.png'
+    'assets/images/a-lion.png', 'assets/images/a-cheeta.png', 'assets/images/a-fox.png',
+    'assets/images/a-girafe.png', 'assets/images/a-toucan.png', 'assets/images/a-porcupine.png'
   ];
 
   let farmAnimals = [
-    'assets/images/a-cow.png',
-    'assets/images/a-pig.png',
-    'assets/images/a-sheep.png',
-    'assets/images/a-duck.png',
-    'assets/images/a-rooster.png',
-    'assets/images/a-goat.png'
+    'assets/images/a-cow.png', 'assets/images/a-pig.png', 'assets/images/a-sheep.png',
+    'assets/images/a-duck.png', 'assets/images/a-rooster.png', 'assets/images/a-goat.png'
   ];
 
-  // Select 3 from each
   let selectedJungle = getRandomItems([...jungleAnimals], 3);
   let selectedFarm = getRandomItems([...farmAnimals], 3);
   let newAnimals = [...selectedJungle, ...selectedFarm];
-
-  // Shuffle the combined animals
   newAnimals.sort(() => 0.5 - Math.random());
 
-  // Reference to the image container
   const imagesContainer = document.querySelector(".images");
+  imagesContainer.innerHTML = '';
 
-  // Add draggable images dynamically
   newAnimals.forEach(src => {
     const img = document.createElement('img');
     img.src = src;
     img.classList.add('draggable');
     img.setAttribute('draggable', 'true');
+    img.dataset.zone = selectedJungle.includes(src) ? 'wild' : 'farm';
 
-    // Set data-zone based on the source path
-    if (selectedJungle.includes(src)) {
-      img.setAttribute('data-zone', 'wild');
-    } else {
-      img.setAttribute('data-zone', 'farm');
-    }
+    // --- MOBILE TOUCH EVENTS ---
+    img.addEventListener("touchstart", (e) => {
+      img.classList.add("dragging");
+      // Prevent scrolling while dragging
+    }, { passive: true });
 
-    imagesContainer.appendChild(img);
-  });
+    img.addEventListener("touchmove", (e) => {
+      const touch = e.touches[0];
+      img.style.position = "fixed";
+      img.style.zIndex = "10000";
+      // Center the animal under the finger
+      img.style.left = `${touch.clientX - 60}px`; 
+      img.style.top = `${touch.clientY - 60}px`;
+      img.style.pointerEvents = "none"; // Let finger "see through" to the zone
+      e.preventDefault(); 
+    }, { passive: false });
 
-  // Select updated draggables
-  let draggables = document.querySelectorAll(".draggable");
-  let zones = document.querySelectorAll(".drop-zone");
-  let gameContainer = document.querySelector(".zones");
-  let count = 0;
+    img.addEventListener("touchend", (e) => {
+      img.classList.remove("dragging");
+      const touch = e.changedTouches[0];
 
-  draggables.forEach(img => {
+      // Detect what is under the finger
+      img.style.visibility = "hidden"; 
+      const target = document.elementFromPoint(touch.clientX, touch.clientY);
+      img.style.visibility = "visible";
+
+      const zone = target ? target.closest('.drop-zone') : null;
+      checkDrop(img, zone);
+    });
+
+    // --- DESKTOP DRAG EVENTS ---
     img.addEventListener("dragstart", (e) => {
       e.dataTransfer.setData("text/plain", img.dataset.zone);
       e.dataTransfer.setData("id", img.src);
       img.classList.add("dragging");
     });
 
-    img.addEventListener("dragend", () => {
-      img.classList.remove("dragging");
-    });
+    img.addEventListener("dragend", () => img.classList.remove("dragging"));
+
+    imagesContainer.appendChild(img);
   });
 
-  zones.forEach(zone => {
-    zone.addEventListener("dragover", (e) => {
-      e.preventDefault();
-    });
+  let zones = document.querySelectorAll(".drop-zone");
+  let gameContainer = document.querySelector(".zones");
+  let count = 0;
 
+  // LOGIC HANDLER (Used by both Desktop and Mobile)
+  function checkDrop(img, zone) {
+    if (zone && img.dataset.zone === zone.dataset.zone) {
+      zone.appendChild(img);
+      img.style.position = "static";
+      img.style.pointerEvents = "auto";
+      img.setAttribute('draggable', 'false');
+      count++;
+      if(clickSound) clickSound.play();
+      
+      zone.style.borderColor = "#7ed321";
+      setTimeout(() => zone.style.borderColor = "", 1000);
+
+      if (count % 2 === 0) addStars();
+      if (count === 6) {
+        setTimeout(() => {
+          gameContainer.innerHTML = '';
+          gameOver();
+        }, 500);
+      }
+    } else {
+      if (zone) {
+        zone.classList.add("shake-error");
+        setTimeout(() => zone.classList.remove("shake-error"), 500);
+      }
+      // Return to dock
+      img.style.position = "static";
+      img.style.pointerEvents = "auto";
+      imagesContainer.appendChild(img);
+    }
+  }
+
+  // DESKTOP ZONE LISTENERS
+  zones.forEach(zone => {
+    zone.addEventListener("dragover", (e) => e.preventDefault());
     zone.addEventListener("drop", (e) => {
       e.preventDefault();
       let expectedZone = e.dataTransfer.getData("text/plain");
       let imgSrc = e.dataTransfer.getData("id");
-      let correctZone = zone.dataset.zone;
-      let img = Array.from(draggables).find(i => i.src === imgSrc);
-
-      if (expectedZone === correctZone) {
-        zone.appendChild(img);
-        count++;
-        clickSound.play();
-
-        if (count % 2 === 0) addStars();
-        if (count === 6) {
-          gameContainer.innerHTML = '';
-          gameOver();
-        }
-      } else {
-        imagesContainer.appendChild(img);
+      let img = Array.from(document.querySelectorAll('.draggable')).find(i => i.src === imgSrc);
+      
+      if (img && expectedZone === zone.dataset.zone) {
+        checkDrop(img, zone);
+      } else if (img) {
+        checkDrop(img, null); // Force failure logic
+        handleFailure(zone); // Trigger shake on the specific zone
       }
     });
   });
+
+  function handleFailure(z) {
+    z.classList.add("shake-error");
+    setTimeout(() => z.classList.remove("shake-error"), 500);
+  }
 }
 
 // ============ ADD STARS ============
 function addStars() {
-  let stars = document.querySelector('#score');
+  let starsContainer = document.querySelector('#score');
+  if (!starsContainer) return;
+
+  // Make sure the container is visible
+  starsContainer.style.visibility = 'visible';
+  starsContainer.style.display = 'flex'; 
+
   let star = document.createElement('img');
   star.setAttribute('src', 'assets/images/UI_elements/star.png');
-  star.setAttribute('class', 'star');
-  stars.appendChild(star);
+  star.setAttribute('class', 'star'); // This matches our new CSS
+  
+  starsContainer.appendChild(star);
   console.log('Star added');
 } // addStars()
 
@@ -362,47 +405,70 @@ function popTheBubble() {
 } // popTheBubble()
 
 // ============ GAME OVER ============
-function gameOver() {
 
+function gameOver() {
+  // 1. Play Victory Sound
   let winSound = new Audio('assets/audio/win.mp3');
   winSound.play().catch(err => console.warn('Play failed:', err));
+
+  // 2. Data Pools
   let winImages = [
-                    'assets/images/well-done.png',
-                    'assets/images/well-done-1.png',
-                    'assets/images/well-done-2.png'
-                  ];
-  let winText = [
-                  'Well done! You have completed the game.',
-                  'Congratulations! You are a star player.',
-                  'Fantastic! You did an amazing job.'
-                ];
+    'assets/images/well-done.png',
+    'assets/images/well-done-1.png',
+    'assets/images/well-done-2.png'
+  ];
+  let winTexts = [
+    'Well done! You have completed the game.',
+    'Congratulations! You are a star player.',
+    'Fantastic! You did an amazing job.'
+  ];
 
-  document.querySelector('#topMusic').style.display = 'none';
-  document.querySelector('#topContact').style.display = 'none';
-  document.querySelector('#score').style.display = 'none';
+  // 3. Hide UI Elements (Clean up the screen)
+  const topMusic = document.querySelector('#topMusic');
+  const topContact = document.querySelector('#topContact');
+  const scoreBoard = document.querySelector('#score');
+  
+  if (topMusic) topMusic.style.display = 'none';
+  if (topContact) topContact.style.display = 'none';
+  if (scoreBoard) scoreBoard.style.display = 'none';
 
+  // 4. Setup Lightbox
   let winLightBox = document.querySelector('#winLightBox');
-  winLightBox.setAttribute('style', 'visibility: visible;');
-  let winImg = getRandomItems([...winImages], 1)[0];
+  if (!winLightBox) return;
 
-  let restartGame = document.createElement('div');
-  restartGame.setAttribute('id', 'restartGame');
-  restartGame.setAttribute('onclick', 'location.reload()');
-  restartGame.setAttribute('style', 'z-index: 7;');
-  winLightBox.appendChild(restartGame);
+  // Use Flex display so our CSS centering kicks in
+  winLightBox.style.display = 'flex';
+  winLightBox.style.visibility = 'visible';
+  
+  // Clear any previous content to avoid stacking cards if gameOver is called twice
+  winLightBox.innerHTML = '';
 
-  let winImage = document.createElement('img');
-  winImage.setAttribute('src', winImg);
-  winImage.setAttribute('id', 'winImg');
-  winImage.setAttribute('style', 'z-index: 7;');
-  winLightBox.appendChild(winImage);
+  // 5. Random Selection
+  let randomImg = winImages[Math.floor(Math.random() * winImages.length)];
+  let randomText = winTexts[Math.floor(Math.random() * winTexts.length)];
 
-  let winTextDiv = document.createElement('div');
-  winTextDiv.setAttribute('id', 'winText');
-  winTextDiv.setAttribute('style', 'z-index: 7;');
-  winTextDiv.textContent = getRandomItems([...winText], 1)[0];
-  winLightBox.appendChild(winTextDiv);
-} // gameOver()
+  // 6. Inject the "Win Card" Structure
+  // This matches the .win-card CSS we wrote earlier
+  winLightBox.innerHTML = `
+    <div class="win-card">
+        <div id="restartGame" onclick="location.reload()" title="Play Again"></div>
+        
+        <img src="${randomImg}" id="winImg" alt="Victory">
+        
+        <div id="winText">${randomText}</div>
+        
+        <div class="win-buttons">
+            <button class="home-btn" onclick="window.location.href='index.html'">
+                Back to Menu
+            </button>
+        </div>
+    </div>
+  `;
+}
+
+
+
+// gameOver()
 
 // ============ OPEN CONTACT LIGHTBOX ============
 function openContact() {

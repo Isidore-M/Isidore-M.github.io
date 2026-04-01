@@ -126,49 +126,91 @@ body {
    margin-bottom: 20px;
  }
   #winLightBox {
-    background: #ffffffc1;
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    visibility: hidden;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7); /* Dim the background for focus */
+    backdrop-filter: blur(5px); /* Modern blur effect */
+    display: none; /* Switch to flex in JS */
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    visibility: visible !important; /* Overriding your old hidden state */
   }
+
+  .win-card {
+    background: url('../assets/images/background_card.png') no-repeat center/cover;
+    width: 600px;
+    height: 450px;
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    position: relative;
+    /* The Entrance Animation */
+    animation: cardPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  @keyframes cardPop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
     #winImg {
-      margin-top: 200px;
-      width: 500px;
-      height: auto;
-    }
+    width: 300px !important;
+    height: auto;
+    margin-top: 0 !important; /* Resetting your 200px margin */
+    filter: drop-shadow(0 10px 10px rgba(0,0,0,0.3));
+  }
     #winText {
-      background: url('../assets/images/green-rectangle.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      width: 700px;
-      height: 180px;
-      color: #fff;
-      font-family: 'piedra';
-      margin: 0 auto;
-      font-size: 2.5em;
-      font-weight: 500;
-      padding: 0 20px;
-      padding-top: 70px;
-    }
-    #restartGame {
-      position: absolute;
-      top: 70px;
-      right: 200px;
-      width: 100px;
-      height: 100px;
-      background: url('../assets/images/UI_elements/restart.png');
-      background-size: cover;
-      background-position: center;
-      cursor: pointer;
-    }
+    background: url('../assets/images/green-rectangle.png') no-repeat center/cover;
+    width: 90%;
+    height: auto;
+    min-height: 100px;
+    padding: 20px;
+    margin-top: 20px;
+    font-size: 1.8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+   #restartGame {
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 80px;
+    height: 80px;
+    background: url('../assets/images/UI_elements/restart.png') no-repeat center/cover;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+/* Home Button Style */
+.home-btn {
+    margin-top: 20px;
+    padding: 10px 30px;
+    font-family: 'piedra', cursive;
+    font-size: 1.2em;
+    background: #ffb700;
+    border: 4px solid #733C10;
+    border-radius: 50px;
+    color: #733C10;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #733C10;
+}
+
+.home-btn:active {
+    transform: translateY(3px);
+    box-shadow: none;
+}
+
     #restartGame:hover {
       background: url('../assets/images/UI_elements/restart-hover.png');
       background-size: cover;
       background-position: center;
+      transform: rotate(180deg) scale(1.1);
     }
     #contactLightBox {
       background: #ffffffc1;
@@ -333,7 +375,13 @@ body {
       background-size: cover;
       background-position: center;
     }
-
+.star {
+        width: 30px !important; /* Smaller stars */
+        height: 30px !important;
+        margin-left: 2px;
+        /* Add a little "pop" animation when they appear */
+        animation: starPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
   #score {
     width: 270px;
     height: 100px;
@@ -353,52 +401,114 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 200px;
+    padding-top: 19rem;
   }
   
   .images {
-    display: flex;
-    gap: 15px;
-    margin: 0 auto;
-    justify-content: center;
-    background: #a3a3a300;
-  }
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  padding: 20px;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  gap: 20px;
+  min-height: 160px;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+
   #wild{
-    background: url("../assets/images/zone1.png");
+    /* background: url("../assets/images/zone1.png"); */
     background-size:cover;
     background-position: center;
     align-content: center;
   }
   #farm{
-    background: url("../assets/images/zone2.png");
+    /* background: url("../assets/images/zone2.png"); */
     background-size:cover;
     background-position: center;
     align-content: center;
   }
   .draggable {
-    width: 150px;
+    width: 120px;
     height: auto;
     cursor: grab;
-    border: 2px solid transparent;
-    transition: border 0.3s;
+    /* border: 2px solid transparent; */
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
+    transition: transform 0.2s ease;
   }
+
+  .draggable:hover {
+    transform: scale(1.1) rotate(3deg);
+}
   .drop-zone {
-    width: 40%;
-    height: 50vh;
-    margin: 10px;
-    background-color: #a3a3a3;
+   width: 420px;
+  height: 320px;
+  border-radius: 25px;
+  border: 5px dashed rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  padding: 15px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
   }
   
-  .drop-zone:hover {
-    background-color: #e9e9e9;
-  }
+ .drop-zone.hovered {
+  border-color: #ffb20a;
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.02);
+}
+
+.shake-error {
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+  border-color: #ff4b2b !important; /* Bright Red */
+  background-color: rgba(255, 75, 43, 0.3) !important;
+  box-shadow: 0 0 30px rgba(255, 75, 43, 0.5);
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
   
   .zones{
-    display: flex;
-    width: 100%;
-    min-height: 400px;
-    justify-content: center;
+   display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 40px; 
+  margin-bottom: 30px;
   }
+
+  .zone-label {
+    position: absolute;
+    top: 10px;
+    background: rgba(115, 60, 16, 0.8);
+    color: #FADEB1;
+    padding: 5px 15px;
+    border-radius: 10px;
+    pointer-events: none; /* So the child can drop through the label */
+    font-size: 1.2em;
+}
+
+/* Add this to app.css */
+.drop-zone .draggable {
+    animation: landingPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: scale(1);
+}
+
+@keyframes landingPop {
+    0% { transform: scale(0.5); }
+    70% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+
 .title{
     background: url('../assets/images/green-rectangle.png');
     background-size:cover;
@@ -636,6 +746,13 @@ body {
         width: 100%;
         height: 100%;
     }
+
+      .draggable.dragging {
+          opacity: 0.8;
+          z-index: 20000 !important;
+          pointer-events: none; /* Critical for elementFromPoint to work */
+      }
+
 }
 
 
@@ -661,9 +778,14 @@ body {
         font-size: 1.2em; /* Smaller text */
     }
 
-    #score {
-        width: 180px; /* Smaller score board */
-        height: 65px;
+   #score {
+        width: 150px; /* Slimmer score board for mobile */
+        height: 55px;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
     }
 
     /* 2. Fix the Main Menu (Index.html) */
@@ -700,7 +822,7 @@ body {
 
 
     .game-container {
-        padding-top: 90px; /* Slide the game up closer to the slim nav */
+        padding-top: 80px; /* Slide the game up closer to the slim nav */
     }
 
     .zones {
@@ -709,14 +831,15 @@ body {
 
     .drop-zone {
         height: 180px;
-        width: 45%;
+        width: 42%;
     }
 
     .draggable {
-        width: 80px; /* Smaller animals */
+        width: 80px!important; /* make the animals smaller*/
     }
 
     .images {
+        min-height: 100px;
         padding: 10px;
         gap: 8px;
     }
@@ -759,6 +882,15 @@ body {
     #cloud4, #cloud5 {
         display: none;
     }
+
+    .win-card {
+        width: 80vw;
+        height: 85vh;
+        padding: 15px;
+    }
+    #winImg { width: 180px !important; }
+    #winText { font-size: 1.2em; height: 70px; width: 80%; }
+    #restartGame { width: 60px; height: 60px; top: 10px; right: 10px; }
 
 
 
