@@ -135,6 +135,7 @@ body {
     justify-content: center;
     z-index: 9999;
     visibility: visible !important; /* Overriding your old hidden state */
+    color: #ffffff;
   }
 
   .win-card {
@@ -700,6 +701,9 @@ body {
     z-index: 10;
     /* This makes the text look like it's inside the bubble */
     text-shadow: 1px 1px 2px rgba(36, 36, 36, 0.8);
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    touch-action: manipulation;
 }
 
 /* Pop Effect */
@@ -806,13 +810,14 @@ body {
     }
 
    #score {
-        width: 160px; /* Slimmer score board for mobile */
-        height: 60px;
-        padding: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 3px;
+        width: 150px !important;
+        height: 55px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 3px !important;
+        padding-top: 5px !important;
+        visibility: visible;
     }
 
     /* 2. Fix the Main Menu (Index.html) */
@@ -892,9 +897,10 @@ body {
 
     /* Bubble Game Area */
     #bubbleArea {
-        height: 75vh;
-        width: 95%;
-        margin-top: 5px;
+        height: 60vh;
+        width: 85%;
+        top: 85px; /* Sits below the slim nav */
+        margin: 0 auto;
     }
 
     .zone-instruction {
@@ -908,9 +914,11 @@ body {
     }
     
    #targetLetter {
-        width: 300px;
-        height: 50px;
-        font-size: 1.1em;
+        width: 220px;
+        height: 45px;
+        font-size: 1em;
+        padding-top: 5px;
+        background-size: contain;
     }
 
 
@@ -935,8 +943,8 @@ body {
     #restartGame { width: 60px; height: 60px; top: 10px; right: 10px; }
 
   #gameContainer {
-        height: 70vh;
-        margin-top: 5.7rem;
+        height: 40vh;
+        margin-top: 2.7rem;
         background-position: center;
         background-size:cover;
         background-repeat: no-repeat;
@@ -945,11 +953,12 @@ body {
     .bubble {
         width: 65px;
         height: 65px;
-        font-size: 1.5em;
+        font-size: 1.6em;
     }
 
     .star {
-        width: 28px !important; /* Smaller for mobile */
+        width: 28px !important; /* Tiny stars for tiny board */
+        height: 25px !important;
     }
 
 

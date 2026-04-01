@@ -361,13 +361,16 @@ function addStars() {
     bubble.style.left = `${startX}%`;
     bubble.style.bottom = "-100px";
 
-    // --- RESTORED CLICK/TOUCH LOGIC ---
-    const handlePop = () => {
+    // --- SHARED POP LOGIC ---
+    const handlePop = (e) => {
+      // Prevent the "Ghost Click" (prevents the function from running twice)
+      if (e) e.preventDefault(); 
+
       if (letter === targetLetters[roundIndex]) {
         popSound.currentTime = 0;
         popSound.play().catch(() => {});
         
-        bubble.classList.add('popped'); // Visual feedback
+        bubble.classList.add('popped'); 
         
         setTimeout(() => {
           bubble.remove();
@@ -375,21 +378,21 @@ function addStars() {
           if (poppedCount === 5) nextRound();
         }, 150);
       } else {
-        // Optional: Shake effect for wrong letter
         bubble.classList.add('shake-error');
         setTimeout(() => bubble.classList.remove('shake-error'), 500);
       }
     };
 
-    // Support both Mouse and Finger
+    // --- MOBILE TOUCH ---
+    // 'touchstart' is instant, unlike 'click' which waits 300ms
+    bubble.addEventListener('touchstart', handlePop, { passive: false });
+
+    // --- DESKTOP CLICK ---
     bubble.addEventListener('mousedown', handlePop);
-    bubble.addEventListener('touchstart', (e) => {
-        e.preventDefault(); 
-        handlePop();
-    }, {passive: false});
 
     bubbleArea.appendChild(bubble);
 
+    // Smooth floating animation
     requestAnimationFrame(() => {
       const duration = 8000 + Math.random() * 4000; 
       bubble.style.transition = `bottom ${duration}ms linear`;
@@ -429,10 +432,10 @@ function addStars() {
   function startRound() {
     setInstruction(targetLetters[roundIndex]);
     bubbleInterval = setInterval(() => {
-      const isTarget = Math.random() < 0.4;
+      const isTarget = Math.random() < 0.6;
       const letter = isTarget ? targetLetters[roundIndex] : alphabet[Math.floor(Math.random() * alphabet.length)];
       createBubble(letter);
-    }, 500); // Slower spawn rate
+    }, 600); // Slower spawn rate
   }
 
   startRound();
