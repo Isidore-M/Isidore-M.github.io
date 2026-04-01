@@ -135,7 +135,7 @@ body {
     justify-content: center;
     z-index: 9999;
     visibility: visible !important; /* Overriding your old hidden state */
-    color: #ffffff;
+    color: #f4f4f4;
   }
 
   .win-card {
@@ -960,6 +960,44 @@ body {
         width: 28px !important; /* Tiny stars for tiny board */
         height: 25px !important;
     }
+
+    #welcome_div {
+    width: 45vw; /* Scales width to screen */
+    height: 80vh; /* Scales height to screen */
+    position: absolute;
+    inset: 0; /* Sets top, right, bottom, and left to 0 */
+    margin: auto; /* Automatically distributes the space to center the element */
+ 
+  }
+
+  #welcome_div h1 {
+    font-size: 1.8em;
+    margin-bottom: 5px;
+  }
+
+  #welcome_div p {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+  }
+
+  #nameInput {
+    margin-top: 10px !important;
+    padding: 5px 15px;
+    font-size: 1.2em;
+    width: 80%;
+  }
+
+  #start_btn_div, #start_btn_div:hover {
+    width: 8em;
+    height: 3em;
+    margin-top: 15px !important;
+  }
+
+  #start_btn_div p {
+    font-size: 1.2em;
+    }
+
+
 
 
 
