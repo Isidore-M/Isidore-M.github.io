@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Piedra&display=swap" rel="stylesheet">
+  <script src="scripts/app.js" defer></script>  
+  <script src="scripts/app.js" defer></script>
+  <link rel="stylesheet" href="css/app.css">
+  <title>Kids Game</title>
+</head>
+<body>
+  <!-- AUDIO -->
+  <audio id="backgroundAudio" src="assets/audio/bkgMusic.mp3" loop></audio>
+
+<div id="rotate-device">
+    <div class="rotate-content">
+        <div class="phone-icon">📱</div>
+        <h2>Please Rotate Your Device</h2>
+        <p>This game is best experienced in landscape mode.</p>
+    </div>
+</div>
+
+  <!-- OPENING -->
+  <div id="opening">
+    <div id="welcome_div">
+      <h1> Welcome Little One</h1>
+      <p>Enter your name below and start the game</p>
+      <input id="nameInput" type="text" placeholder="type your name">
+      <div id="start_btn_div" onclick="takeName();"> <p>Start</p> </div>
+    </div>
+    <div id="leaves">
+      <div id="leaves1"></div>
+      <div id="leaves2"></div>
+    </div>
+  </div>
+
+  <!-- CLOUDS -->
+  <div id="cloud">
+    <img id="cloud1" src="assets/images/cloud.png" alt="cloud">
+    <img id="cloud2" src="assets/images/cloud.png" alt="cloud">
+    <img id="cloud3" src="assets/images/cloud.png" alt="cloud">
+    <img id="cloud4" src="assets/images/cloud.png" alt="cloud">
+    <img id="cloud5" src="assets/images/cloud.png" alt="cloud">
+  </div>  
+
+  <!-- CONTACT LIGHT BOX -->
+  <div id="contactLightBox">
+    <div id="contactBoard">
+      <h1>Contact Us</h1>
+      <p>Share your thoughts or feedback with us!</p>
+      <div id="inputs">
+        <input id="emailInput" type="email" placeholder="type your email">
+        <textarea type="text" placeholder="type your query"></textarea>
+        <input id="send_btn" type="submit" value="Send">
+        <img id="close" src="assets/images/UI_elements/incorrect.png" alt="close" onclick="closeContact();">
+      </div>      
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div id="homeContainer">
+        <div id="home" onclick="window.location.href='index.html'"></div>
+        <div id="nameDisplay">
+          <p id="name_text"> </p>
+        </div>
+      </div>    
+    <div id="score"></div>
+    <div>
+      <div id="topMusic" class="music-on icons" onclick="toggleMusic();"></div>
+      <div id="topContact" onclick="openContact();" class="icons"></div>
+    </div>
+  </nav>
+
+  <!-- ALL GAMES -->
+  <div id="main">
+    <a href="cardFlip.html">
+      <img src="assets/images/matching-card.png" alt="" onclick="cardFlip();">
+    </a>
+    <a href="Drag_and_Drop.html">
+      <img src="assets/images/drag-and-drop.png" alt="" onclick="dragAndDrop();">
+    </a>
+    <a href="popTheBubble.html">
+      <img src="assets/images/pop-bubble.png" alt="" onclick="popTheBubble();">
+    </a>
+  </div>
+</body> 
+</html>

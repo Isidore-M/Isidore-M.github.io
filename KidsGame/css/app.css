@@ -1,0 +1,773 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; 
+}
+
+body {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: url('../assets/images/UI_elements/Bkg.png');
+  background-size: cover;
+  background-position: center;
+  font-family: 'piedra';
+  background-attachment: fixed;
+}
+
+#opening{
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+ }
+  #nameInput{
+    font-family: 'piedra';
+    width: 95%;
+    padding: 10px 20px;
+    font-size: 1.4em;
+    border-radius: 15px;
+    margin-top: 50px;
+    letter-spacing: 1px;
+  }
+ #leaves{
+   width: 100%;
+   height: 100vh;
+   display: flex;
+   position: absolute;
+   z-index: 8;
+   justify-content: space-between;
+   margin: 0;
+   padding: 0;
+ }
+ #leaves div{ 
+   width: 50%;
+   height: 100vh;
+ }
+ #leaves1{
+  transition: all 2s ease;
+  background:url('../assets/images/leave2.png');
+  background-position: center;
+  background-size:contain;
+ 
+ 
+ }
+ #leaves2{
+   transition: all 2s ease;
+   background:url('../assets/images/leave_right.png');
+   background-position: center;
+   background-size:contain;
+  
+ }
+
+ #welcome_div{
+   position: absolute;
+   z-index: 1960;
+   width: 45em;
+   height: 56vh;
+   background: url('../assets/images/background_card.png');
+   background-size: cover;
+   background-position: center;
+   margin: 0 auto;
+   top:15em;
+   right: 27%;
+   padding: 50px 70px;
+   justify-content: center;
+   align-content: center;
+   justify-items: center;
+   align-items: center;
+ }
+ #welcome_div p{
+   color: #fff;
+   font-size: 1.5em;
+   font-family: 'piedra';
+   letter-spacing: 1px;
+ }
+ #start_btn_div{
+   width: 12em;
+   height: 4.5em;
+   background: url('../assets/images/start_button.png');
+   background-size: cover;
+   background-position: center;
+   justify-content: center;
+   align-content: center;
+   align-self: center;
+   margin-top: 40px;
+   cursor: pointer;
+ }
+ #start_btn_div:hover{
+   width: 12em;
+   height: 4.5em;
+   background: url('../assets/images/start_hover.png');
+   background-size: cover;
+   background-position: center;
+   justify-content: center;
+   align-content: center;
+   align-self: center;
+   margin-top: 40px;
+   cursor: pointer;
+ }
+ #start_btn_div p {
+   font-size: 1.6em;
+   color: #fff;
+   font-family: 'piedra'; 
+ }
+ #welcome_div h1 {
+   font-size: 2.5em;
+   color: #ffb700;
+   margin-bottom: 20px;
+ }
+  #winLightBox {
+    background: #ffffffc1;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+  }
+    #winImg {
+      margin-top: 200px;
+      width: 500px;
+      height: auto;
+    }
+    #winText {
+      background: url('../assets/images/green-rectangle.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 700px;
+      height: 180px;
+      color: #fff;
+      font-family: 'piedra';
+      margin: 0 auto;
+      font-size: 2.5em;
+      font-weight: 500;
+      padding: 0 20px;
+      padding-top: 70px;
+    }
+    #restartGame {
+      position: absolute;
+      top: 70px;
+      right: 200px;
+      width: 100px;
+      height: 100px;
+      background: url('../assets/images/UI_elements/restart.png');
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+    }
+    #restartGame:hover {
+      background: url('../assets/images/UI_elements/restart-hover.png');
+      background-size: cover;
+      background-position: center;
+    }
+    #contactLightBox {
+      background: #ffffffc1;
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      visibility: hidden;
+      z-index: 2;
+      padding-top: 40px;
+    }
+      #contactBoard {
+        background: url('../assets/images/background_card.png');
+        position: absolute;
+        z-index: 3;
+        top: calc(50% - 250px);
+        left: calc(50% - 420px);
+        background-size: cover;
+        background-position: center;
+        width: 850px;
+        height: 650px;
+      }
+      #contactBoard h1 {
+        background: url('../assets/images/green-rectangle.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 350px;
+        height: 90px;
+        color: #fff;
+        font-family: 'piedra';
+        margin: 0 auto;
+        font-size: 2.5em;
+        font-weight: 500;
+        padding-top: 20px;
+      } 
+      #contactBoard p {
+        margin-top: 70px;
+        color: #fff;
+        font-size: 2em;
+        letter-spacing: 1px;
+      }   
+    #inputs {
+      margin-top: calc(50% - 390px);
+      text-align: center;
+      padding: 30px;
+    }
+      input[type="email"], textarea {
+        font-size: 1.3em;
+        font-weight: 500;
+        font-family: 'piedra';
+        margin: 0 auto;
+        border-radius: 18px;
+        padding:10px 20px;
+        margin-bottom: 20px;
+        width: 400px;
+        border: 5px solid #733C10;
+        letter-spacing: 1px;
+      }
+        #send_btn{
+          background: #FADEB1;
+          display: block;
+          margin: 0 auto;
+          border: 5px solid #733C10;
+          border-radius: 25px;
+          padding: 10px 50px;
+          color: #733C10;
+          font-size: 1.7em;
+          font-weight: 480;
+          font-family: 'piedra';
+        }
+        #send_btn:hover{
+          background: #733C10;
+          color: #fff;
+          border: 5px solid #FADEB1;
+        }  
+    #close {
+      width: 70px;
+      height: 70px;
+      position: absolute;
+      top: 0;
+      right: 20px;
+    }
+    #settingsTop {
+      margin-top: calc(50% - 250px);
+    }
+    #topMusic {
+      width: 100px;
+      height: 100px;
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+    }    
+      #topMusic.music-on {
+        background-image: url('../assets/images/UI_elements/on_sound.png');
+      }
+      #topMusic.music-on:hover {
+        background-image: url('../assets/images/UI_elements/music_on_hover.png');
+      }
+      
+      #topMusic.music-off {
+        background-image: url('../assets/images/UI_elements/off_sound.png');
+      }
+      #topMusic.music-off:hover {
+        background-image: url('../assets/images/UI_elements/music_hover_off.png');
+      }
+    #topContact {
+      width: 100px;
+      height: 100px;
+      background: url('../assets/images/UI_elements/contact.png');
+      background-size: cover;
+      background-position: center;
+    }
+      #topContact:hover {
+        background: url('../assets/images/UI_elements/contact_hover.png');
+        background-size: cover;
+        background-position: center;
+      }
+      
+  nav{
+    padding: 0px 200px;
+    display: flex;
+    width: 100%;
+    height: 200px;
+    justify-content:space-between;
+    align-items: center;
+    position: absolute;
+    top: 0.8rem;
+    z-index: 3;    
+  }
+  nav img{
+    width: 70px;
+  }
+  #homeContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  #nameDisplay {
+    width: auto;
+    height: auto;
+    padding: 5px 10px;
+    font-size: 2em;
+  }
+  
+  #name_text {
+    font-size: 1em;
+    color: #953A34;
+    font-family: 'piedra';
+  }
+  #home {
+    width: 100px;
+    height: 100px;
+    background: url("../assets/images/UI_elements/home-1.png");
+    background-size: cover;
+    background-position: center;
+  }
+    #home:hover {
+      background: url("../assets/images/UI_elements/home_hover.png");
+      background-size: cover;
+      background-position: center;
+    }
+
+  #score {
+    width: 270px;
+    height: 100px;
+    margin: 10px 0;
+    align-content: center;
+    background: url('../assets/images/UI_elements/score.png');
+    background-position: center;
+    background-size: cover;
+    visibility: hidden;
+  }
+  .icons {
+    float: left;
+    margin-left: 20px;
+  }
+  .game-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 200px;
+  }
+  
+  .images {
+    display: flex;
+    gap: 15px;
+    margin: 0 auto;
+    justify-content: center;
+    background: #a3a3a300;
+  }
+  #wild{
+    background: url("../assets/images/zone1.png");
+    background-size:cover;
+    background-position: center;
+    align-content: center;
+  }
+  #farm{
+    background: url("../assets/images/zone2.png");
+    background-size:cover;
+    background-position: center;
+    align-content: center;
+  }
+  .draggable {
+    width: 150px;
+    height: auto;
+    cursor: grab;
+    border: 2px solid transparent;
+    transition: border 0.3s;
+  }
+  .drop-zone {
+    width: 40%;
+    height: 50vh;
+    margin: 10px;
+    background-color: #a3a3a3;
+  }
+  
+  .drop-zone:hover {
+    background-color: #e9e9e9;
+  }
+  
+  .zones{
+    display: flex;
+    width: 100%;
+    min-height: 400px;
+    justify-content: center;
+  }
+.title{
+    background: url('../assets/images/green-rectangle.png');
+    background-size:cover;
+    background-position: center;
+    width: 200px;
+    height: 100px;
+}
+#score_text{
+    color: #ffb20a;
+    font-family: 'piedra';
+}
+
+@keyframes cloud_anim {
+  0% { transform: translateX(-150vw); }
+  100% { transform: translateX(100vw); }
+}
+
+@keyframes cloud_anim2 {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(-150vw); }
+}
+
+#cloud2, #cloud3, #cloud4, #cloud5, #cloud1 {
+  position: relative;
+  width: 250px;
+}
+
+#cloud2 {
+  top: 100px;
+  z-index: -1;
+  animation: cloud_anim2 42s linear infinite;
+}
+#cloud3 {
+  top: 30px;
+  z-index: 1;
+  animation: cloud_anim 45s linear infinite;
+}
+#cloud4 {
+  top: 50px;
+  z-index: 1;
+  animation: cloud_anim 50s linear infinite;
+}
+#cloud5 {
+  top: 100px;
+  z-index: 1;
+  animation: cloud_anim2 60s linear infinite;
+}
+#cloud1 {
+  top: 70px;
+  z-index: 0;
+  animation: cloud_anim2 38s linear infinite;
+}
+
+#main{
+    margin-top: 16rem;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+#main a {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent; /* Removes the blue box on mobile tap */
+}
+
+#main a img {
+    width: 420px; /* Your default size */
+    max-width: 28vw;
+    border-radius: 25px; /* Matches the card style */
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#main a:hover {
+    transform: translateY(-15px) scale(1.05);
+}
+
+#main a:hover img {
+    /* A golden glow that fits your "Sun/Grass" theme */
+    filter: drop-shadow(0 20px 30px rgba(255, 183, 0, 0.6));
+}
+
+/* 2. Mobile Tap: Slight squish effect */
+#main a:active {
+    transform: scale(0.95);
+    transition: transform 0.1s;
+}
+
+
+
+
+
+/*============ MATCHING CARDS ============*/
+.game-board {
+  display: grid;
+  width: 70%;
+  grid-template-columns: repeat(3, 280px);
+  grid-template-rows: repeat(2, 280px);
+  position: absolute;
+  top: calc(50% - 250px);
+  left: calc(50% - 400px);
+}
+
+.card {
+  width: 240px;
+  height: 240px;
+  background: url('../assets/images/cardBkg.png');
+  background-size: cover;
+  background-position: center;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  transition: transform 0.7s;
+  cursor: pointer;
+  z-index: 1;
+}
+.flipped {
+  transform: rotateY(180deg);
+  transition: transform 0.7s;
+  z-index: -1;
+}
+/*============ BUBBLE GAME ============*/
+
+    #bubbleArea {
+      position: absolute;
+      top: calc(50% - 270px);
+      left: calc(50% - 420px);
+      width: 50%;
+      height: 70vh;
+      overflow: hidden;
+      color: #fff;
+      background: url('../assets/images/background_card.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 15px;
+      z-index: 1;
+    }
+    #targetLetter {
+      font-size: 1.8em;
+      background: url('../assets/images/green-rectangle.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 350px;
+      height: 100px;
+      color: #fff;
+      font-family: 'piedra';
+      font-weight: 500;
+      padding: 0 20px;
+      padding-top: 15px;
+      margin:0px auto;
+      text-align: center;
+    } 
+    .bubble {
+      position: absolute;
+      bottom: 0;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: url('../assets/images/bubble.png');
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
+      cursor: pointer;
+      transition: bottom 7s linear;
+    }
+
+
+
+
+    /* =========================================
+   ORIENTATION BLOCKER
+   ========================================= */
+
+#rotate-device {
+    display: none; /* Hidden by default */
+    position: fixed;
+    inset: 0;
+    background: #733C10; /* Matching your theme's brown */
+    z-index: 10000; /* Above everything */
+    color: white;
+    font-family: 'piedra', cursive;
+    text-align: center;
+}
+
+.rotate-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 20px;
+}
+
+.phone-icon {
+    font-size: 80px;
+    margin-bottom: 20px;
+    animation: rotate-phone 2s ease-in-out infinite;
+}
+
+#rotate-device h2 {
+    font-size: 2.5em;
+    color: #ffb700;
+    margin-bottom: 10px;
+}
+
+#rotate-device p {
+    font-size: 1.5em;
+}
+
+/* The Animation */
+@keyframes rotate-phone {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(-90deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* ONLY SHOW IN PORTRAIT ON MOBILE/TABLET */
+@media screen and (max-width: 1024px) and (orientation: portrait) {
+    #rotate-device {
+        display: block;
+    }
+    /* Hide the rest of the body content to prevent scrolling */
+    html, body {
+        /* Prevents the "pull-to-refresh" and bouncing on mobile */
+        overscroll-behavior: none; 
+        position: fixed;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+
+
+
+
+/* --- MOBILE LANDSCAPE REFINEMENTS --- */
+@media screen and (max-height: 500px) {
+    /* 1. Shrink the Nav Bar */
+    nav {
+        height: 60px !important;
+        padding: 0 1.5rem !important;
+        top: 0.8rem;
+    }
+
+    #home, #topMusic, #topContact {
+        width: 50px;  /* Reduced from 100px */
+        height: 50px;
+    }
+
+    #nameDisplay {
+        font-size: 1.2em; /* Smaller text */
+    }
+
+    #score {
+        width: 180px; /* Smaller score board */
+        height: 65px;
+    }
+
+    /* 2. Fix the Main Menu (Index.html) */
+    #main {
+        margin-top:0.3rem; /* Reduced to sit just under the slim nav */
+        padding: 10px 40px;
+        height: calc(100vh - 60px); /* Fill the remaining height */
+        display: flex;
+        align-items: center; /* Centering cards vertically */
+        justify-content: center;
+        gap: 20px;
+    }
+
+    #main a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1; /* Distributes space evenly */
+        max-width: 25vw; /* Keeps them from getting too wide */
+    }
+
+    #main img {
+        width: 100%;
+        height: auto;
+        max-height: 60vh;
+        max-width: 25vw;
+        object-fit: contain;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
+    }
+
+    #main a:hover {
+        transform: translateY(-8px) scale(1.04);
+    }
+
+
+    .game-container {
+        padding-top: 90px; /* Slide the game up closer to the slim nav */
+    }
+
+    .zones {
+        min-height: 200px; /* Shorter zones */
+    }
+
+    .drop-zone {
+        height: 180px;
+        width: 45%;
+    }
+
+    .draggable {
+        width: 80px; /* Smaller animals */
+    }
+
+    .images {
+        padding: 10px;
+        gap: 8px;
+    }
+
+
+    /* Card Flip Grid */
+    .game-board {
+        grid-template-columns: repeat(3, 140px); /* 3 smaller columns */
+        grid-template-rows: repeat(2, 140px);
+        top: 100px;
+        left: calc(50% - 210px);
+    }
+
+    .card {
+        width: 130px;
+        height: 130px;
+    }
+
+    /* Bubble Game Area */
+    #bubbleArea {
+        width: 80%;
+        height: 75vh;
+        top: 90px;
+        left: 10%;
+    }
+    
+    #targetLetter {
+        width: 250px;
+        height: 60px;
+        font-size: 1.2em;
+        padding-top: 10px;
+    }
+
+    #cloud1, #cloud2, #cloud3, #cloud4, #cloud5 {
+        width: 150px; /* Make them smaller */
+        top: 10px !important; /* Move them all into the top sky area */
+    }
+    
+    /* Optional: Hide some clouds so it's less busy */
+    #cloud4, #cloud5 {
+        display: none;
+    }
+
+
+
+
+
+
+
+
+
+
+
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Piedra&display=swap" rel="stylesheet">
+  <script src="scripts/app.js" defer></script>
+  <title>Pop The Bubble</title>
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+<body>
+  <!-- AUDIO -->
+  <audio id="backgroundAudio" src="assets/audio/bkgMusic.mp3" loop></audio>
+
+  <div id="rotate-device">
+    <div class="rotate-content">
+        <div class="phone-icon">📱</div>
+        <h2>Please Rotate Your Device</h2>
+        <p>This game is best experienced in landscape mode.</p>
+    </div>
+</div>
+  
+  <!-- CONTACT LIGHT BOX -->
+  <div id="contactLightBox">
+    <div id="contactBoard">
+      <h1>Contact Us</h1>
+      <p>Share your thoughts or feedback with us!</p>
+      <div id="inputs">
+        <input id="emailInput" type="email" placeholder="type your email">
+        <textarea type="text" placeholder="type your query"></textarea>
+        <input id="send_btn" type="submit" value="Send">
+        <img id="close" src="assets/images/UI_elements/incorrect.png" alt="close" onclick="closeContact();">
+      </div>      
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div id="homeContainer">
+        <div id="home" onclick="window.location.href='index.html'"></div>
+        <div id="nameDisplay">
+          <p id="name_text"> </p>
+        </div>
+      </div>    
+      <div id="score"></div>
+      <div>
+      <div id="topMusic" class="music-on icons" onclick="toggleMusic();"></div>
+      <div id="topContact" onclick="openContact();" class="icons"></div>
+    </div>
+  </nav>
+
+  <!-- WIN LIGHT BOX -->
+  <div id="winLightBox">        
+  </div>
+
+  <!-- GAME BOARD -->
+  <div id="gameContainer">    
+    <div id="bubbleArea">
+      <div id="targetLetter"><span id="letterToFind"></span></div>
+    </div>
+  </div>
+</body>
+</html>
