@@ -203,17 +203,15 @@ function dragAndDrop(clickSound) {
     // --- MOBILE TOUCH EVENTS ---
     img.addEventListener("touchstart", (e) => {
       img.classList.add("dragging");
-      // Prevent scrolling while dragging
     }, { passive: true });
 
     img.addEventListener("touchmove", (e) => {
       const touch = e.touches[0];
       img.style.position = "fixed";
       img.style.zIndex = "10000";
-      // Center the animal under the finger
       img.style.left = `${touch.clientX - 60}px`; 
       img.style.top = `${touch.clientY - 60}px`;
-      img.style.pointerEvents = "none"; // Let finger "see through" to the zone
+      img.style.pointerEvents = "none"; 
       e.preventDefault(); 
     }, { passive: false });
 
@@ -221,7 +219,6 @@ function dragAndDrop(clickSound) {
       img.classList.remove("dragging");
       const touch = e.changedTouches[0];
 
-      // Detect what is under the finger
       img.style.visibility = "hidden"; 
       const target = document.elementFromPoint(touch.clientX, touch.clientY);
       img.style.visibility = "visible";
@@ -246,13 +243,19 @@ function dragAndDrop(clickSound) {
   let gameContainer = document.querySelector(".zones");
   let count = 0;
 
-  // LOGIC HANDLER (Used by both Desktop and Mobile)
+  // --- LOGIC HANDLER (Now hides instructions too) ---
   function checkDrop(img, zone) {
     if (zone && img.dataset.zone === zone.dataset.zone) {
+      
+      // NEW: Hide the instruction text in this zone
+      const instruction = zone.querySelector('.zone-instruction');
+      if (instruction) instruction.style.display = 'none';
+
       zone.appendChild(img);
       img.style.position = "static";
       img.style.pointerEvents = "auto";
       img.setAttribute('draggable', 'false');
+      
       count++;
       if(clickSound) clickSound.play();
       
@@ -260,6 +263,7 @@ function dragAndDrop(clickSound) {
       setTimeout(() => zone.style.borderColor = "", 1000);
 
       if (count % 2 === 0) addStars();
+      
       if (count === 6) {
         setTimeout(() => {
           gameContainer.innerHTML = '';
@@ -278,7 +282,7 @@ function dragAndDrop(clickSound) {
     }
   }
 
-  // DESKTOP ZONE LISTENERS
+  // --- DESKTOP ZONE LISTENERS ---
   zones.forEach(zone => {
     zone.addEventListener("dragover", (e) => e.preventDefault());
     zone.addEventListener("drop", (e) => {
@@ -287,19 +291,11 @@ function dragAndDrop(clickSound) {
       let imgSrc = e.dataTransfer.getData("id");
       let img = Array.from(document.querySelectorAll('.draggable')).find(i => i.src === imgSrc);
       
-      if (img && expectedZone === zone.dataset.zone) {
+      if (img) {
         checkDrop(img, zone);
-      } else if (img) {
-        checkDrop(img, null); // Force failure logic
-        handleFailure(zone); // Trigger shake on the specific zone
       }
     });
   });
-
-  function handleFailure(z) {
-    z.classList.add("shake-error");
-    setTimeout(() => z.classList.remove("shake-error"), 500);
-  }
 }
 
 // ============ ADD STARS ============
@@ -318,6 +314,9 @@ function addStars() {
   starsContainer.appendChild(star);
   console.log('Star added');
 } // addStars()
+
+
+
 
 // ============ POP THE BUBBLE GAME ============
 function popTheBubble() {
@@ -403,6 +402,8 @@ function popTheBubble() {
   // Start the game
   startLetterRound();
 } // popTheBubble()
+
+
 
 // ============ GAME OVER ============
 

@@ -455,7 +455,20 @@ body {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  flex-direction: column;
   }
+
+
+  .zone-instruction {
+    font-family: 'piedra', cursive;
+    font-size: 1.4em;
+    color: rgba(115, 60, 16, 0.4); /* Semi-transparent brown */
+    text-align: center;
+    pointer-events: none; /* So it doesn't block the drag/drop */
+    margin-top: 20px;
+    padding: 0 20px;
+    line-height: 1.2;
+}
   
  .drop-zone.hovered {
   border-color: #ffb20a;
@@ -829,6 +842,11 @@ body {
         min-height: 200px; /* Shorter zones */
     }
 
+    .zone-instruction {
+        font-size: 0.9em; /* Much smaller for phone screens */
+        margin-top: 10px;
+    }
+
     .drop-zone {
         height: 180px;
         width: 42%;
@@ -864,6 +882,16 @@ body {
         height: 75vh;
         top: 90px;
         left: 10%;
+    }
+
+    .zone-instruction {
+        font-size: 0.9em; /* Much smaller for phone screens */
+        margin-top: 10px;
+    }
+    
+    .zone-label {
+        font-size: 1em;
+        top: 5px;
     }
     
     #targetLetter {
