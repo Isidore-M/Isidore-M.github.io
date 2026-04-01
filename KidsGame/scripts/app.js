@@ -313,95 +313,132 @@ function addStars() {
   
   starsContainer.appendChild(star);
   console.log('Star added');
+  starsContainer.appendChild(star);
 } // addStars()
 
 
 
 
 // ============ POP THE BUBBLE GAME ============
-function popTheBubble() {
-  score.setAttribute('style', 'visibility: visible;');
+ function popTheBubble() {
+  const scoreContainer = document.querySelector('#score');
+  if (scoreContainer) {
+    scoreContainer.style.visibility = 'visible';
+    scoreContainer.style.display = 'flex'; // Ensures stars align in a row
+  }
+
   let bubbleArea = document.querySelector('#bubbleArea');
   let letterDisplay = document.querySelector('#letterToFind');
+  if (!bubbleArea) return;
 
-  let alphabet = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
-  let targetLetters = getRandomItems([...alphabet], 3);
-
-  let index = 0;
+  const alphabet = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
+  const targetLetters = getRandomItems([...alphabet], 3);
+  
+  let roundIndex = 0;
   let poppedCount = 0;
   let bubbleInterval;
 
-  function setInstruction(letter) {
-    letterDisplay.textContent = `Find 5 bubbles with the letter: ${letter}`;
-  } // setInstruction()
+  const popSound = new Audio('assets/audio/click.mp3'); 
 
-  function getRandomDecoyLetter(exclude) {
-    let decoy;
-    do {
-      decoy = alphabet[Math.floor(Math.random() * alphabet.length)];
-    } while (decoy === exclude);
-    return decoy;
-  } // getRandomDecoyLetter()
+  function setInstruction(letter) {
+    letterDisplay.textContent = `Pop 5 bubbles: ${letter}`;
+// "Pop" effect for the text so it grabs attention
+    letterDisplay.style.transform = "scale(1.2)";
+    letterDisplay.style.transition = "transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+    
+    setTimeout(() => {
+        letterDisplay.style.transform = "scale(1)";
+    }, 300);
+
+  }
 
   function createBubble(letter) {
-    let bubble = document.createElement('div');
+    const bubble = document.createElement('div');
     bubble.className = 'bubble';
     bubble.textContent = letter;
-    bubble.style.left = Math.random() * 80 + '%';
+    
+    const startX = Math.random() * 80; 
+    bubble.style.left = `${startX}%`;
+    bubble.style.bottom = "-100px";
 
-    bubble.addEventListener('click', () => {
-      if (letter === targetLetters[index]) {
-        bubble.remove();
-        poppedCount++;
-
-        if (poppedCount === 5) {
-          clearInterval(bubbleInterval);
-          index++;
-          poppedCount = 0;
-
-          addStars();
-
-          if (index < targetLetters.length) {
-            setTimeout(() => {
-              clearBubbles();
-              setInstruction(targetLetters[index]);
-              startLetterRound();
-            }, 1000);
-          } else {
-            bubbleArea.remove();
-            gameOver();
-          }
-        }
+    // --- RESTORED CLICK/TOUCH LOGIC ---
+    const handlePop = () => {
+      if (letter === targetLetters[roundIndex]) {
+        popSound.currentTime = 0;
+        popSound.play().catch(() => {});
+        
+        bubble.classList.add('popped'); // Visual feedback
+        
+        setTimeout(() => {
+          bubble.remove();
+          poppedCount++;
+          if (poppedCount === 5) nextRound();
+        }, 150);
+      } else {
+        // Optional: Shake effect for wrong letter
+        bubble.classList.add('shake-error');
+        setTimeout(() => bubble.classList.remove('shake-error'), 500);
       }
-    });
+    };
+
+    // Support both Mouse and Finger
+    bubble.addEventListener('mousedown', handlePop);
+    bubble.addEventListener('touchstart', (e) => {
+        e.preventDefault(); 
+        handlePop();
+    }, {passive: false});
 
     bubbleArea.appendChild(bubble);
 
-    // Animate upward and remove after 4 seconds
+    requestAnimationFrame(() => {
+      const duration = 8000 + Math.random() * 4000; 
+      bubble.style.transition = `bottom ${duration}ms linear`;
+      bubble.style.bottom = "110%";
+    });
+
     setTimeout(() => {
-      bubble.style.bottom = '100%';
-      setTimeout(() => bubble.remove(), 4000);
-    }, 50);
-  } // createBubble()
+      if (bubble.parentElement) bubble.remove();
+    }, 13000); 
+  }
+/* Check here */
+  function nextRound() {
+    clearInterval(bubbleInterval);
+    addStars(); // This calls your existing addStars function
+    roundIndex++;
+    poppedCount = 0;
 
-  function clearBubbles() {
-    document.querySelectorAll('.bubble').forEach(b => b.remove());
-  } // clearBubbles()
+    // 3. Clear ALL remaining bubbles from the screen so they don't distract
+    const remainingBubbles = document.querySelectorAll('.bubble');
+    remainingBubbles.forEach(b => {
+        b.style.opacity = '0';
+        b.style.transition = 'opacity 0.5s ease';
+        setTimeout(() => b.remove(), 500);
+    });
 
-  function startLetterRound() {
-    let currentLetter = targetLetters[index];
-    setInstruction(currentLetter);
+    if (roundIndex < targetLetters.length) {
+      document.querySelectorAll('.bubble').forEach(b => b.remove());
+      setTimeout(startRound, 900);
+    } else {
+      setTimeout(() => {
+        bubbleArea.style.display = 'none';
+        gameOver();
+      }, 1500);
+    }
+  }
 
+  function startRound() {
+    setInstruction(targetLetters[roundIndex]);
     bubbleInterval = setInterval(() => {
-      let isTarget = Math.random() < 0.33;
-      let letter = isTarget ? currentLetter : getRandomDecoyLetter(currentLetter);
+      const isTarget = Math.random() < 0.4;
+      const letter = isTarget ? targetLetters[roundIndex] : alphabet[Math.floor(Math.random() * alphabet.length)];
       createBubble(letter);
-    }, 600);
-  } // startLetterRound()
+    }, 500); // Slower spawn rate
+  }
 
-  // Start the game
-  startLetterRound();
-} // popTheBubble()
+  startRound();
+}
+
+// popTheBubble()
 
 
 

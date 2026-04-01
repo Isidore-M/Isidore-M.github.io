@@ -213,14 +213,14 @@ body {
       transform: rotate(180deg) scale(1.1);
     }
     #contactLightBox {
-      background: #ffffffc1;
+      background: #140303c1;
       width: 100%;
       height: 100vh;
       position: absolute;
       top: 0;
       left: 0;
       visibility: hidden;
-      z-index: 2;
+      z-index: 50;
       padding-top: 40px;
     }
       #contactBoard {
@@ -376,9 +376,10 @@ body {
       background-position: center;
     }
 .star {
-        width: 30px !important; /* Smaller stars */
-        height: 30px !important;
+        width: 4rem !important; /* Smaller stars */
+        height: auto;
         margin-left: 2px;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         /* Add a little "pop" animation when they appear */
         animation: starPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
@@ -391,6 +392,11 @@ body {
     background-position: center;
     background-size: cover;
     visibility: hidden;
+    display: flex;
+    align-items: center;    /* Vertically center */
+    justify-content: center; /* Horizontally center */
+    gap: 5px;               /* Space between stars */
+    padding-top: 10px;      
   }
   .icons {
     float: left;
@@ -647,53 +653,61 @@ body {
   z-index: -1;
 }
 /*============ BUBBLE GAME ============*/
+#gameContainer{
+  margin-top: 12rem;
+}
 
-    #bubbleArea {
-      position: absolute;
-      top: calc(50% - 270px);
-      left: calc(50% - 420px);
-      width: 50%;
-      height: 70vh;
-      overflow: hidden;
-      color: #fff;
-      background: url('../assets/images/background_card.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      border-radius: 15px;
-      z-index: 1;
-    }
-    #targetLetter {
-      font-size: 1.8em;
-      background: url('../assets/images/green-rectangle.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      width: 350px;
-      height: 100px;
-      color: #fff;
-      font-family: 'piedra';
-      font-weight: 500;
-      padding: 0 20px;
-      padding-top: 15px;
-      margin:0px auto;
-      text-align: center;
-    } 
+#bubbleArea {
+    position: relative; /* Changed from absolute to work better with flex containers */
+    width: 90%;
+    max-width: 900px;
+    height: 70vh;
+    margin: 20px auto;
+    background: url('../assets/images/background_card.png') no-repeat center/cover;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+    /* Target Letter Banner */
+#targetLetter {
+    width: 400px;
+    height: 80px;
+    margin: 10px auto;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    color: rgb(60, 30, 7);
+    z-index: 20;
+    position: relative;
+    border-radius: 50px;
+    border: solid 3px #733C10;
+}
+
     .bubble {
-      position: absolute;
-      bottom: 0;
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      background: url('../assets/images/bubble.png');
-      background-size: cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 2em;
-      cursor: pointer;
-      transition: bottom 7s linear;
-    }
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    background: url('../assets/images/bubble.png') no-repeat center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2em;
+    color: #ffffff;
+    cursor: pointer;
+    user-select: none;
+    z-index: 10;
+    /* This makes the text look like it's inside the bubble */
+    text-shadow: 1px 1px 2px rgba(36, 36, 36, 0.8);
+}
+
+/* Pop Effect */
+.bubble.popped {
+    transform: scale(1.5);
+    opacity: 0;
+    transition: all 0.1s ease-out;
+}
 
 
 
@@ -792,13 +806,13 @@ body {
     }
 
    #score {
-        width: 150px; /* Slimmer score board for mobile */
-        height: 55px;
+        width: 160px; /* Slimmer score board for mobile */
+        height: 60px;
         padding: 5px;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 5px;
+        gap: 3px;
     }
 
     /* 2. Fix the Main Menu (Index.html) */
@@ -878,10 +892,9 @@ body {
 
     /* Bubble Game Area */
     #bubbleArea {
-        width: 80%;
         height: 75vh;
-        top: 90px;
-        left: 10%;
+        width: 95%;
+        margin-top: 5px;
     }
 
     .zone-instruction {
@@ -894,13 +907,14 @@ body {
         top: 5px;
     }
     
-    #targetLetter {
-        width: 250px;
-        height: 60px;
-        font-size: 1.2em;
-        padding-top: 10px;
+   #targetLetter {
+        width: 300px;
+        height: 50px;
+        font-size: 1.1em;
     }
 
+
+    
     #cloud1, #cloud2, #cloud3, #cloud4, #cloud5 {
         width: 150px; /* Make them smaller */
         top: 10px !important; /* Move them all into the top sky area */
@@ -920,12 +934,23 @@ body {
     #winText { font-size: 1.2em; height: 70px; width: 80%; }
     #restartGame { width: 60px; height: 60px; top: 10px; right: 10px; }
 
+  #gameContainer {
+        height: 70vh;
+        margin-top: 5.7rem;
+        background-position: center;
+        background-size:cover;
+        background-repeat: no-repeat;
+    }
 
+    .bubble {
+        width: 65px;
+        height: 65px;
+        font-size: 1.5em;
+    }
 
-
-
-
-
+    .star {
+        width: 28px !important; /* Smaller for mobile */
+    }
 
 
 
